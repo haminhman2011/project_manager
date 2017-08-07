@@ -21,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import mh.manager.HostApi;
 import mh.manager.LoginDatabase;
 import mh.manager.MainActivity;
 import mh.manager.R;
@@ -47,7 +48,8 @@ public class NotificationServices extends Service {
         private final static String url_token = "&token=";
         private final static String url_agentId = "&agentId=";
 
-        public String staffId, agentId, token, hostApi;
+        public String staffId, agentId, token;
+        public HostApi hostApi;
 
 
 
@@ -64,7 +66,7 @@ public class NotificationServices extends Service {
 
             @Override
             protected Void doInBackground(Void... arg0) {
-                hostApi = "http://demo.cloudteam.vn:8080/cocobay_manager/api/";
+                hostApi  = new HostApi();
 
                 sql = new LoginDatabase(NotificationServices.this);
                 sql.getWritableDatabase();
@@ -82,7 +84,7 @@ public class NotificationServices extends Service {
                 HttpHandler sh = new HttpHandler();
 
                 // Making a request to url and getting response
-                String jsonStr = sh.makeServiceCall("http://demo.cloudteam.vn:8080/cocobay_manager/api/get-noti?staffId=2");
+                String jsonStr = sh.makeServiceCall(hostApi.hostApi+"get-noti?staffId="+staffId);
 //            Log.e(TAG, "Response from url: " + jsonStr);hostApi+url_page+url_staffId+staffId+url_token+token+url_agentId+agentId
 
                 if (jsonStr != null) {
