@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import org.json.JSONArray;
@@ -34,6 +35,7 @@ public class TeamActivity extends Activity{
     private final static String url_teamId= "?teamId";
     public ArrayList<ModelTeam> modelTeams;
     public ArrayList<String> arrTeams;
+    public Button btnAssignAgent, btnCancel, btnClose;
     public Spinner spAgent;
     JSONObject jsonobject;
     JSONArray jsonarray;
@@ -49,6 +51,14 @@ public class TeamActivity extends Activity{
         spAgent = (Spinner) findViewById(R.id.snTeam);
 
         new DownloadJSON().execute();
+
+        btnClose = (Button) findViewById(R.id.close_button);
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
 
