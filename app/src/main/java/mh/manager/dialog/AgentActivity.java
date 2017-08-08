@@ -28,6 +28,7 @@ import mh.manager.HostApi;
 import mh.manager.LoginDatabase;
 import mh.manager.R;
 import mh.manager.asynctask.CallUrlUpdateDetail;
+import mh.manager.format.FormatFont;
 import mh.manager.jsonfuntions.JsonLoadStatus;
 import mh.manager.models.ModelAgent;
 
@@ -50,6 +51,7 @@ public class AgentActivity extends Activity{
     public String departmentId, ticketId, staffAssignedId;
     public Button btnAssignAgent, btnCancel, btnClose;
     public EditText edtNoteDialog;
+    public FormatFont formatFont;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +127,7 @@ public class AgentActivity extends Activity{
         @Override
         protected Void doInBackground(Void... params) {
             hostApi = new HostApi();
+            formatFont = new FormatFont();
             modelAgents = new ArrayList<>();
             // Create an array to populate the spinner
             arrAgent = new ArrayList<>();
@@ -143,7 +146,7 @@ public class AgentActivity extends Activity{
                     data.setLastname(!jsonobject.getString("lastname").equals("null") ? jsonobject.getString("lastname") : "");
                     modelAgents.add(data);
                     // Populate spinner with country names
-                    arrAgent.add(jsonobject.optString("firstname") + "" + jsonobject.optString("lastname"));
+                    arrAgent.add(formatFont.formatFont(jsonobject.optString("firstname")) + " " + formatFont.formatFont(jsonobject.optString("lastname")));
 
                 }
             } catch (Exception e) {
@@ -161,6 +164,7 @@ public class AgentActivity extends Activity{
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                     TextView tvIdAgent = (TextView) findViewById(R.id.tvIdAgent);
+                    tvIdAgent.setVisibility(View.GONE);
                     tvIdAgent.setText(modelAgents.get(position).getStaff_id());
                 }
                 @Override

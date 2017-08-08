@@ -38,6 +38,7 @@ import mh.manager.asynctask.LoadDataServerFromURITaskDetailOpen;
 import mh.manager.asynctask.LoadDataServerTickedThreadOpen;
 import mh.manager.dialog.AgentActivity;
 import mh.manager.dialog.TeamActivity;
+import mh.manager.dialog.TransferActivity;
 import mh.manager.models.ModelDynamicDetailOpen;
 import mh.manager.models.ModelOpen;
 
@@ -54,9 +55,8 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
     private final static String TAG = DetailOpenActivity.class.getSimpleName();
 
     public TextView tvStatusUpdate, tvSticket, tvStatus, tvPriority, tvDepartment, tvCreatedDate, tvUser, tvEmail, tvPhone, tvSource, tvAssigned, tvSlaPlan, tvDueDate, tvHelpTopic, tvLastMassage, tvLastResponse;
-    private Button btnBack, btnUpdateOpen;
+    private Button btnBack, btnUpdateOpen, btnChangeTeam, btnChangeStatus, btnAssign, btnTransfer;
     public String ticketNumber, ticketId, staffId, agentId, token, email, status, userName, departmentId, nameStatus;
-    public ImageButton imgBtnChangeTeam, btnChangeStatus, btnAssign;
     public EditText strNote;
     public Spinner spnChangeTeam, spnChangeStatus, spTicketStatus, spnAgent;
 
@@ -157,12 +157,16 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
         changeTeamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnChangeTeam.setAdapter(changeTeamAdapter);
 
-        btnAssign = (ImageButton) findViewById(R.id.btnAssign);
+        btnAssign = (Button) findViewById(R.id.btnAssign);
         btnAssign.setOnClickListener(onClickAssign);
 
         // xử lý ticket thread chat, load data auto
         getDataTickedThreadUrl(hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
-        Log.i("host api thres===>", hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
+//        Log.i("host api thres===>", hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
+
+        // transfer
+        btnTransfer = (Button) findViewById(R.id.btnTransfer);
+        btnTransfer.setOnClickListener(onClickTransfer);
     }
     /**
      * lấy dữ liệu từ openactivity
@@ -242,6 +246,20 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
             }else{
                 Toast.makeText(DetailOpenActivity.this, "Vui lòng chọn!", Toast.LENGTH_SHORT).show();
             }
+        }
+    };
+
+    /**
+     * onClickTransfer
+     */
+    private View.OnClickListener onClickTransfer = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            Intent data = new Intent(DetailOpenActivity.this, TransferActivity.class);
+//            dataTeam.putExtra("nameTeam", nameTeam);
+            startActivity(data);
+
         }
     };
 

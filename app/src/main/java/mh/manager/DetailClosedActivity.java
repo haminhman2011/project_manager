@@ -39,6 +39,7 @@ import mh.manager.asynctask.LoadDataServerFromURITaskDetailClosed;
 import mh.manager.asynctask.LoadDataServerTickedThreadClosed;
 import mh.manager.dialog.AgentActivity;
 import mh.manager.dialog.TeamActivity;
+import mh.manager.dialog.TransferActivity;
 import mh.manager.models.ModelClose;
 import mh.manager.models.ModelDynamicDetailClosed;
 
@@ -56,9 +57,8 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
     private final static String TAG = DetailOpenActivity.class.getSimpleName();
 
     private TextView tvStatusUpdate, tvSticket, tvStatus, tvPriority, tvDepartment, tvCreatedDate, tvUser, tvEmail, tvPhone, tvSource, tvAssigned, tvSlaPlan, tvDueDate, tvHelpTopic, tvLastMassage, tvLastResponse;
-    private Button btnBack, btnUpdateClosed;
+    private Button btnBack, btnUpdateClosed, btnChangeTeam, btnChangeStatus, btnAssign, btnTransfer;
     public String ticketNumber, ticketId, staffId, agentId, token, email, status, userName, departmentId, nameStatus;
-    public ImageButton imgBtnChangeTeam, btnChangeStatus, btnAssign;
     public EditText strNote;
     public Spinner spnChangeTeam, spnChangeStatus, spTicketStatus, spnAgent;
 
@@ -161,12 +161,16 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
         changeTeamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnChangeTeam.setAdapter(changeTeamAdapter);
 
-        btnAssign = (ImageButton) findViewById(R.id.btnAssign);
+        btnAssign = (Button) findViewById(R.id.btnAssign);
         btnAssign.setOnClickListener(onClickAssign);
 
         // xử lý ticket thread chat, load data auto
         getDataTickedThreadUrl(hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
-        Log.i("host api thres===>", hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
+//        Log.i("host api thres===>", hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
+
+        // transfer
+        btnTransfer = (Button) findViewById(R.id.btnTransfer);
+        btnTransfer.setOnClickListener(onClickTransfer);
     }
 
     /**
@@ -242,6 +246,20 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
             }
         }
     };
+
+    /**
+     * onClickTransfer
+     */
+    private View.OnClickListener onClickTransfer = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent data = new Intent(DetailClosedActivity.this, TransferActivity.class);
+//            dataTeam.putExtra("nameTeam", nameTeam);
+            startActivity(data);
+
+        }
+    };
+
     // calling asynctask to get json data from internet
     private void getDataTickedThreadUrl(String url) {
         new LoadDataServerTickedThreadClosed(this, url).execute();

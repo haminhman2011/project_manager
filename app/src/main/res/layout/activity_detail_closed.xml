@@ -63,82 +63,24 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="7"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:gravity="center_vertical"
-                android:orientation="vertical"
-                android:paddingRight="5dp">
-
-
-                <ImageButton
-                    android:id="@+id/btnChangeStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/icon_flag" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center_vertical|center"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <Spinner
-                        android:id="@+id/spnChangeTeam"
-                        android:layout_width="100dp"
-                        android:layout_height="32dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_weight="1"
-                        android:background="@drawable/spinner_background"
-                        android:drawSelectorOnTop="true"
-                        android:gravity="left"
-                        android:spinnerMode="dropdown" />
-
-                    <ImageButton
-                        android:id="@+id/btnAssign"
-                        android:layout_width="32dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/icon_user" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnUpdateTicket"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="left|center_vertical"
-                android:orientation="horizontal">
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@color/btnAll"
+                android:drawableLeft="@drawable/edit"
+                android:paddingLeft="15dp"
+                android:text="@string/strEdit"
+                android:textAllCaps="false"
+                android:textColor="@color/btnColor"
+                android:textSize="@dimen/btnSize" />
 
-                <ImageButton
-                    android:id="@+id/btnStrenfer"
-                    android:layout_width="32dp"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/strenfer" />
-
-                <ImageButton
-                    android:id="@+id/btnUpdateTicket"
-                    android:layout_width="32dp"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/edit" />
-            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
@@ -159,6 +101,112 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:background="@color/btnColor"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnChangeStatus"
+                            android:layout_width="20dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/btnAll"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/chStatus"
+                            android:textAllCaps="false"
+                            android:textColor="@color/btnColor"
+                            android:textSize="@dimen/btnSize" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <Spinner
+                                android:id="@+id/spnChangeTeam"
+                                android:layout_width="match_parent"
+                                android:layout_height="32dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_weight="1"
+                                android:background="@drawable/spinner_background"
+                                android:drawSelectorOnTop="true"
+                                android:gravity="left"
+                                android:spinnerMode="dropdown" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="4"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/btnAssign"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="3dp"
+                                android:background="@color/btnAll"
+                                android:fontFamily="sans-serif"
+                                android:gravity="center"
+                                android:text="@string/reassign"
+                                android:textAllCaps="false"
+                                android:textColor="@color/btnColor"
+                                android:textSize="@dimen/btnSize" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnTransfer"
+                            android:layout_width="20dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/btnAll"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/strTransfer"
+                            android:textAllCaps="false"
+                            android:textColor="@color/btnColor"
+                            android:textSize="@dimen/btnSize" />
+
+                    </LinearLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
