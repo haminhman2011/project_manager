@@ -21,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import mh.manager.HostApi;
 import mh.manager.LoginDatabase;
 import mh.manager.MainActivity;
 import mh.manager.R;
@@ -47,7 +48,8 @@ public class NotificationServices extends Service {
         private final static String url_token = "&token=";
         private final static String url_agentId = "&agentId=";
 
-        public String staffId, agentId, token, hostApi;
+        public String staffId, agentId, token;
+        public HostApi hostApi;
 
 
 
@@ -64,7 +66,7 @@ public class NotificationServices extends Service {
 
             @Override
             protected Void doInBackground(Void... arg0) {
-                hostApi = "http://demo.cloudteam.vn:8080/cocobay_manager/api/";
+                hostApi  = new HostApi();
 
                 sql = new LoginDatabase(NotificationServices.this);
                 sql.getWritableDatabase();
@@ -82,7 +84,7 @@ public class NotificationServices extends Service {
                 HttpHandler sh = new HttpHandler();
 
                 // Making a request to url and getting response
-                String jsonStr = sh.makeServiceCall("http://demo.cloudteam.vn:8080/cocobay_manager/api/get-noti?staffId=2");
+                String jsonStr = sh.makeServiceCall(hostApi.hostApi+"get-noti?staffId="+staffId);
 //            Log.e(TAG, "Response from url: " + jsonStr);hostApi+url_page+url_staffId+staffId+url_token+token+url_agentId+agentId
 
                 if (jsonStr != null) {
@@ -97,37 +99,35 @@ public class NotificationServices extends Service {
 //            Toast.makeText(getApplicationContext(), String.valueOf(intTask), Toast.LENGTH_SHORT).show();
                             for ( i= 0; i < contacts.length(); i++) {
                                 JSONObject jObject = contacts.getJSONObject(i);
-                                Log.i("dem thu tu", String.valueOf(i));
-                /* Sử dụng dịch vụ */
-                                Notification.Builder mBuilder = new Notification.Builder(getApplicationContext());
-
-                                mBuilder.setContentTitle("Tin nhắn mới");
-                                mBuilder.setContentText(jObject.getString("message"));
-                                mBuilder.setTicker("Thông báo!");
-                                if(jObject.getString("code_name").equals("assigned.alert")){
-                                    mBuilder.setSmallIcon(R.drawable.icon_assign_16);
-                                }else if(jObject.getString("code_name").equals("ticket.alert")){
-                                    mBuilder.setSmallIcon(R.drawable.icon_new_16);
-                                }else if(jObject.getString("code_name").equals("ticket.overdue")){
-                                    mBuilder.setSmallIcon(R.drawable.icon_timeout_16);
+                                if(!jObject.getString("code_name").equals("null")){
+                                    Log.i("dem thu tu", String.valueOf(i));
+                                    Notification.Builder mBuilder = new Notification.Builder(getApplicationContext());
+                                    mBuilder.setContentTitle("Tin nhắn mới");
+                                    mBuilder.setContentText(jObject.getString("message"));
+                                    mBuilder.setTicker("Thông báo!");
+                                    if(jObject.getString("code_name").equals("assigned.alert")){
+                                        mBuilder.setSmallIcon(R.drawable.icon_assign_16);
+                                    }else if(jObject.getString("code_name").equals("ticket.alert")){
+                                        mBuilder.setSmallIcon(R.drawable.icon_new_16);
+                                    }else if(jObject.getString("code_name").equals("ticket.overdue")){
+                                        mBuilder.setSmallIcon(R.drawable.icon_timeout_16);
+                                    }
+            /* tăng số thông báo */
+    //            mBuilder.setNumber(++numMessages);
+                /* Tạo đối tượng chỉ đến activity sẽ mở khi chọn thông báo */
+                                    Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
+                                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
+                                    stackBuilder.addParentStack(MainActivity.class);
+                /* Đăng ký activity được gọi khi chọn thông báo */
+                                    stackBuilder.addNextIntent(resultIntent);
+                                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+                                    mBuilder.setContentIntent(resultPendingIntent);
+                                    mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    /* cập nhật thông báo */
+                                    mNotificationManager.notify(++notificationID, mBuilder.build());
                                 }else{
-                                    mBuilder.setSmallIcon(R.drawable.icon_notification);
+                                    Log.i("dữ liệu null", "dữ liệu lỗi hoặc là dữ liệu test");
                                 }
-
-
-		/* tăng số thông báo */
-//            mBuilder.setNumber(++numMessages);
-            /* Tạo đối tượng chỉ đến activity sẽ mở khi chọn thông báo */
-                                Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
-                                TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
-                                stackBuilder.addParentStack(MainActivity.class);
-            /* Đăng ký activity được gọi khi chọn thông báo */
-                                stackBuilder.addNextIntent(resultIntent);
-                                PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
-                                mBuilder.setContentIntent(resultPendingIntent);
-                                mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-		        /* cập nhật thông báo */
-                                mNotificationManager.notify(++notificationID, mBuilder.build());
                             }
 
 

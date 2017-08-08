@@ -40,6 +40,7 @@ import mh.manager.asynctask.LoadDataServerFromURITaskDetailOverdue;
 import mh.manager.asynctask.LoadDataServerTickedThreadOverdue;
 import mh.manager.dialog.AgentActivity;
 import mh.manager.dialog.TeamActivity;
+import mh.manager.dialog.TransferActivity;
 import mh.manager.jsonfuntions.JsonLoadStatus;
 import mh.manager.models.ModelDynamicDetailOverdue;
 import mh.manager.models.ModelOverdue;
@@ -59,9 +60,8 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
     private final static String TAG = DetailOpenActivity.class.getSimpleName();
 
     private TextView tvStatusUpdate, tvSticket, tvStatus, tvPriority, tvDepartment, tvCreatedDate, tvUser, tvEmail, tvPhone, tvSource, tvAssigned, tvSlaPlan, tvDueDate, tvHelpTopic, tvLastMassage, tvLastResponse;
-    private Button btnBack, btnUpdateOverdue;
-    public String ticketNumber, ticketId, staffId, agentId, token, email, status, userName, departmentId, nameStatus;
-    public ImageButton imgBtnChangeTeam, btnChangeStatus, btnAssign;
+    private Button btnBack, btnUpdateOverdue, btnChangeTeam, btnChangeStatus, btnAssign, btnTransfer;
+    public String ticketNumber, ticketId, staffId, agentId, token, email, status, userName, departmentId, departmentName, nameStatus;
     public EditText strNote;
     public Spinner spnChangeTeam, spnChangeStatus, spTicketStatus, spnAgent;
 
@@ -163,12 +163,16 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
         changeTeamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnChangeTeam.setAdapter(changeTeamAdapter);
 
-        btnAssign = (ImageButton) findViewById(R.id.btnAssign);
+        btnAssign = (Button) findViewById(R.id.btnAssign);
         btnAssign.setOnClickListener(onClickAssign);
 
         // xử lý ticket thread chat, load data auto
         getDataTickedThreadUrl(hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
-        Log.i("host api thres===>", hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
+//        Log.i("host api thres===>", hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
+
+        // transfer
+        btnTransfer = (Button) findViewById(R.id.btnTransfer);
+        btnTransfer.setOnClickListener(onClickTransfer);
     }
 
     /**
@@ -183,6 +187,7 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
                 ticketId = data.getTicket_id();
                 ticketNumber = data.getNumber();
                 departmentId = data.getDepartmentId();
+                departmentName = data.getDepartment();
                 email = data.getEmail();
                 status = data.getStatus();
 
@@ -242,6 +247,19 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
             }else{
                 Toast.makeText(DetailOverdueActivity.this, "Vui lòng chọn!", Toast.LENGTH_SHORT).show();
             }
+        }
+    };
+
+    /**
+     * onClickTransfer
+     */
+    private View.OnClickListener onClickTransfer = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent data = new Intent(DetailOverdueActivity.this, TransferActivity.class);
+            data.putExtra("departmentName", departmentName);
+            startActivity(data);
+
         }
     };
 

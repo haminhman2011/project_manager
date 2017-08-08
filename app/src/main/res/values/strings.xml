@@ -35,4 +35,8 @@
     <string name="strReset">Reset</string>
     <string name="btnCancel">Cancel</string>
     <string name="strAssign">Assign</string>
+    <string name="strTransfer">Transfer</string>
+    <string name="chStatus">Status</string>
+    <string name="reassign">Assign</string>
+    <string name="strEdit">Edit</string>
 </resources>
