@@ -55,8 +55,8 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
     private final static String TAG = DetailOpenActivity.class.getSimpleName();
 
     public TextView tvStatusUpdate, tvSticket, tvStatus, tvPriority, tvDepartment, tvCreatedDate, tvUser, tvEmail, tvPhone, tvSource, tvAssigned, tvSlaPlan, tvDueDate, tvHelpTopic, tvLastMassage, tvLastResponse;
-    private Button btnBack, btnUpdateOpen, btnChangeTeam, btnChangeStatus, btnAssign, btnTransfer;
-    public String ticketNumber, ticketId, staffId, agentId, token, email, status, userName, departmentId, nameStatus;
+    private Button btnBack, btnUpdateOpen, btnChangeTeam, btnChangeStatus, btnAssign, btnTransfer, btnEditTicket;
+    public String ticketNumber, ticketId, staffId, agentId, token, email, status, userName, departmentId, departmentName, nameStatus;
     public EditText strNote;
     public Spinner spnChangeTeam, spnChangeStatus, spTicketStatus, spnAgent;
 
@@ -167,6 +167,18 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
         // transfer
         btnTransfer = (Button) findViewById(R.id.btnTransfer);
         btnTransfer.setOnClickListener(onClickTransfer);
+
+        //edit detail ticket
+        btnEditTicket = (Button) findViewById(R.id.btnEditTicket);
+        btnEditTicket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentEdit = new Intent(DetailOpenActivity.this, EditDetailOpenActivity.class);
+
+                startActivity(intentEdit);
+                finish();
+            }
+        });
     }
     /**
      * lấy dữ liệu từ openactivity
@@ -179,6 +191,7 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
                 ticketId = data.getTicket_id();
                 ticketNumber = data.getNumber();
                 departmentId = data.getDepartmentId();
+                departmentName = data.getDepartment();
                 email = data.getEmail();
                 status = data.getStatus();
 
@@ -255,11 +268,9 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
     private View.OnClickListener onClickTransfer = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
             Intent data = new Intent(DetailOpenActivity.this, TransferActivity.class);
-//            dataTeam.putExtra("nameTeam", nameTeam);
+            data.putExtra("departmentName", departmentName);
             startActivity(data);
-
         }
     };
 

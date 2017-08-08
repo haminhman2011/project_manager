@@ -78,7 +78,7 @@ public class DynamicDetailOverdueAdapter extends ArrayAdapter<ModelDynamicDetail
         ed.setHeight(60);
         ed.setBackgroundResource(R.drawable.rounded_border_edittext);
         ed.setTextColor(Color.parseColor("#616161"));
-        ed.setText(formatFont.formatFont(data.getValue()));
+        ed.setText(data.getValue());
 
 
         llLeft.addView(tv);

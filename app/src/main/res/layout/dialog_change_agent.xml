@@ -54,8 +54,7 @@
                     android:id="@+id/tvIdAgent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="TextView" />
+                    android:layout_weight="1" />
 
 
             </LinearLayout>
@@ -102,7 +101,6 @@
                     android:orientation="horizontal">
 
 
-
                     <Button
                         android:id="@+id/btnDialogResets"
                         android:layout_width="60dp"
@@ -115,7 +113,8 @@
                         android:fontFamily="sans-serif"
                         android:text="@string/strReset"
                         android:textAllCaps="false"
-                        android:textColor="@color/btnColor" />
+                        android:textColor="@color/btnColor"
+                        android:textSize="@dimen/btnSize" />
 
                     <Button
                         android:id="@+id/btnDialogCancel"
@@ -129,7 +128,8 @@
                         android:fontFamily="sans-serif"
                         android:text="@string/btnCancel"
                         android:textAllCaps="false"
-                        android:textColor="@color/btnColor" />
+                        android:textColor="@color/btnColor"
+                        android:textSize="@dimen/btnSize" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -151,7 +151,8 @@
                         android:fontFamily="sans-serif"
                         android:text="@string/strAssign"
                         android:textAllCaps="false"
-                        android:textColor="@color/btnColor" />
+                        android:textColor="@color/btnColor"
+                        android:textSize="@dimen/btnSize" />
                 </LinearLayout>
             </LinearLayout>
 

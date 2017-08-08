@@ -61,7 +61,7 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
 
     private TextView tvStatusUpdate, tvSticket, tvStatus, tvPriority, tvDepartment, tvCreatedDate, tvUser, tvEmail, tvPhone, tvSource, tvAssigned, tvSlaPlan, tvDueDate, tvHelpTopic, tvLastMassage, tvLastResponse;
     private Button btnBack, btnUpdateOverdue, btnChangeTeam, btnChangeStatus, btnAssign, btnTransfer;
-    public String ticketNumber, ticketId, staffId, agentId, token, email, status, userName, departmentId, nameStatus;
+    public String ticketNumber, ticketId, staffId, agentId, token, email, status, userName, departmentId, departmentName, nameStatus;
     public EditText strNote;
     public Spinner spnChangeTeam, spnChangeStatus, spTicketStatus, spnAgent;
 
@@ -187,6 +187,7 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
                 ticketId = data.getTicket_id();
                 ticketNumber = data.getNumber();
                 departmentId = data.getDepartmentId();
+                departmentName = data.getDepartment();
                 email = data.getEmail();
                 status = data.getStatus();
 
@@ -256,7 +257,7 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
         @Override
         public void onClick(View v) {
             Intent data = new Intent(DetailOverdueActivity.this, TransferActivity.class);
-//            dataTeam.putExtra("nameTeam", nameTeam);
+            data.putExtra("departmentName", departmentName);
             startActivity(data);
 
         }

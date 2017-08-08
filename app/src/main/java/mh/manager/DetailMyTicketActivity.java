@@ -56,7 +56,7 @@ public class DetailMyTicketActivity extends AppCompatActivity implements View.On
 
     public TextView tvStatusUpdate, tvSticket, tvStatus, tvPriority, tvDepartment, tvCreatedDate, tvUser, tvEmail, tvPhone, tvSource, tvAssigned, tvSlaPlan, tvDueDate, tvHelpTopic, tvLastMassage, tvLastResponse;
     private Button btnBack, btnUpdateOpen, btnChangeTeam, btnChangeStatus, btnAssign, btnTransfer;
-    public String ticketNumber, ticketId, staffId, agentId, token, email, status, userName, departmentId, nameStatus;
+    public String ticketNumber, ticketId, staffId, agentId, token, email, status, userName, departmentId, departmentName, nameStatus;
     public EditText strNote;
     public Spinner spnChangeTeam, spnChangeStatus, spTicketStatus, spnAgent;
 
@@ -181,6 +181,7 @@ public class DetailMyTicketActivity extends AppCompatActivity implements View.On
                 ticketId = data.getTicket_id();
                 ticketNumber = data.getNumber();
                 departmentId = data.getDepartmentId();
+                departmentName = data.getDepartment();
                 email = data.getEmail();
                 status = data.getStatus();
 
@@ -259,7 +260,7 @@ public class DetailMyTicketActivity extends AppCompatActivity implements View.On
         public void onClick(View v) {
 
             Intent data = new Intent(DetailMyTicketActivity.this, TransferActivity.class);
-//            dataTeam.putExtra("nameTeam", nameTeam);
+            data.putExtra("departmentName", departmentName);
             startActivity(data);
 
         }

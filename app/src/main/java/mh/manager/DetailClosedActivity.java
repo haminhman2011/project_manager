@@ -58,7 +58,7 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
 
     private TextView tvStatusUpdate, tvSticket, tvStatus, tvPriority, tvDepartment, tvCreatedDate, tvUser, tvEmail, tvPhone, tvSource, tvAssigned, tvSlaPlan, tvDueDate, tvHelpTopic, tvLastMassage, tvLastResponse;
     private Button btnBack, btnUpdateClosed, btnChangeTeam, btnChangeStatus, btnAssign, btnTransfer;
-    public String ticketNumber, ticketId, staffId, agentId, token, email, status, userName, departmentId, nameStatus;
+    public String ticketNumber, ticketId, staffId, agentId, token, email, status, userName, departmentId, departmentName, nameStatus;
     public EditText strNote;
     public Spinner spnChangeTeam, spnChangeStatus, spTicketStatus, spnAgent;
 
@@ -158,7 +158,6 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
         spnChangeTeam = (Spinner) findViewById(R.id.spnChangeTeam);
         String[] dataAssign={"Change..","Agent","Team"};
         ArrayAdapter<String> changeTeamAdapter= new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,dataAssign);
-        changeTeamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnChangeTeam.setAdapter(changeTeamAdapter);
 
         btnAssign = (Button) findViewById(R.id.btnAssign);
@@ -184,6 +183,7 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
                 ticketId = data.getTicket_id();
                 ticketNumber = data.getNumber();
                 departmentId = data.getDepartmentId();
+                departmentName = data.getDepartment();
                 email = data.getEmail();
                 status = data.getStatus();
 
@@ -254,7 +254,7 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
         @Override
         public void onClick(View v) {
             Intent data = new Intent(DetailClosedActivity.this, TransferActivity.class);
-//            dataTeam.putExtra("nameTeam", nameTeam);
+            data.putExtra("departmentName", departmentName);
             startActivity(data);
 
         }
