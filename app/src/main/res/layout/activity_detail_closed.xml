@@ -650,14 +650,15 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:orientation="horizontal"
-                        android:paddingLeft="15dp"
-                        android:paddingTop="10dp">
+                        android:paddingLeft="10dp">
 
                         <TextView
+                            android:id="@+id/textView4"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:gravity="left|center_vertical"
                             android:text="Status:" />
 
@@ -668,28 +669,22 @@
                             android:textColor="#000000"
                             android:visibility="invisible" />
 
+                        <Spinner
+                            android:id="@+id/spinnerStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_alignParentTop="false"
+                            android:layout_centerHorizontal="false"
+                            android:layout_weight="1"
+                            android:background="@drawable/spinner_background" />
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
                         android:layout_weight="1"
-                        android:gravity="left|center_vertical|center"
-                        android:orientation="horizontal">
-
-                        <Spinner
-                            android:id="@+id/spinnerStatus"
-                            android:layout_width="120dp"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentTop="true"
-                            android:layout_centerHorizontal="true"
-                            android:background="@drawable/spinner_background"
-                            android:gravity="left|center_horizontal|center" />
-                    </LinearLayout>
+                        android:orientation="horizontal"/>
 
                 </LinearLayout>
 

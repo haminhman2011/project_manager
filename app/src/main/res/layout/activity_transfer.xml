@@ -51,11 +51,11 @@
                     android:gravity="left|center_horizontal|center" />
 
                 <TextView
-                    android:id="@+id/tvIdAgent"
+                    android:id="@+id/tvIdTransfer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:visibility="visible" />
             </LinearLayout>
 
             <LinearLayout
@@ -94,6 +94,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="horizontal">
+
                     <Button
                         android:id="@+id/btnDialogResets"
                         android:layout_width="60dp"
@@ -106,7 +107,8 @@
                         android:fontFamily="sans-serif"
                         android:text="@string/strReset"
                         android:textAllCaps="false"
-                        android:textColor="@color/btnColor" />
+                        android:textColor="@color/btnColor"
+                        android:textSize="@dimen/btnSize" />
 
                     <Button
                         android:id="@+id/btnCancel"
@@ -120,7 +122,8 @@
                         android:fontFamily="sans-serif"
                         android:text="@string/btnCancel"
                         android:textAllCaps="false"
-                        android:textColor="@color/btnColor" />
+                        android:textColor="@color/btnColor"
+                        android:textSize="@dimen/btnSize" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -141,7 +144,8 @@
                         android:fontFamily="sans-serif"
                         android:text="@string/strTransfer"
                         android:textAllCaps="false"
-                        android:textColor="@color/btnColor" />
+                        android:textColor="@color/btnColor"
+                        android:textSize="@dimen/btnSize" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
