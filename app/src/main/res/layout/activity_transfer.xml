@@ -56,6 +56,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvNameSpnDepartment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="visible" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -65,8 +73,9 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <EditText
-                    android:id="@+id/edtNoteDialog"
+                    android:id="@+id/edtNote"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_border_edittext"
@@ -94,21 +103,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btnDialogResets"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@color/btnAll"
-                        android:fontFamily="sans-serif"
-                        android:text="@string/strReset"
-                        android:textAllCaps="false"
-                        android:textColor="@color/btnColor"
-                        android:textSize="@dimen/btnSize" />
 
                     <Button
                         android:id="@+id/btnCancel"

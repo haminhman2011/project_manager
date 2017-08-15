@@ -1,9 +1,11 @@
 package mh.manager;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -26,10 +28,25 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import mh.manager.adapter.DynamicDetailOpenAdapter;
@@ -39,6 +56,7 @@ import mh.manager.asynctask.LoadDataServerTickedThreadOpen;
 import mh.manager.dialog.AgentActivity;
 import mh.manager.dialog.TeamActivity;
 import mh.manager.dialog.TransferActivity;
+import mh.manager.lang.SharedPrefControl;
 import mh.manager.models.ModelDynamicDetailOpen;
 import mh.manager.models.ModelOpen;
 
@@ -75,6 +93,7 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,  WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_detail_open);
+        SharedPrefControl.updateLangua(getApplicationContext());
 
         tvSticket       = (TextView) findViewById(R.id.tvSticketOpen);
         tvStatus        = (TextView) findViewById(R.id.tvStatusOPen);
@@ -132,7 +151,7 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
         layoutParams = (LinearLayout.LayoutParams) lvDynamic.getLayoutParams();
         setListViewAdapter();
 
-//        Log.i("link host==>", hostApi.hostApi+url_page+ticketNumber+url_staffId+staffId+url_token+token+url_agentId+agentId);
+        Log.i("link host==>", hostApi.hostApi+url_page +"-----"+ ticketId+"-----"+ staffId+"-----"+ token+"-----"+ agentId);
         // load data dynamic
         new LoadDataServerFromURITaskDetailOpen(DetailOpenActivity.this,hostApi.hostApi+url_page, ticketId, staffId, token, agentId).execute();
 
@@ -162,7 +181,7 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
 
         // xử lý ticket thread chat, load data auto
         getDataTickedThreadUrl(hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
-//        Log.i("host api thres===>", hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
+        Log.i("host api thres===>", hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
 
         // transfer
         btnTransfer = (Button) findViewById(R.id.btnTransfer);
@@ -204,12 +223,19 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
                 tvEmail.setText(data.getEmail());
                 tvPhone.setText(data.getPhone());
                 tvSource.setText(data.getSource());
+//                Log.i("1111", data.getUsername());
+//                Log.i("222222", data.getTeamName());
+//                Log.i("33333",data.getUsername() +" / "+ data.getTeamName());
                 if(!data.getUsername().equals("") && data.getTeamName().equals("")){
                     tvAssigned.setText(data.getUsername());
+
                 }else if(data.getUsername().equals("") && !data.getTeamName().equals("")){
                     tvAssigned.setText(data.getTeamName());
+
                 }else{
                     tvAssigned.setText(data.getUsername() +" / "+ data.getTeamName());
+
+
                 }
 
                 tvSlaPlan.setText(data.getSlaname());
@@ -252,9 +278,10 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
                     dataAgent.putExtra("ticketId", ticketId);
                     startActivity(dataAgent);
                 }else if(nameTeam.equals("Team")){
-                    Intent dataTeam = new Intent(DetailOpenActivity.this, TeamActivity.class);
-                    dataTeam.putExtra("nameTeam", nameTeam);
-                    startActivity(dataTeam);
+                    Toast.makeText(getBaseContext(), "Feature is being perfected", Toast.LENGTH_SHORT).show();
+//                    Intent dataTeam = new Intent(DetailOpenActivity.this, TeamActivity.class);
+//                    dataTeam.putExtra("nameTeam", nameTeam);
+//                    startActivity(dataTeam);
                 }
             }else{
                 Toast.makeText(DetailOpenActivity.this, "Vui lòng chọn!", Toast.LENGTH_SHORT).show();
@@ -270,6 +297,8 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
         public void onClick(View v) {
             Intent data = new Intent(DetailOpenActivity.this, TransferActivity.class);
             data.putExtra("departmentName", departmentName);
+            data.putExtra("ticketId", ticketId);
+            data.putExtra("staffId", staffId);
             startActivity(data);
         }
     };
@@ -335,7 +364,7 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
                             tvMessageText.setTextSize(15);
                             tvMessageText.setPadding(25,0,0,0);
                             tvMessageText.setBackgroundResource(R.color.btnColor);
-                            tvMessageText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_mess_16,0,0,0);
+//                            tvMessageText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_mess_16,0,0,0);
                             tvMessageText.setTextColor(Color.parseColor("#616161"));
                             if(!objEvents.getString("messageText").equals("empty")){
                                 tvMessageText.setText(" " + Html.fromHtml(objEvents.getString("messageText"))); //
@@ -367,7 +396,7 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
                                     tvMessageText.setTextSize(15);
                                     tvMessageText.setPadding(25,0,0,0);
                                     tvMessageText.setBackgroundResource(R.color.btnColor);
-                                    tvMessageText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_mess_16,0,0,0);
+//                                    tvMessageText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_mess_16,0,0,0);
                                     tvMessageText.setTextColor(Color.parseColor("#616161"));
                                     tvMessageText.setText(" " + Html.fromHtml(objEvents.getString("messageText")));
                                     llEntry.addView(tvMessageText);
@@ -414,7 +443,7 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
                             tvMssLeft.setTextSize(15);
                             tvMssLeft.setPadding(20,0,0,0);
                             tvMssLeft.setBackgroundResource(R.color.btnColor);
-                            tvMssLeft.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_mess_16,0,0,0);
+//                            tvMssLeft.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_mess_16,0,0,0);
                             tvMssLeft.setTextColor(Color.parseColor("#616161"));
                             tvMssLeft.setText(" " + Html.fromHtml(objLeft.getString("messageText")));
                             llLeft.addView(tvMssLeft);
@@ -490,7 +519,7 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
         }else if(((strNotes.trim()).length() == 0 &&  !nameStatus.equals(status))){
             //2. nếu reply co data == 0 và status khac nhau
             Log.i("vao", "nếu reply co data == 0 và status khac nhau");
-            wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"});
+            wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"+url_staffId+staffId});
             Intent intent = new Intent(DetailOpenActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -498,7 +527,7 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
             //3. nếu reply có data > 0 và status khac nhau
             Log.i("vao", "nếu reply có data > 0 và status khac nhau");
             getDataTickedThreadUrl(hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
-            wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"});
+            wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"+url_staffId+staffId});
             Intent intent = new Intent(DetailOpenActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -583,5 +612,7 @@ public class DetailOpenActivity extends AppCompatActivity implements View.OnClic
         }
         return super.onKeyDown(keyCode, event);
     }
+
+
 }
 

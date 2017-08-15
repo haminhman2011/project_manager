@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import mh.manager.adapter.CloseAdapter;
 import mh.manager.asynctask.LoadDataServerFromURlTaskClosed;
+import mh.manager.lang.SharedPrefControl;
 import mh.manager.models.ModelClose;
 
 public class ClosedActivity extends AppCompatActivity {
@@ -46,6 +47,8 @@ public class ClosedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_closed);
+        SharedPrefControl.updateLangua(getApplicationContext());
+
         // khoi tao duong dan host get data api
         hostApi = new HostApi();
 
@@ -66,8 +69,8 @@ public class ClosedActivity extends AppCompatActivity {
         listView.setOnItemClickListener(onItemClick);
         // call load setListViewAdapter
         setListViewAdapter();
-        Log.i("link api all==>", hostApi.hostApi+url_page+url_token+token+url_agentId+agentId); //+url_staffId+staffId
-        getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId); //+url_staffId+staffId
+        Log.i("link api all==>", hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
+        getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
 
         // button refresh all data listview new
         refreshButton= (Button)findViewById(R.id.refreshButtonClose);
@@ -77,7 +80,7 @@ public class ClosedActivity extends AppCompatActivity {
                 dataClosed = new ArrayList<>();
                 adapter = new CloseAdapter(ClosedActivity.this, R.layout.item_listview_close, dataClosed);
                 listView.setAdapter(adapter);
-                getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId); //+url_staffId+staffId
+                getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
                 adapter.notifyDataSetChanged();
             }
         });
@@ -93,7 +96,7 @@ public class ClosedActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             adapter.clear();
-            String strUrl = hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+"&ticketNumber="; //+url_staffId+staffId
+            String strUrl = hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+"&ticketNumber="+url_staffId+staffId; //
             String strTextSearch = edtSearch.getText().toString();
             getDataSearchFromUrl(strUrl+strTextSearch);
         }

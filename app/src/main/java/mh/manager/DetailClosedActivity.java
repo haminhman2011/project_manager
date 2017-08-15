@@ -40,6 +40,7 @@ import mh.manager.asynctask.LoadDataServerTickedThreadClosed;
 import mh.manager.dialog.AgentActivity;
 import mh.manager.dialog.TeamActivity;
 import mh.manager.dialog.TransferActivity;
+import mh.manager.lang.SharedPrefControl;
 import mh.manager.models.ModelClose;
 import mh.manager.models.ModelDynamicDetailClosed;
 
@@ -78,6 +79,7 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_detail_closed);
+        SharedPrefControl.updateLangua(getApplicationContext());
 
         tvSticket       = (TextView) findViewById(R.id.tvSticketClosed);
         tvStatus        = (TextView) findViewById(R.id.tvStatusClosed);
@@ -196,7 +198,13 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
                 tvEmail.setText(data.getEmail());
                 tvPhone.setText(data.getPhone());
                 tvSource.setText(data.getSource());
-                tvAssigned.setText(data.getAssigned_to());
+                if(!data.getUsername().equals("") && data.getTeamName().equals("")){
+                    tvAssigned.setText(data.getUsername());
+                }else if(data.getUsername().equals("") && !data.getTeamName().equals("")){
+                    tvAssigned.setText(data.getTeamName());
+                }else{
+                    tvAssigned.setText(data.getUsername() +" / "+ data.getTeamName());
+                }
                 tvSlaPlan.setText(data.getSlaname());
                 tvDueDate.setText(data.getEst_duedate());
                 tvHelpTopic.setText(data.getTopicname());
@@ -237,9 +245,10 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
                     dataAgent.putExtra("ticketId", ticketId);
                     startActivity(dataAgent);
                 }else if(nameTeam.equals("Team")){
-                    Intent dataTeam = new Intent(DetailClosedActivity.this, TeamActivity.class);
-                    dataTeam.putExtra("nameTeam", nameTeam);
-                    startActivity(dataTeam);
+                    Toast.makeText(getBaseContext(), "Feature is being perfected", Toast.LENGTH_SHORT).show();
+//                    Intent dataTeam = new Intent(DetailClosedActivity.this, TeamActivity.class);
+//                    dataTeam.putExtra("nameTeam", nameTeam);
+//                    startActivity(dataTeam);
                 }
             }else{
                 Toast.makeText(DetailClosedActivity.this, "Vui lòng chọn!", Toast.LENGTH_SHORT).show();
@@ -255,6 +264,8 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
         public void onClick(View v) {
             Intent data = new Intent(DetailClosedActivity.this, TransferActivity.class);
             data.putExtra("departmentName", departmentName);
+            data.putExtra("ticketId", ticketId);
+            data.putExtra("staffId", staffId);
             startActivity(data);
 
         }
@@ -482,7 +493,7 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
         }else if(((strNotes.trim()).length() == 0 &&  !nameStatus.equals(status))){
             //2. nếu reply co data == 0 và status khac nhau
             Log.i("vao", "nếu reply co data == 0 và status khac nhau");
-            wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"});
+            wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"+url_staffId+staffId});
             Intent intent = new Intent(DetailClosedActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -490,7 +501,7 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
             //3. nếu reply có data > 0 và status khac nhau
             Log.i("vao", "nếu reply có data > 0 và status khac nhau");
             getDataTickedThreadUrl(hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
-            wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"});
+            wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"+url_staffId+staffId});
             Intent intent = new Intent(DetailClosedActivity.this, MainActivity.class);
             startActivity(intent);
             finish();

@@ -42,6 +42,7 @@ import mh.manager.dialog.AgentActivity;
 import mh.manager.dialog.TeamActivity;
 import mh.manager.dialog.TransferActivity;
 import mh.manager.jsonfuntions.JsonLoadStatus;
+import mh.manager.lang.SharedPrefControl;
 import mh.manager.models.ModelDynamicDetailOverdue;
 import mh.manager.models.ModelOverdue;
 import mh.manager.models.ModelStatus;
@@ -80,6 +81,7 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_detail_overdue);
+        SharedPrefControl.updateLangua(getApplicationContext());
 
         tvSticket       = (TextView) findViewById(R.id.tvSticketOverdue);
         tvStatus        = (TextView) findViewById(R.id.tvStatusOverdue);
@@ -200,7 +202,13 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
                 tvEmail.setText(data.getEmail());
                 tvPhone.setText(data.getPhone());
                 tvSource.setText(data.getSource());
-                tvAssigned.setText(data.getAssigned_to());
+                if(!data.getUsername().equals("") && data.getTeamName().equals("")){
+                    tvAssigned.setText(data.getUsername());
+                }else if(data.getUsername().equals("") && !data.getTeamName().equals("")){
+                    tvAssigned.setText(data.getTeamName());
+                }else{
+                    tvAssigned.setText(data.getUsername() +" / "+ data.getTeamName());
+                }
                 tvSlaPlan.setText(data.getSlaname());
                 tvDueDate.setText(data.getEst_duedate());
                 tvHelpTopic.setText(data.getTopicname());
@@ -240,9 +248,10 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
                     dataAgent.putExtra("ticketId", ticketId);
                     startActivity(dataAgent);
                 }else if(nameTeam.equals("Team")){
-                    Intent dataTeam = new Intent(DetailOverdueActivity.this, TeamActivity.class);
-                    dataTeam.putExtra("nameTeam", nameTeam);
-                    startActivity(dataTeam);
+                    Toast.makeText(getBaseContext(), "Feature is being perfected", Toast.LENGTH_SHORT).show();
+//                    Intent dataTeam = new Intent(DetailOverdueActivity.this, TeamActivity.class);
+//                    dataTeam.putExtra("nameTeam", nameTeam);
+//                    startActivity(dataTeam);
                 }
             }else{
                 Toast.makeText(DetailOverdueActivity.this, "Vui lòng chọn!", Toast.LENGTH_SHORT).show();
@@ -258,6 +267,8 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
         public void onClick(View v) {
             Intent data = new Intent(DetailOverdueActivity.this, TransferActivity.class);
             data.putExtra("departmentName", departmentName);
+            data.putExtra("ticketId", ticketId);
+            data.putExtra("staffId", staffId);
             startActivity(data);
 
         }
@@ -476,12 +487,12 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
         wstThreadEntry.addNameValuePair("ipAddress", locaLIpAddress.getLocalIpAddress());
 
         // Đường dẫn đến server
-        wstDetail.execute(new String[] { hostApi.hostApi+"update-ticket-detail"});
+        wstDetail.execute(new String[] { hostApi.hostApi+"update-ticket-detail"+url_staffId+staffId});
 
         //1 . nếu reply co data > 0 và status giong nhau
         if(((strNotes.trim()).length() > 0 &&  nameStatus.equals(status))){
             Log.i("vao", "nếu reply co data > 0 và status giong nhau");
-            wstThreadEntry.execute(new String[] { hostApi.hostApi+"create-thread-entry"});
+            wstThreadEntry.execute(new String[] { hostApi.hostApi+"create-thread-entry"+url_staffId+staffId});
             llEntry.removeAllViews();
             llLeft.removeAllViews();
             strNote.setText("");

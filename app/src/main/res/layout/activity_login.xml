@@ -79,12 +79,44 @@
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="22dp"
+                android:layout_margin="20dp"
                 android:background="@drawable/effect_logout"
                 android:text="@string/logIn"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/textview"
+                android:visibility="invisible"
+                android:textColor="@color/btnCancel"
+                android:textSize="@dimen/cast_libraries_material_featurehighlight_text_vertical_space" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdoVietNam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/vietnamese"
+                    android:textColor="@color/btnCancel" />
+
+                <RadioButton
+                    android:id="@+id/rdoEnglish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/english"
+                    android:textColor="@color/btnCancel" />
+            </RadioGroup>
         </LinearLayout>
     </RelativeLayout>
 
