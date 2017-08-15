@@ -123,10 +123,8 @@ public class LoginDatabase extends SQLiteOpenHelper {
         try {
             Cursor cursor = _database.rawQuery("SELECT * from status WHERE name ='"+nameStatus+"'", null);  //WHERE state='open'
             if(cursor.getCount() > 0) {
-
                 cursor.moveToFirst();
                 strName = cursor.getString(cursor.getColumnIndex("id"));
-
             }
 
         }catch (Exception e){
@@ -136,6 +134,46 @@ public class LoginDatabase extends SQLiteOpenHelper {
         }
         Log.i("strName===>", strName);
         return  strName;
+    }
+
+    public String getId(){
+        _database = this.getWritableDatabase();
+        String strId = "";
+        try {
+            Cursor cursor = _database.rawQuery("SELECT * from login", null);  //WHERE state='open'
+            if(cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                strId = cursor.getString(cursor.getColumnIndex("id"));
+                cursor.close();
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close();
+        }
+        Log.i("strId===>", strId);
+        return  strId;
+    }
+
+    public Integer getCountData(){
+        _database = this.getWritableDatabase();
+        Integer intCount = null;
+        try {
+            Cursor cursor = _database.rawQuery("SELECT count(*) from login", null);  //WHERE state='open'
+            if(cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                intCount = cursor.getInt(0);
+                cursor.close();
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close();
+        }
+        Log.i("strId===>", intCount.toString());
+        return  intCount;
     }
 
 
@@ -155,6 +193,7 @@ public class LoginDatabase extends SQLiteOpenHelper {
                 email = csPO.getString(csPO.getColumnIndex("email"));
                 departments = csPO.getString(csPO.getColumnIndex("departments"));
                 token = csPO.getString(csPO.getColumnIndex("token"));
+                csPO.close();
             }
 
         }catch (Exception e){

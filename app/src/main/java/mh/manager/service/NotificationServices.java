@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -67,24 +68,27 @@ public class NotificationServices extends Service {
             @Override
             protected Void doInBackground(Void... arg0) {
                 hostApi  = new HostApi();
-
-                sql = new LoginDatabase(NotificationServices.this);
+                sql = new LoginDatabase(getBaseContext());
                 sql.getWritableDatabase();
-                try {
-                    for(int i=0; i<sql.getInforUser().length(); i++){
-                        JSONObject obj = sql.getInforUser().getJSONObject(i);
-                        staffId = obj.getString("id");
-                        agentId = obj.getString("id");
-                        token = obj.getString("token");
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    for(int i=0; i<sql.getInforUser().length(); i++){
+//                        JSONObject obj = sql.getInforUser().getJSONObject(i);
+//                        staffId = obj.getString("id");
+//                        agentId = obj.getString("id");
+//                        token = obj.getString("token");
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+
+
+                Log.i("staffId", sql.getId());
 
                 HttpHandler sh = new HttpHandler();
+                Log.i("noti", hostApi.hostApi+"get-noti?staffId="+sql.getId());
 
                 // Making a request to url and getting response
-                String jsonStr = sh.makeServiceCall(hostApi.hostApi+"get-noti?staffId="+staffId);
+                String jsonStr = sh.makeServiceCall(hostApi.hostApi+"get-noti?staffId="+sql.getId());
 //            Log.e(TAG, "Response from url: " + jsonStr);hostApi+url_page+url_staffId+staffId+url_token+token+url_agentId+agentId
 
                 if (jsonStr != null) {
@@ -102,9 +106,12 @@ public class NotificationServices extends Service {
                                 if(!jObject.getString("code_name").equals("null")){
                                     Log.i("dem thu tu", String.valueOf(i));
                                     Notification.Builder mBuilder = new Notification.Builder(getApplicationContext());
+                                    //Define sound URI
+                                    Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                                     mBuilder.setContentTitle("Tin nhắn mới");
                                     mBuilder.setContentText(jObject.getString("message"));
                                     mBuilder.setTicker("Thông báo!");
+//                                    mBuilder.setSound(soundUri);
                                     if(jObject.getString("code_name").equals("assigned.alert")){
                                         mBuilder.setSmallIcon(R.drawable.icon_assign_16);
                                     }else if(jObject.getString("code_name").equals("ticket.alert")){
@@ -156,10 +163,10 @@ public class NotificationServices extends Service {
         final Runnable r = new Runnable() {
             public void run() {
                 new GetContacts().execute();
-                handler.postDelayed(this, 5000);
+                handler.postDelayed(this, 60000);
             }
         };
-        handler.postDelayed(r, 5000);
+        handler.postDelayed(r, 60000);
         return START_STICKY;
     }
 
@@ -172,8 +179,8 @@ public class NotificationServices extends Service {
 
 
 
-//    public void displayNotification(JSONArray haminhman) {
-//
-//
-//    }
+    public void displayNotification(JSONArray haminhman) {
+
+
+    }
 }

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import mh.manager.lang.SharedPrefControl;
 import mh.manager.service.NotificationServices;
 
 @SuppressWarnings("deprecation")
@@ -37,6 +38,7 @@ public class MainActivity extends TabActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+//        SharedPrefControl.updateLangua(getApplicationContext());
 
                  /* Time Lockout after 10 mins */
 //        Timer timer = new Timer();
@@ -76,12 +78,13 @@ public class MainActivity extends TabActivity {
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sql.clearTable("login");
+                sql.clearTable("status");
                 SharedPreferences SM = getSharedPreferences("userrecord", 0);
                 SharedPreferences.Editor edit = SM.edit();
                 edit.putBoolean("userlogin", false);
                 edit.commit();
-                sql.clearTable("login");
-                sql.clearTable("status");
+
 
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);

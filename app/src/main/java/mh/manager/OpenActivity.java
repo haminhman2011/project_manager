@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import mh.manager.adapter.OpenAdapter;
 import mh.manager.asynctask.LoadDataServerFromURlTaskOpen;
+import mh.manager.lang.SharedPrefControl;
 import mh.manager.models.ModelOpen;
 
 public class OpenActivity extends AppCompatActivity {
@@ -46,6 +47,8 @@ public class OpenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open);
+        SharedPrefControl.updateLangua(getApplicationContext());
+
         listView = (ListView) findViewById(R.id.lvOpen);
         btnSearchOpen = (Button) findViewById(R.id.btnSearchOpen);
         listView.setTextFilterEnabled(true);
@@ -72,16 +75,16 @@ public class OpenActivity extends AppCompatActivity {
                 dataOpens = new ArrayList<>();
                 adapter = new OpenAdapter(OpenActivity.this, R.layout.item_listview_open, dataOpens);
                 listView.setAdapter(adapter);
-                getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId); //+url_staffId+staffId
+                getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
                 adapter.notifyDataSetChanged();
             }
         });
         edtSearch = (EditText) findViewById(R.id.edtSearchOpen);
         btnSearchOpen.setOnClickListener(searchOpen);
 
-        Log.i("tocken api=====>", hostApi.hostApi+url_page+url_token+token+url_agentId+agentId); // +url_staffId+staffId
+        Log.i("tocken api=====>", hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
         setListViewAdapter();
-        getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId); //+url_staffId+staffId
+        getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
 
     }
 
@@ -102,7 +105,7 @@ public class OpenActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             adapter.clear();
-            String strUrl = hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+"&ticketNumber="; //+url_staffId+staffId
+            String strUrl = hostApi.hostApi+url_page+url_token+token+url_agentId+url_staffId+staffId+agentId+"&ticketNumber="; //
             String strTextSearch = edtSearch.getText().toString();
             Log.i("api search===>", strUrl+strTextSearch);
             getDataSearchFromUrl(strUrl+strTextSearch);
@@ -134,24 +137,29 @@ public class OpenActivity extends AppCompatActivity {
         try {
             JSONObject json = new JSONObject(result);
             JSONArray jArray = new JSONArray(json.getString("datas"));
+            Log.i("datatrave==.", String.valueOf(jArray));
             for (int i = 0; i < jArray.length(); i++) {
                 JSONObject jObject = jArray.getJSONObject(i);
                 ModelOpen data = new ModelOpen();
                 data.setTicket_id(jObject.getString("ticket_id"));
                 data.setNumber(!jObject.getString("number").equals("null") ? jObject.getString("number") : "");
+                data.setLastupdate(!jObject.getString("lastupdate").equals("null") ? jObject.getString("lastupdate") : "");
+                data.setStatus(!jObject.getString("status").equals("null") ? jObject.getString("status") : "");
+                data.setTopicname(!jObject.getString("topicname").equals("null") ? jObject.getString("topicname") : "");
+                data.setCreated(!jObject.getString("created").equals("null") ? jObject.getString("created") : "");
                 data.setPriority(!jObject.getString("priority").equals("null") ? jObject.getString("priority") : "");
                 data.setUsername(!jObject.getString("username").equals("null") ? jObject.getString("username") : "");
                 data.setEmail(!jObject.getString("email").equals("null") ? jObject.getString("email") : "");
                 data.setDepartment(!jObject.getString("department").equals("null") ? jObject.getString("department") : "");
                 data.setDepartmentId(!jObject.getString("departmentId").equals("null") ? jObject.getString("departmentId") : "");
                 data.setSource(!jObject.getString("source").equals("null") ? jObject.getString("source") : "");
-                data.setTopicname(!jObject.getString("topicname").equals("null") ? jObject.getString("topicname") : "");
+
                 data.setSlaname(!jObject.getString("slaname").equals("null") ? jObject.getString("slaname"): "");
-                data.setCreated(!jObject.getString("created").equals("null") ? jObject.getString("created") : "");
+
                 data.setLast_message(!jObject.getString("lastmessage").equals("null") ? jObject.getString("lastmessage") : "");
                 data.setLast_reponse(!jObject.getString("lastresponse").equals("null") ? jObject.getString("lastresponse") : "");
-                data.setLastupdate(!jObject.getString("lastupdate").equals("null") ? jObject.getString("lastupdate") : "");
-                data.setStatus(!jObject.getString("status").equals("null") ? jObject.getString("status") : "");
+
+
                 data.setEst_duedate(!jObject.getString("est_duedate").equals("null") ? jObject.getString("est_duedate") : "");
                 data.setSubject(!jObject.getString("subject").equals("null") ? jObject.getString("subject") : "");
                 data.setTeamName(!jObject.getString("teamName").equals("null") ? jObject.getString("teamName") : "");

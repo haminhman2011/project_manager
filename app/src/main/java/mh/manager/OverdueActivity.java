@@ -21,12 +21,13 @@ import java.util.ArrayList;
 
 import mh.manager.adapter.OverdueAdapter;
 import mh.manager.asynctask.LoadDataServerFromURlTaskOverdue;
+import mh.manager.lang.SharedPrefControl;
 import mh.manager.models.ModelOverdue;
 
 public class OverdueActivity extends AppCompatActivity {
     public HostApi hostApi;
     private LoginDatabase sql;
-    private final static String url_page = "get-list-ticket?overdue=1";
+    private final static String url_page = "get-list-ticket?overdue";
     private final static String url_staffId = "&staffId=";
     private final static String url_token = "&token=";
     private final static String url_agentId = "&agentId=";
@@ -46,6 +47,8 @@ public class OverdueActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overdue);
+        SharedPrefControl.updateLangua(getApplicationContext());
+
         // khoi tao duong dan host get data api
         hostApi = new HostApi();
 
@@ -66,8 +69,8 @@ public class OverdueActivity extends AppCompatActivity {
         listView.setOnItemClickListener(onItemClick);
         // call load setListViewAdapter
         setListViewAdapter();
-        Log.i("data list==>", hostApi.hostApi+url_page+url_token+token+url_agentId+agentId); //+url_staffId+staffId
-        getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId); //+url_staffId+staffId
+        Log.i("data list==>", hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //+url_staffId+staffId
+        getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
 
         // button refresh all data listview new
         refreshButton= (Button)findViewById(R.id.refreshButtonOverdue);
@@ -77,7 +80,7 @@ public class OverdueActivity extends AppCompatActivity {
                 dataOverdues = new ArrayList<>();
                 adapter = new OverdueAdapter(OverdueActivity.this, R.layout.item_listview_overdue, dataOverdues);
                 listView.setAdapter(adapter);
-                getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId); //+url_staffId+staffId
+                getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
                 adapter.notifyDataSetChanged();
             }
         });
@@ -91,7 +94,7 @@ public class OverdueActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             adapter.clear();
-            String strUrl =hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+"&ticketNumber="; //+url_staffId+staffId
+            String strUrl =hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+"&ticketNumber="+url_staffId+staffId; //
             String strTextSearch = edtSearch.getText().toString();
             getDataSearchFromUrl(strUrl+strTextSearch);
         }

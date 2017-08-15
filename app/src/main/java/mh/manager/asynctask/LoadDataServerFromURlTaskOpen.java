@@ -146,7 +146,6 @@ public class LoadDataServerFromURlTaskOpen extends AsyncTask<Void, Void, String>
             } catch (JSONException e) {
                 Log.e("JSON Parser", "Error parsing data " + e.toString());
             }
-
             // return JSON String
             return jObj;
         }

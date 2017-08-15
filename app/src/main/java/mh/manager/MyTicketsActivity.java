@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import mh.manager.adapter.MyTicketAdapter;
 import mh.manager.adapter.OpenAdapter;
 import mh.manager.asynctask.LoadDataServerFromURlTaskMyticket;
+import mh.manager.lang.SharedPrefControl;
 import mh.manager.models.ModelMyTicket;
 import mh.manager.models.ModelOpen;
 
@@ -30,7 +31,7 @@ public class MyTicketsActivity extends AppCompatActivity {
     public HostApi hostApi;
     private LoginDatabase sql;
 
-    private final static String url_page = "get-list-ticket?";
+    private final static String url_page = "get-list-ticket?state=assigned";
     private final static String url_staffId = "staffId=";
     private final static String url_token = "&token=";
     private final static String url_agentId = "&agentId=";
@@ -50,6 +51,7 @@ public class MyTicketsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_tickets);
+        SharedPrefControl.updateLangua(getApplicationContext());
 
         listView = (ListView) findViewById(R.id.lvMyTicket);
         btnSearch = (Button) findViewById(R.id.btnSearchMyTicket);
@@ -77,16 +79,16 @@ public class MyTicketsActivity extends AppCompatActivity {
                 dataMyTicket = new ArrayList<>();
                 adapter = new MyTicketAdapter(MyTicketsActivity.this, R.layout.item_listview_myticket, dataMyTicket);
                 listView.setAdapter(adapter);
-                getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId); //+url_staffId+staffId
+                getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
                 adapter.notifyDataSetChanged();
             }
         });
         edtSearch = (EditText) findViewById(R.id.edtSearchMyTicket);
         btnSearch.setOnClickListener(searchMyTicket);
 
-        Log.i("tocken api=====>", hostApi.hostApi+url_page+url_token+token+url_agentId+agentId); // +url_staffId+staffId
+        Log.i("tocken api=====>", hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
         setListViewAdapter();
-        getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId); //+url_staffId+staffId
+        getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
 
     }
 
@@ -107,7 +109,7 @@ public class MyTicketsActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             adapter.clear();
-            String strUrl = hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+"&ticketNumber="; //+url_staffId+staffId
+            String strUrl = hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+"&ticketNumber="+url_staffId+staffId; //
             String strTextSearch = edtSearch.getText().toString();
             Log.i("api search===>", strUrl+strTextSearch);
             getDataSearchFromUrl(strUrl+strTextSearch);

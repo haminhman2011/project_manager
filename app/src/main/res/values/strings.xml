@@ -39,4 +39,8 @@
     <string name="chStatus">Status</string>
     <string name="reassign">Assign</string>
     <string name="strEdit">Edit</string>
+    <string name="vietnamese">VietNamese</string>
+    <string name="english">English</string>
+    <string name="textview">Change language</string>
+    <string name="chkRemember">Ghi nhớ đăng nhập</string>
 </resources>
