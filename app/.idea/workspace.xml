@@ -19,45 +19,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ee1e1c1-3a61-4fda-aab0-8d4752f473df" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/drawable/logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/Loading.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadingTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_loading.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/values-vi/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/compiler.xml" afterPath="$PROJECT_DIR$/../.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/gradle.xml" afterPath="$PROJECT_DIR$/../.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/misc.xml" afterPath="$PROJECT_DIR$/../.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/modules.xml" afterPath="$PROJECT_DIR$/../.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/runConfigurations.xml" afterPath="$PROJECT_DIR$/../.idea/runConfigurations.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/vcs.xml" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/ClosedFragment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/MyTicketFragment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/OpenFragment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/OverdueFragment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_closed.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_my_ticket.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_open.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_overdue.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/tab_closed.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/tab_my_ticket.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/tab_open.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/tab_overdue.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/ClosedActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/MyTicketsActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/OpenActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/OverdueActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURlTaskClosed.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURlTaskMyticket.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURlTaskOpen.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURlTaskOverdue.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_closed.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_my_tickets.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_open.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_overdue.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/ClosedActivity.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/ClosedActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/DetailClosedActivity.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/DetailClosedActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/DetailMyTicketActivity.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/DetailMyTicketActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/DetailOpenActivity.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/DetailOpenActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/DetailOverdueActivity.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/DetailOverdueActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/EditDetailOpenActivity.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/EditDetailOpenActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/LoginActivity.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/LoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/LoginDatabase.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/LoginDatabase.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/MainActivity.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/MainTestData.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/MainTestData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/MyTicketsActivity.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/MyTicketsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/OpenActivity.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/OpenActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/OverdueActivity.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/OverdueActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURlTaskOpen.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURlTaskOpen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/dialog/AgentActivity.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/dialog/AgentActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/dialog/TeamActivity.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/dialog/TeamActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/dialog/TransferActivity.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/dialog/TransferActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/service/NotificationServices.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/service/NotificationServices.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_edit_detail_open.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_edit_detail_open.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/CallUrlUpdateDetail.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/CallUrlUpdateDetail.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURITaskDetailClosed.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURITaskDetailClosed.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURITaskDetailMyTicket.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURITaskDetailMyTicket.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURITaskDetailOpen.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURITaskDetailOpen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURITaskDetailOverdue.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURITaskDetailOverdue.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerTickedThreadClosed.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerTickedThreadClosed.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerTickedThreadMyTicket.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerTickedThreadMyTicket.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerTickedThreadOverdue.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerTickedThreadOverdue.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadingTask.java" afterPath="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadingTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_detail_closed.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_detail_closed.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_detail_my_ticket.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_detail_my_ticket.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_detail_open.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_detail_open.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_detail_overdue.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_detail_overdue.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_loading.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_loading.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_main_test_data.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_main_test_data.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_transfer.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_transfer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/dialog_change_agent.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_change_agent.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/dialog_change_status.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_change_status.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/dialog_change_team.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_change_team.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/tab_main.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/tab_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values-vi/strings.xml" afterPath="$PROJECT_DIR$/src/main/res/values-vi/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/src/main/res/values/colors.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" />
     </list>
@@ -91,46 +103,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="OpenActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/OpenActivity.java">
+      <file leaf-file-name="DetailOpenActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/DetailOpenActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="37" column="29" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="29" />
+            <state relative-caret-position="74">
+              <caret line="511" column="90" selection-start-line="511" selection-start-column="90" selection-end-line="511" selection-end-column="90" />
               <folding>
-                <element signature="method#parseJsonResponse#0;class#OpenActivity#0" expanded="false" />
+                <element signature="method#parseJsonResponseTickedThread#0;class#DetailOpenActivity#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
-          <provider editor-type-id="android-manifest">
-            <state />
-          </provider>
+      <file leaf-file-name="DetailMyTicketActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/DetailMyTicketActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="797">
-              <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+            <state relative-caret-position="364">
+              <caret line="479" column="90" selection-start-line="479" selection-start-column="90" selection-end-line="479" selection-end-column="90" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoadDataServerFromURlTaskOpen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURlTaskOpen.java">
+      <file leaf-file-name="DetailClosedActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/DetailClosedActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="29" column="20" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="20" />
+            <state relative-caret-position="302">
+              <caret line="491" column="90" selection-start-line="491" selection-start-column="90" selection-end-line="491" selection-end-column="90" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
+      <file leaf-file-name="DetailOverdueActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/DetailOverdueActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="9" column="28" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="28" />
+            <state relative-caret-position="50">
+              <caret line="486" column="32" selection-start-line="486" selection-start-column="32" selection-end-line="486" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -2267,7 +2276,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="D:\ANDROID\GIT_MANAGER\cocobay_app\app" value="4507065296089" />
+        <entry key="D:\ANDROID\GIT_MANAGER\cocobay_app\app" value="4507493702419" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2617,46 +2626,65 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/mh/manager/EditDetailOpenActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mh/manager/dialog/TeamActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mh/manager/dialog/TransferActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/res/values-vi-rVN/strings.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_main_test_data.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/mh/manager/MainTestData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mh/manager/lang/SharedPrefControl.java" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_loading.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadingTask.java" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_edit_detail_open.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/values-vi/strings.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/mh/manager/dialog/AgentActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/main/java/mh/manager/LoginDatabase.java" />
         <option value="$PROJECT_DIR$/src/main/java/mh/manager/Loading.java" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/src/main/java/mh/manager/service/NotificationServices.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mh/manager/LoginActivity.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/item_listview_open.xml" />
         <option value="$PROJECT_DIR$/src/main/java/mh/manager/adapter/OpenAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/mh/manager/OpenActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mh/manager/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/mh/manager/ClosedActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/mh/manager/MyTicketsActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/mh/manager/OverdueActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURlTaskOpen.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_open.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_overdue.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_my_ticket.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_closed.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/tab_main.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/tab_overdue.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/tab_open.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/tab_my_ticket.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/tab_closed.xml" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURITaskDetailMyTicket.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURITaskDetailClosed.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURITaskDetailOpen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURITaskDetailOverdue.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerTickedThreadClosed.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerTickedThreadMyTicket.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerTickedThreadOverdue.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadingTask.java" />
+        <option value="$PROJECT_DIR$/src/main/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_loading.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/MainActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_detail_overdue.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_detail_open.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_detail_my_ticket.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_detail_closed.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/MyApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/connectivityreceiver/ConnectivityReceiver.java" />
         <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/connection/connection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/CallUrlUpdateDetail.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/MyTicketFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/OpenFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/OverdueFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/ClosedFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/mh/manager/DetailOpenActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mh/manager/DetailOverdueActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/mh/manager/DetailMyTicketActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/mh/manager/DetailClosedActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURlTaskOpen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mh/manager/DetailOverdueActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="-1928" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="754" />
+    <option name="width" value="1936" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -2683,10 +2711,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2821,73 +2847,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="format" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cocobay_app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manager" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dialog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cocobay_app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manager" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="asynctask" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cocobay_app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manager" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="adapter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2907,12 +2867,14 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Notification/app" />
-    <property name="device.picker.selection" value="Nexus_4_API_23" />
-    <property name="settings.editor.selected.configurable" value="instant.run" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../CocobayAppV2" />
+    <property name="device.picker.selection" value="Nexus_4_API_25" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
@@ -2920,6 +2882,7 @@
       <recent name="mh.manager" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ANDROID\GIT_MANAGER\cocobay_app\app\src\main\res\layout" />
       <recent name="D:\ANDROID\GIT_MANAGER\cocobay_app\app\src\main\res\drawable" />
     </key>
   </component>
@@ -3246,16 +3209,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
+    <frame x="-1928" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18171807" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3017621" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.64597315" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38546255" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3263,7 +3226,7 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24508321" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20735608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -3276,7 +3239,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -3322,222 +3285,261 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4200">
-          <caret line="150" column="13" selection-start-line="150" selection-start-column="13" selection-end-line="150" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="class#CallUrl#0;class#LoginActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/DetailOpenActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/DetailClosedActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5628">
-          <caret line="201" column="30" selection-start-line="201" selection-start-column="20" selection-end-line="201" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/OpenActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3276">
-          <caret line="139" column="58" selection-start-line="139" selection-start-column="58" selection-end-line="139" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/dialog/AgentActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3444">
-          <caret line="174" column="39" selection-start-line="174" selection-start-column="39" selection-end-line="174" selection-end-column="39" />
-          <folding>
-            <element signature="e#4037#4179#0" expanded="false" />
-            <element signature="e#4178#4179#0" expanded="false" />
-            <element signature="e#4297#4439#0" expanded="false" />
-            <element signature="e#4438#4439#0" expanded="false" />
-            <element signature="class#DownloadJSON#0;class#AgentActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/asynctask/CallUrlUpdateDetail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4172">
-          <caret line="170" column="1" selection-start-line="29" selection-start-column="0" selection-end-line="170" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/DetailOverdueActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5880">
-          <caret line="210" column="17" selection-start-line="210" selection-start-column="17" selection-end-line="210" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/EditDetailOpenActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURITaskDetailClosed.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
-          <caret line="18" column="64" selection-start-line="18" selection-start-column="64" selection-end-line="18" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/LoginDatabase.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURITaskDetailOpen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3080">
-          <caret line="143" column="39" selection-start-line="143" selection-start-column="39" selection-end-line="143" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#693#694#0" expanded="false" />
-            <element signature="e#748#749#0" expanded="false" />
-            <element signature="method#getIdStatus#0;class#LoginDatabase#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="class#CallUrl#0;class#LoginActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="3" column="69" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="69" />
+        <state relative-caret-position="2632">
+          <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/dialog/TeamActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURITaskDetailOverdue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+        <state relative-caret-position="2772">
+          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/dialog/TransferActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerTickedThreadMyTicket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="182" column="0" selection-start-line="66" selection-start-column="28" selection-end-line="182" selection-end-column="0" />
+        <state relative-caret-position="1148">
+          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="android-dummy://D:/ANDROID/GIT_MANAGER/cocobay_app/app/app/Translations Editor">
-      <provider selected="true" editor-type-id="string-resource-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/values-vi-rVN/strings.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main_test_data.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-          <folding>
-            <element signature="e#632#650#0" expanded="false" />
-            <element signature="e#849#1728#0" expanded="false" />
-            <element signature="e#1347#1367#0" expanded="false" />
-            <element signature="e#1642#1659#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/MainTestData.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerTickedThreadOverdue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="78" column="6" selection-start-line="78" selection-start-column="6" selection-end-line="78" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/lang/SharedPrefControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="46" column="103" selection-start-line="46" selection-start-column="103" selection-end-line="46" selection-end-column="103" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_loading.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+        <state relative-caret-position="1064">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadingTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
-          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/adapter/DynamicDetailMyTicketAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="75" column="43" selection-start-line="75" selection-start-column="22" selection-end-line="75" selection-end-column="43" />
+        <state relative-caret-position="1120">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/EditDetailOpenActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/models/ModelAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="18" column="64" selection-start-line="18" selection-start-column="64" selection-end-line="18" selection-end-column="64" />
+        <state relative-caret-position="1064">
+          <caret line="54" column="1" selection-start-line="8" selection-start-column="24" selection-end-line="54" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerTickedThreadClosed.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/models/ModelClose.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="215" column="0" selection-start-line="8" selection-start-column="24" selection-end-line="215" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/models/ModelDepartment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="686">
+          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/models/ModelDynamicDetailClosed.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="86" column="0" selection-start-line="8" selection-start-column="38" selection-end-line="86" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/models/ModelDynamicDetailMyTicket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="86" column="0" selection-start-line="8" selection-start-column="40" selection-end-line="86" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/models/ModelDynamicDetailOpen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="86" column="0" selection-start-line="8" selection-start-column="36" selection-end-line="86" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/models/ModelDynamicDetailOverdue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="87" column="0" selection-start-line="8" selection-start-column="39" selection-end-line="87" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/models/ModelEntry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="238" column="0" selection-start-line="8" selection-start-column="24" selection-end-line="238" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/models/ModelEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/models/ModelMyTicket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="216" column="0" selection-start-line="8" selection-start-column="27" selection-end-line="216" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/models/ModelOpen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="217" column="0" selection-start-line="8" selection-start-column="23" selection-end-line="217" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/models/ModelOverdue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="216" column="0" selection-start-line="8" selection-start-column="26" selection-end-line="216" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/models/ModelStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="50" column="0" selection-start-line="8" selection-start-column="25" selection-end-line="50" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/models/ModelTeam.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="85" column="0" selection-start-line="8" selection-start-column="23" selection-end-line="85" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="3" column="68" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="17" column="51" selection-start-line="0" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/values/dimensions.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="14" column="14" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/Loading.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="29" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#1252#1267#0" expanded="true" />
+            <element signature="e#1354#1371#0" expanded="true" />
+            <element signature="e#1620#1635#0" expanded="true" />
+            <element signature="e#1722#1739#0" expanded="true" />
+            <element signature="e#2031#2052#0" expanded="true" />
+            <element signature="e#2139#2156#0" expanded="true" />
+            <element signature="e#2768#2785#0" expanded="true" />
+            <element signature="e#3184#3201#0" expanded="true" />
+            <element signature="e#3598#3615#0" expanded="true" />
+            <element signature="e#4217#4233#0" expanded="true" />
+            <element signature="e#4343#4359#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/asynctask/CallUrlUpdateDetail.java">
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_loading.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4172">
-          <caret line="170" column="1" selection-start-line="29" selection-start-column="0" selection-end-line="170" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state relative-caret-position="196">
+          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_login.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3546,21 +3548,43 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+        <state relative-caret-position="504">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/values-vi/strings.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
-          <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
+        <state relative-caret-position="168">
+          <caret line="88" column="2" selection-start-line="88" selection-start-column="2" selection-end-line="88" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/dialog_change_agent.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_open.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="2688">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_detail_overdue.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_detail_my_ticket.xml">
       <provider selected="true" editor-type-id="android-designer2">
         <state />
       </provider>
@@ -3571,232 +3595,149 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/dialog/AgentActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="695">
-          <caret line="127" column="25" selection-start-line="127" selection-start-column="25" selection-end-line="127" selection-end-column="25" />
-          <folding>
-            <element signature="e#4037#4179#0" expanded="false" />
-            <element signature="e#4178#4179#0" expanded="false" />
-            <element signature="e#4297#4439#0" expanded="false" />
-            <element signature="e#4438#4439#0" expanded="false" />
-            <element signature="class#DownloadJSON#0;class#AgentActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/LoginDatabase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="158" column="31" selection-start-line="158" selection-start-column="19" selection-end-line="158" selection-end-column="31" />
-          <folding>
-            <element signature="method#getIdStatus#0;class#LoginDatabase#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/Loading.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="52" column="34" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="34" />
-          <folding>
-            <element signature="e#1296#1297#0" expanded="false" />
-            <element signature="e#1328#1329#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_login.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_detail_closed.xml">
       <provider selected="true" editor-type-id="android-designer2">
         <state />
       </provider>
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="-239">
-          <caret line="93" column="46" selection-start-line="93" selection-start-column="46" selection-end-line="93" selection-end-column="46" />
+        <state relative-caret-position="168">
+          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/service/NotificationServices.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/MyApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="117" column="23" selection-start-line="117" selection-start-column="23" selection-end-line="117" selection-end-column="23" />
+        <state relative-caret-position="172">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/connectivityreceiver/ConnectivityReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="35" column="56" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/connection/connection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="154" column="0" selection-start-line="154" selection-start-column="2" selection-end-line="159" selection-end-column="29" />
+        <state relative-caret-position="243">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding>
-            <element signature="class#CallUrl#0;class#LoginActivity#0" expanded="false" />
+            <element signature="e#4999#5000#0" expanded="true" />
+            <element signature="e#5032#5033#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/asynctask/CallUrlUpdateDetail.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="110" column="0" selection-start-line="107" selection-start-column="7" selection-end-line="110" selection-end-column="0" />
+        <state relative-caret-position="426">
+          <caret line="88" column="40" selection-start-line="88" selection-start-column="40" selection-end-line="88" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/MyTicketsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-392">
-          <caret line="111" column="125" selection-start-line="111" selection-start-column="125" selection-end-line="111" selection-end-column="125" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/ClosedActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1988">
-          <caret line="98" column="125" selection-start-line="98" selection-start-column="125" selection-end-line="98" selection-end-column="125" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/OverdueActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
-          <folding>
-            <element signature="e#2803#3294#0" expanded="false" />
-            <element signature="e#3293#3294#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_open.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_detail_open.xml">
       <provider selected="true" editor-type-id="android-designer2">
         <state />
       </provider>
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="-840">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="168">
+          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/OpenFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="143" column="129" selection-start-line="143" selection-start-column="129" selection-end-line="143" selection-end-column="129" />
+          <folding>
+            <element signature="method#parseJsonResponse#0;class#OpenFragment#0" expanded="false" />
+            <element signature="class#LoadDataServerOpen#0;class#OpenFragment#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/OverdueFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="129" column="129" selection-start-line="129" selection-start-column="129" selection-end-line="129" selection-end-column="129" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/MyTicketFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="140" column="55" selection-start-line="140" selection-start-column="55" selection-end-line="140" selection-end-column="55" />
+          <folding>
+            <element signature="method#parseJsonResponse#0;class#MyTicketFragment#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/ClosedFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="148" column="90" selection-start-line="148" selection-start-column="90" selection-end-line="148" selection-end-column="90" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/DetailOpenActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="529" column="76" selection-start-line="529" selection-start-column="56" selection-end-line="529" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/DetailOverdueActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="494" column="107" selection-start-line="494" selection-start-column="107" selection-end-line="494" selection-end-column="107" />
-          <folding />
+        <state relative-caret-position="74">
+          <caret line="511" column="90" selection-start-line="511" selection-start-column="90" selection-end-line="511" selection-end-column="90" />
+          <folding>
+            <element signature="method#parseJsonResponseTickedThread#0;class#DetailOpenActivity#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/DetailMyTicketActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="478" column="107" selection-start-line="478" selection-start-column="107" selection-end-line="478" selection-end-column="107" />
+        <state relative-caret-position="364">
+          <caret line="479" column="90" selection-start-line="479" selection-start-column="90" selection-end-line="479" selection-end-column="90" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/DetailClosedActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="503" column="97" selection-start-line="503" selection-start-column="97" selection-end-line="503" selection-end-column="97" />
+        <state relative-caret-position="302">
+          <caret line="491" column="90" selection-start-line="491" selection-start-column="90" selection-end-line="491" selection-end-column="90" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/models/ModelOpen.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/DetailOverdueActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="215" column="1" selection-start-line="8" selection-start-column="23" selection-end-line="215" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/item_listview_open.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="28" column="51" selection-start-line="0" selection-start-column="0" selection-end-line="215" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="39" column="43" selection-start-line="0" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/values/dimensions.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="11" column="38" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/adapter/OpenAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="93" column="0" selection-start-line="23" selection-start-column="25" selection-end-line="93" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/format/FormatFont.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="16" column="5" selection-start-line="9" selection-start-column="4" selection-end-line="16" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/asynctask/LoadDataServerFromURlTaskOpen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="29" column="20" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mh/manager/OpenActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="37" column="29" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="29" />
-          <folding>
-            <element signature="method#parseJsonResponse#0;class#OpenActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="797">
-          <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="9" column="28" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="28" />
+        <state relative-caret-position="50">
+          <caret line="486" column="32" selection-start-line="486" selection-start-column="32" selection-end-line="486" selection-end-column="32" />
           <folding />
         </state>
       </provider>

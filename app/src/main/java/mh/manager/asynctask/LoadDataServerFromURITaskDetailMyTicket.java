@@ -30,7 +30,6 @@ public class LoadDataServerFromURITaskDetailMyTicket extends AsyncTask<String, V
     public String Strurl, ticketId, staffId, token, agentId;
     private Activity activity;
     private ProgressDialog dialog;
-
     public LoadDataServerFromURITaskDetailMyTicket(Activity activity,String Strurl, String ticketId, String staffId, String token, String agentId) {
         super();
         this.activity = activity;
@@ -40,34 +39,23 @@ public class LoadDataServerFromURITaskDetailMyTicket extends AsyncTask<String, V
         this.token = token;
         this.agentId = agentId;
     }
-
-
-
     protected void onPreExecute(){
         super.onPreExecute();
-        // Create a progress dialog
         dialog = new ProgressDialog(activity);
-        // Set progress dialog title
         dialog.setTitle("Dữ liệu đang được tải");
-        // Set progress dialog message
         dialog.setMessage("Tải dữ liệu...");
         dialog.setIndeterminate(false);
-        // Show progress dialog
         dialog.show();
     }
 
     protected String doInBackground(String... arg0) {
-
         try {
-
             URL url = new URL(Strurl); // here is your URL path
-
             JSONObject postDataParams = new JSONObject();
             postDataParams.put("ticketId", ticketId);
             postDataParams.put("staffId", staffId);
             postDataParams.put("token", token);
             postDataParams.put("agentId", agentId);
-            Log.e("params",postDataParams.toString());
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(15000 /* milliseconds */);
@@ -75,39 +63,26 @@ public class LoadDataServerFromURITaskDetailMyTicket extends AsyncTask<String, V
             conn.setRequestMethod("POST");
             conn.setDoInput(true);
             conn.setDoOutput(true);
-
             OutputStream os = conn.getOutputStream();
             BufferedWriter writer = new BufferedWriter(
                     new OutputStreamWriter(os, "UTF-8"));
             writer.write(getPostDataString(postDataParams));
-
             writer.flush();
             writer.close();
             os.close();
-
             int responseCode=conn.getResponseCode();
-
             if (responseCode == HttpsURLConnection.HTTP_OK) {
-
                 BufferedReader in=new BufferedReader(new
                         InputStreamReader(
                         conn.getInputStream()));
-
                 StringBuffer sb = new StringBuffer("");
                 String line="";
-
                 while((line = in.readLine()) != null) {
-
                     sb.append(line);
                     break;
                 }
-
-                Log.i("==================>", sb.toString());
-
                 in.close();
-
                 return sb.toString();
-
             }
             else {
                 return new String("false : "+responseCode);
@@ -116,7 +91,6 @@ public class LoadDataServerFromURITaskDetailMyTicket extends AsyncTask<String, V
         catch(Exception e){
             return new String("Exception: " + e.getMessage());
         }
-
     }
 
     @Override
@@ -124,28 +98,20 @@ public class LoadDataServerFromURITaskDetailMyTicket extends AsyncTask<String, V
         dialog.dismiss();
         ((DetailMyTicketActivity) activity).parseJsonResponse(result);
     }
-
     public String getPostDataString(JSONObject params) throws Exception {
-
         StringBuilder result = new StringBuilder();
         boolean first = true;
-
         Iterator<String> itr = params.keys();
-
         while(itr.hasNext()){
-
             String key= itr.next();
             Object value = params.get(key);
-
             if (first)
                 first = false;
             else
                 result.append("&");
-
             result.append(URLEncoder.encode(key, "UTF-8"));
             result.append("=");
             result.append(URLEncoder.encode(value.toString(), "UTF-8"));
-
         }
         return result.toString();
     }

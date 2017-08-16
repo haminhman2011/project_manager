@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Looper;
 import android.support.annotation.Nullable;
@@ -37,12 +39,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
 import android.os.Handler;
-
 import mh.manager.lang.SharedPrefControl;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
     public HostApi hostApi;
     private final String ServerURL_Login = "login";
@@ -113,9 +113,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        String passwordshare = pref.getString(PREF_PASSWORD, "password");
         userName.getText();
         passWord.getText();
-
-
-
     }
 
     /*
@@ -148,10 +145,64 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     };
     // resume ứng dụng
 
+
+
+
+    @Override
+    public void onClick(View v) {
+        checkConnection();
+    }
+
+    public void checkConnection(){
+        if(isOnline()){
+            try {
+                // Kiểm tra thông tin nhập vào, nếu trống yêu cầu nhập lại
+                if (userName.getText().toString().equalsIgnoreCase("") || passWord.getText().toString().equalsIgnoreCase("")){
+                    Toast.makeText(getBaseContext(),"Tên người dùng hoặc mật khẩu còn trống.Làm ơn nhập lại!", Toast.LENGTH_SHORT).show();
+                }else{
+                    getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                            .edit()
+                            .putString(PREF_USERNAME, userName.getText().toString())
+                            .putString(PREF_PASSWORD, passWord.getText().toString())
+                            .commit();
+                    // check();
+                    // Tạo mới một lớp CallUrl
+                    CallUrl wst = new CallUrl(CallUrl.POST_TASK, this, "Checking...");
+                    // Thêm data
+                    wst.addNameValuePair("username", userName.getText().toString().trim());
+                    wst.addNameValuePair("password",passWord.getText().toString().trim());
+                    // Gửi lên server
+                    wst.execute(new String[] {
+                            // Đường dẫn đến server
+                            hostApi.hostApi+ServerURL_Login
+                    });
+                    Log.i("logindata ====>", String.valueOf(wst));
+                    // Trường hợp nhận được khi thiết bị không có kết nối mạng,
+                    // hoặc server có sự cố
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else{
+            Toast.makeText(this, "You are not connected to Internet", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     @Override
     protected void onResume() {
         // Lấy thông tin đăng nhập từ preferent
-        pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+//        pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 //        String username = pref.getString(PREF_USERNAME, "eng_staff1");
 //        String passwordshare = pref.getString(PREF_PASSWORD, "123456");
 //        userName.setText(username);
@@ -159,40 +210,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        userName.getText();
 //        passWord.getText();
         super.onResume();
+        // register connection status listener
+//        MyApplication.getInstance().setConnectivityListener(this);
     }
 
 
-    @Override
-    public void onClick(View v) {
-        try {
-            // Kiểm tra thông tin nhập vào, nếu trống yêu cầu nhập lại
-            if (userName.getText().toString().equalsIgnoreCase("") || passWord.getText().toString().equalsIgnoreCase("")){
-                String mess = "Tên người dùng hoặc mật khẩu còn trống.Làm ơn nhập lại!";
-            }else{
-                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-                        .edit()
-                        .putString(PREF_USERNAME, userName.getText().toString())
-                        .putString(PREF_PASSWORD, passWord.getText().toString())
-                        .commit();
-                // check();
-                // Tạo mới một lớp CallUrl
-                CallUrl wst = new CallUrl(CallUrl.POST_TASK, this, "Checking...");
-                // Thêm data
-                wst.addNameValuePair("username", userName.getText().toString().trim());
-                wst.addNameValuePair("password",passWord.getText().toString().trim());
-                // Gửi lên server
-                wst.execute(new String[] {
-                        // Đường dẫn đến server
-                        hostApi.hostApi+ServerURL_Login
-                });
-                Log.i("logindata ====>", String.valueOf(wst));
-                // Trường hợp nhận được khi thiết bị không có kết nối mạng,
-                // hoặc server có sự cố
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public class CallUrl extends AsyncTask<String, Integer, String> {
         public static final int POST_TASK = 1;
@@ -218,12 +240,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         protected void onPostExecute(String response) {
             progressDialog.dismiss();
             sql.clearTable("login");
+            Log.i("response",response);
             if(!response.equals("fail")){
                 try {
                     // Dùng Json đọc thông tin nhận được từ server
                     JSONObject json_data = new JSONObject(response);
                     JSONArray jArray = new JSONArray(json_data.getString("datas"));
-                    Log.i("tocken===>", String.valueOf(jArray));
+//                    Log.i("tocken===>", String.valueOf(jArray));
                     for (int i = 0; i < jArray.length(); i++) {
                         JSONObject jObject = jArray.getJSONObject(i);
                         idUserName = jObject.getString("staff_id");
@@ -232,14 +255,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         email = jObject.getString("email");
                         token = jObject.getString("token");
                     }
-//                    Log.i("aBoolean===>", "trả về loagin thanh cong hay khongdsd       "+ idUserName + "----" + userNameApi + "----" +email + "----" +dept_name);
                     sql.insertLoain(idUserName, userNameApi, email, dept_name, token);
-
                     JSONArray jStatus = new JSONArray(json_data.getString("status"));
-//                    Log.i("jStatusjStatus===>", String.valueOf(jStatus));
                     for (int z = 0; z < jStatus.length(); z++) {
                         JSONObject jb = jStatus.getJSONObject(z);
-//                        Log.i("jStatusjStatus===>", String.valueOf(jStatus.getJSONObject(z)));
                         idStatus = jb.getString("id");
                         nameStatus = jb.getString("name");
                         stateStatus = jb.getString("state");

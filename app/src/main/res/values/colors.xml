@@ -19,6 +19,7 @@
     <color name="btnAll">#084e43</color>
     <color name="btnCancel">#787474</color>
     <color name="btnColor">#ffffff</color>
+    <color name="bg">#203e40</color>
 
     <color name="textColor">#616161</color>
     <color name="headerColor">#f0f0f0</color>

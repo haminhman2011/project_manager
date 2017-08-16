@@ -86,16 +86,10 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
         tvPriority      = (TextView) findViewById(R.id.tvPriorityClosed);
         tvDepartment    = (TextView) findViewById(R.id.tvDepartmentClosed);
         tvCreatedDate   = (TextView) findViewById(R.id.tvCreatedDateClosed);
-        tvUser          = (TextView) findViewById(R.id.tvUserClosed);
         tvEmail         = (TextView) findViewById(R.id.tvEmailClosed);
-        tvPhone         = (TextView) findViewById(R.id.tvPhoneClosed);
-        tvSource        = (TextView) findViewById(R.id.tvSourceClosed);
         tvAssigned      = (TextView) findViewById(R.id.tvAssignedToClosed);
-        tvSlaPlan       = (TextView) findViewById(R.id.tvSlaPlanClosed);
         tvDueDate       = (TextView) findViewById(R.id.tvDueDateClosed);
         tvHelpTopic     = (TextView) findViewById(R.id.tvHelpTopicClosed);
-        tvLastMassage   = (TextView) findViewById(R.id.tvLastMessageClosed);
-        tvLastResponse  = (TextView) findViewById(R.id.tvLastReponseClosed);
 
         tvStatusUpdate  = (TextView) findViewById(R.id.idStatusDetailClosed);
 
@@ -194,10 +188,7 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
                 tvPriority.setText(data.getPriority());
                 tvDepartment.setText(data.getDepartment());
                 tvCreatedDate.setText(data.getCreated());
-                tvUser.setText(data.getUsername());
                 tvEmail.setText(data.getEmail());
-                tvPhone.setText(data.getPhone());
-                tvSource.setText(data.getSource());
                 if(!data.getUsername().equals("") && data.getTeamName().equals("")){
                     tvAssigned.setText(data.getUsername());
                 }else if(data.getUsername().equals("") && !data.getTeamName().equals("")){
@@ -205,11 +196,8 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
                 }else{
                     tvAssigned.setText(data.getUsername() +" / "+ data.getTeamName());
                 }
-                tvSlaPlan.setText(data.getSlaname());
                 tvDueDate.setText(data.getEst_duedate());
                 tvHelpTopic.setText(data.getTopicname());
-                tvLastMassage.setText(data.getLast_message());
-                tvLastResponse.setText(data.getLast_reponse());
             }
         }
     }
@@ -471,6 +459,7 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
         wst.addNameValuePair("ticketId",ticketId);
         wst.addNameValuePair("token",token);
         wst.addNameValuePair("agentId",agentId);
+        wst.addNameValuePair("staffId",staffId);
 
         wstDetail.addNameValuePair("details", String.valueOf("{\"datas\":"+jsonArray+"}"));
 
@@ -493,15 +482,16 @@ public class DetailClosedActivity extends AppCompatActivity implements View.OnCl
         }else if(((strNotes.trim()).length() == 0 &&  !nameStatus.equals(status))){
             //2. nếu reply co data == 0 và status khac nhau
             Log.i("vao", "nếu reply co data == 0 và status khac nhau");
-            wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"+url_staffId+staffId});
+            wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"});
             Intent intent = new Intent(DetailClosedActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }else if(((strNotes.trim()).length() > 0 &&  !nameStatus.equals(status))){
             //3. nếu reply có data > 0 và status khac nhau
             Log.i("vao", "nếu reply có data > 0 và status khac nhau");
+            wstThreadEntry.execute(new String[] { hostApi.hostApi+"create-thread-entry"});
             getDataTickedThreadUrl(hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
-            wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"+url_staffId+staffId});
+            wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"});
             Intent intent = new Intent(DetailClosedActivity.this, MainActivity.class);
             startActivity(intent);
             finish();

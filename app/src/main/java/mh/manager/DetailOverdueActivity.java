@@ -88,16 +88,10 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
         tvPriority      = (TextView) findViewById(R.id.tvPriorityOverdue);
         tvDepartment    = (TextView) findViewById(R.id.tvDepartmentOverdue);
         tvCreatedDate   = (TextView) findViewById(R.id.tvCreatedDateOverdue);
-        tvUser          = (TextView) findViewById(R.id.tvUserOverdue);
         tvEmail         = (TextView) findViewById(R.id.tvEmailOverdue);
-        tvPhone         = (TextView) findViewById(R.id.tvPhoneOverdue);
-        tvSource        = (TextView) findViewById(R.id.tvSourceOverdue);
         tvAssigned      = (TextView) findViewById(R.id.tvAssignedToOverdue);
-        tvSlaPlan       = (TextView) findViewById(R.id.tvSlaPlanOverdue);
         tvDueDate       = (TextView) findViewById(R.id.tvDueDateOverdue);
         tvHelpTopic     = (TextView) findViewById(R.id.tvHelpTopicOverdue);
-        tvLastMassage   = (TextView) findViewById(R.id.tvLastMessageOverdue);
-        tvLastResponse  = (TextView) findViewById(R.id.tvLastReponseOverdue);
 
         tvStatusUpdate  = (TextView) findViewById(R.id.idStatusDetailOverdue);
 
@@ -198,10 +192,7 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
                 tvPriority.setText(data.getPriority());
                 tvDepartment.setText(data.getDepartment());
                 tvCreatedDate.setText(data.getCreated());
-                tvUser.setText(data.getUsername());
                 tvEmail.setText(data.getEmail());
-                tvPhone.setText(data.getPhone());
-                tvSource.setText(data.getSource());
                 if(!data.getUsername().equals("") && data.getTeamName().equals("")){
                     tvAssigned.setText(data.getUsername());
                 }else if(data.getUsername().equals("") && !data.getTeamName().equals("")){
@@ -209,11 +200,8 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
                 }else{
                     tvAssigned.setText(data.getUsername() +" / "+ data.getTeamName());
                 }
-                tvSlaPlan.setText(data.getSlaname());
                 tvDueDate.setText(data.getEst_duedate());
                 tvHelpTopic.setText(data.getTopicname());
-                tvLastMassage.setText(data.getLast_message());
-                tvLastResponse.setText(data.getLast_reponse());
             }
         }
     }
@@ -478,6 +466,7 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
         wst.addNameValuePair("ticketId",ticketId);
         wst.addNameValuePair("token",token);
         wst.addNameValuePair("agentId",agentId);
+        wst.addNameValuePair("staffId",staffId);
 
         wstDetail.addNameValuePair("details", String.valueOf("{\"datas\":"+jsonArray+"}"));
 
@@ -487,12 +476,12 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
         wstThreadEntry.addNameValuePair("ipAddress", locaLIpAddress.getLocalIpAddress());
 
         // Đường dẫn đến server
-        wstDetail.execute(new String[] { hostApi.hostApi+"update-ticket-detail"+url_staffId+staffId});
+        wstDetail.execute(new String[] { hostApi.hostApi+"update-ticket-detail"});
 
         //1 . nếu reply co data > 0 và status giong nhau
         if(((strNotes.trim()).length() > 0 &&  nameStatus.equals(status))){
             Log.i("vao", "nếu reply co data > 0 và status giong nhau");
-            wstThreadEntry.execute(new String[] { hostApi.hostApi+"create-thread-entry"+url_staffId+staffId});
+            wstThreadEntry.execute(new String[] { hostApi.hostApi+"create-thread-entry"});
             llEntry.removeAllViews();
             llLeft.removeAllViews();
             strNote.setText("");
@@ -507,6 +496,7 @@ public class DetailOverdueActivity extends AppCompatActivity implements View.OnC
         }else if(((strNotes.trim()).length() > 0 &&  !nameStatus.equals(status))){
             //3. nếu reply có data > 0 và status khac nhau
             Log.i("vao", "nếu reply có data > 0 và status khac nhau");
+            wstThreadEntry.execute(new String[] { hostApi.hostApi+"create-thread-entry"});
             getDataTickedThreadUrl(hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
             wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"});
             Intent intent = new Intent(DetailOverdueActivity.this, MainActivity.class);

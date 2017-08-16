@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
-    android:background="@color/tab_background"
+    android:background="@color/bg"
     android:gravity="center_vertical"
     android:orientation="vertical">
 
@@ -86,7 +86,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/tab_background"
+        android:background="@color/bg"
         android:orientation="horizontal">
 
         <ScrollView
@@ -208,7 +208,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="270dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
@@ -266,34 +266,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
-                            android:text="@string/strUser"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
                             android:text="@string/strEmail"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="@string/strPhone"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="@string/strSource"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/textSize" />
 
@@ -303,15 +276,6 @@
                             android:layout_weight="1"
                             android:gravity="left|center_vertical"
                             android:text="@string/strAssignedTo"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="@string/strSlaPlan"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/textSize" />
 
@@ -333,23 +297,6 @@
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/textSize" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="@string/strLastMessage"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="@string/strLastResponse"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -402,16 +349,6 @@
                             android:textSize="@dimen/textSize" />
 
                         <TextView
-                            android:id="@+id/tvUserOverdue"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="@string/strUser"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
                             android:id="@+id/tvEmailOverdue"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -422,42 +359,12 @@
                             android:textSize="@dimen/textSize" />
 
                         <TextView
-                            android:id="@+id/tvPhoneOverdue"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="@string/strPhone"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:id="@+id/tvSourceOverdue"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="@string/strSource"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
                             android:id="@+id/tvAssignedToOverdue"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="left|center_vertical"
                             android:text="@string/strAssignedTo"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:id="@+id/tvSlaPlanOverdue"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="@string/strSlaPlan"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/textSize" />
 
@@ -481,25 +388,6 @@
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/textSize" />
 
-                        <TextView
-                            android:id="@+id/tvLastMessageOverdue"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="@string/strLastMessage"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:id="@+id/tvLastReponseOverdue"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="@string/strLastResponse"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -557,7 +445,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:padding="10dp"/>
+                            android:padding="10dp" />
 
                     </LinearLayout>
 
@@ -682,7 +570,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:orientation="horizontal"/>
+                        android:orientation="horizontal" />
 
                 </LinearLayout>
 

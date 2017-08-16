@@ -1,37 +1,54 @@
 package mh.manager;
 
+
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import mh.manager.adapter.OverdueAdapter;
-import mh.manager.asynctask.LoadDataServerFromURlTaskOverdue;
 import mh.manager.lang.SharedPrefControl;
 import mh.manager.models.ModelOverdue;
 
-public class OverdueActivity extends AppCompatActivity {
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class OverdueFragment extends Fragment {
     public HostApi hostApi;
     private LoginDatabase sql;
     private final static String url_page = "get-list-ticket?overdue";
     private final static String url_staffId = "&staffId=";
     private final static String url_token = "&token=";
     private final static String url_agentId = "&agentId=";
-    private final static String TAG = OverdueActivity.class.getSimpleName();
     public String staffId, agentId, token;
 
     public int pageCount = 0;
@@ -43,16 +60,23 @@ public class OverdueActivity extends AppCompatActivity {
 
     private Button refreshButton, btnSeach;
 
+
+    public OverdueFragment() {
+        // Required empty public constructor
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_overdue);
-        SharedPrefControl.updateLangua(getApplicationContext());
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View myView =  inflater.inflate(R.layout.fragment_overdue, container, false);
+        SharedPrefControl.updateLangua(getContext());
 
         // khoi tao duong dan host get data api
         hostApi = new HostApi();
 
-        sql = new LoginDatabase(this);
+        sql = new LoginDatabase(getContext());
         sql.getWritableDatabase();
         try {
             for(int i=0; i<sql.getInforUser().length(); i++){
@@ -65,36 +89,45 @@ public class OverdueActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        listView = (ListView) findViewById(R.id.lvOverdue);
+        listView = (ListView) myView.findViewById(R.id.lvOverdue);
         listView.setOnItemClickListener(onItemClick);
-        // call load setListViewAdapter
-        setListViewAdapter();
-        Log.i("data list==>", hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //+url_staffId+staffId
-        getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
+
 
         // button refresh all data listview new
-        refreshButton= (Button)findViewById(R.id.refreshButtonOverdue);
+        refreshButton= (Button)myView.findViewById(R.id.refreshButtonOverdue);
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dataOverdues = new ArrayList<>();
-                adapter = new OverdueAdapter(OverdueActivity.this, R.layout.item_listview_overdue, dataOverdues);
+                adapter = new OverdueAdapter(getActivity(), R.layout.item_listview_overdue, dataOverdues);
                 listView.setAdapter(adapter);
                 getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
                 adapter.notifyDataSetChanged();
             }
         });
         // khổi tạo button seach
-        edtSearch = (EditText) findViewById(R.id.edtSearchOverdue);
-        btnSeach = (Button) findViewById(R.id.btnSearchOverdue);
+        edtSearch = (EditText) myView.findViewById(R.id.edtSearchOverdue);
+        btnSeach = (Button) myView.findViewById(R.id.btnSearchOverdue);
         btnSeach.setOnClickListener(searchOverdue);
+        return  myView;
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        // call load setListViewAdapter
+        setListViewAdapter();
+        Log.i("data list==>", hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //+url_staffId+staffId
+        getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
+    }
+
     // search data api
     private View.OnClickListener searchOverdue = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             adapter.clear();
-            String strUrl =hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+"&ticketNumber="+url_staffId+staffId; //
+            String strUrl = hostApi.hostApi+url_page+url_token+token+url_staffId+staffId+url_agentId+agentId+"&ticketNumber="; //
             String strTextSearch = edtSearch.getText().toString();
             getDataSearchFromUrl(strUrl+strTextSearch);
         }
@@ -105,32 +138,31 @@ public class OverdueActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             ModelOverdue data = adapter.getItem(position);
-            Intent detail = new Intent(OverdueActivity.this, DetailOverdueActivity.class);
+            Intent detail = new Intent(getActivity(), DetailOverdueActivity.class);
             detail.putExtra("Item", data);
             startActivityForResult(detail, 10);
-            Toast.makeText(OverdueActivity.this, data.getNumber(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), data.getNumber(), Toast.LENGTH_SHORT).show();
         }
     };
 
     // load all data list view
     private void setListViewAdapter() {
         dataOverdues = new ArrayList<>();
-        adapter = new OverdueAdapter(this, R.layout.item_listview_overdue, dataOverdues);
+        adapter = new OverdueAdapter(getActivity(), R.layout.item_listview_overdue, dataOverdues);
         listView.setAdapter(adapter);
     }
 
     // calling asynctask to get json data from internet
     private void getDataFromUrl(String url) {
-        new LoadDataServerFromURlTaskOverdue(this, url).execute();
+        new LoadDataServer(getActivity(), url).execute();
     }
 
     private void getDataSearchFromUrl(String url) {
-        new LoadDataServerFromURlTaskOverdue(this, url).execute();
+        new LoadDataServer(getActivity(), url).execute();
     }
 
     //parsing json after getting from Internet
     public void parseJsonResponse(String result) {
-        Log.i(TAG, result);
         pageCount++;
         try {
             JSONObject json = new JSONObject(result);
@@ -170,17 +202,98 @@ public class OverdueActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-//            Log.i("===BACK BUTTON PRESSED===", "BACK BUTTON");
-            return true;
-        } else {
-//            Log.i("===ELSE BACK BUTTON PRESSED===", "ELSE BACK BUTTON");
+    public class LoadDataServer extends AsyncTask<Void, Void, String> {
+        private Context context;
+        private String url;
+        private ProgressDialog dialog;
+        public JSONObject json = null;
+        public LoadDataServer(Context context, String url) {
+            super();
+            this.context = context;
+            this.url = url;
         }
-        return super.onKeyDown(keyCode, event);
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog = new ProgressDialog(context);
+            dialog.setTitle("Dữ liệu đang được tải");
+            dialog.setMessage("Tải dữ liệu...");
+            dialog.setIndeterminate(false);
+            dialog.show();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            // call load JSON from url method
+            Log.i("jsonjsonjso==>", loadJSON(this.url).toString());
+            return loadJSON(this.url).toString();
+        }
+
+        @Override
+        protected void onPostExecute(final String result) {
+            super.onPostExecute(result);
+            Log.i("222","222");
+            Log.i("ultresultresult==>", String.valueOf(result));
+            dialog.dismiss();
+            parseJsonResponse(result);
+        }
+
+        public JSONObject loadJSON(String url) {
+            // Creating JSON Parser instance
+            JSONParser jParser = new LoadDataServer.JSONParser();
+            // getting JSON string from URL
+            json = jParser.getJSONFromUrl(url);
+            Log.i("loi======>", String.valueOf(json));
+            return json;
+        }
+
+        private class JSONParser {
+            private InputStream is = null;
+            private JSONObject jObj = null;
+            private String json = "";
+            // constructor
+            public JSONParser() {
+
+            }
+            public JSONObject getJSONFromUrl(String url) {
+                // Making HTTP request
+                try {
+                    // defaultHttpClient
+                    DefaultHttpClient httpClient = new DefaultHttpClient();
+                    HttpPost httpPost = new HttpPost(url);
+
+                    HttpResponse httpResponse = httpClient.execute(httpPost);
+                    HttpEntity httpEntity = httpResponse.getEntity();
+                    is = httpEntity.getContent();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (ClientProtocolException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"),
+                            8);
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+                    is.close();
+                    json = sb.toString();
+                } catch (Exception e) {
+                    Log.e("Buffer Error", "Error converting result " + e.toString());
+                }
+                // try parse the string to a JSON object
+                try {
+                    jObj = new JSONObject(json);
+                } catch (JSONException e) {
+                    Log.e("JSON Parser", "Error parsing data " + e.toString());
+                }
+                // return JSON String
+                return jObj;
+            }
+        }
     }
-
-
 }
-

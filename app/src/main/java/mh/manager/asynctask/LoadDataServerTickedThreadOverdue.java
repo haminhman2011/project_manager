@@ -25,29 +25,22 @@ public class LoadDataServerTickedThreadOverdue extends AsyncTask<Void, Void, Str
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        // Create a progress dialog
         dialog = new ProgressDialog(activity);
-        // Set progress dialog title
         dialog.setTitle("Dữ liệu đang được tải");
-        // Set progress dialog message
         dialog.setMessage("Tải dữ liệu...");
         dialog.setIndeterminate(false);
-        // Show progress dialog
         dialog.show();
     }
 
     @Override
     protected String doInBackground(Void... params) {
         HttpHandler sh = new HttpHandler();
-        // Making a request to url and getting response
-        String jsonStr = sh.makeServiceCall(url);
-        return jsonStr;
+        return sh.makeServiceCall(url);
     }
 
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        // Dismiss the progress dialog
         if (dialog.isShowing())
             dialog.dismiss();
         ((DetailOverdueActivity) activity).parseJsonResponseTickedThread(result);

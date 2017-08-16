@@ -17,7 +17,6 @@
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -26,18 +25,6 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".OpenActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".OverdueActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".MyTicketsActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".ClosedActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".DetailClosedActivity"
@@ -69,6 +56,14 @@
             android:windowSoftInputMode="stateHidden" />
 
         <service android:name=".service.NotificationServices" />
+
+        <receiver
+            android:name=".connectivityreceiver.ConnectivityReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

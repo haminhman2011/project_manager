@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
-    android:background="@drawable/background"
+    android:background="@color/bg"
     android:gravity="center_vertical"
     android:orientation="vertical">
 
@@ -88,7 +88,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background"
+        android:background="@color/bg"
         android:orientation="horizontal">
 
         <ScrollView
@@ -210,7 +210,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="280dp"
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -269,15 +269,6 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
-                            android:text="@string/strUser"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
                             android:text="@string/strEmail"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/textSize" />
@@ -295,26 +286,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="@string/strSource"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:gravity="left|center_vertical"
                             android:text="@string/strAssignedTo"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="@string/strSlaPlan"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/textSize" />
 
@@ -336,23 +309,6 @@
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/textSize" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="@string/strLastMessage"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="@string/strLastResponse"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -405,16 +361,6 @@
                             android:textSize="@dimen/textSize" />
 
                         <TextView
-                            android:id="@+id/tvUserClosed"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="@string/strUser"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
                             android:id="@+id/tvEmailClosed"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -435,32 +381,12 @@
                             android:textSize="@dimen/textSize" />
 
                         <TextView
-                            android:id="@+id/tvSourceClosed"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="@string/strSource"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
                             android:id="@+id/tvAssignedToClosed"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="left|center_vertical"
                             android:text="@string/strAssignedTo"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:id="@+id/tvSlaPlanClosed"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="@string/strSlaPlan"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/textSize" />
 
@@ -484,25 +410,6 @@
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/textSize" />
 
-                        <TextView
-                            android:id="@+id/tvLastMessageClosed"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="@string/strLastMessage"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:id="@+id/tvLastReponseClosed"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="@string/strLastResponse"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -559,7 +466,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:padding="10dp"/>
+                            android:padding="10dp" />
 
                     </LinearLayout>
 
@@ -684,7 +591,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:orientation="horizontal"/>
+                        android:orientation="horizontal" />
 
                 </LinearLayout>
 

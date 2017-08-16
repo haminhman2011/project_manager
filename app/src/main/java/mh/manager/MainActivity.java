@@ -3,6 +3,7 @@ package mh.manager;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -21,11 +22,9 @@ import mh.manager.lang.SharedPrefControl;
 import mh.manager.service.NotificationServices;
 
 @SuppressWarnings("deprecation")
-public class MainActivity extends TabActivity {
+public class MainActivity extends AppCompatActivity {
     private LoginDatabase sql;
-
-
-    TabHost tabHost;
+    private FragmentTabHost tabHost;
     private TextView tvHello, tvEmail, tvDepartments;
     private Button btnLogOut;
     public Intent intService;
@@ -38,6 +37,20 @@ public class MainActivity extends TabActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
+        tabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        tabHost.setup(this, getSupportFragmentManager(), R.id.noiDung);
+
+        LayoutInflater inflater = getLayoutInflater();
+        View v1 = inflater.inflate(R.layout.tab_open, null);
+        View v2 = inflater.inflate(R.layout.tab_my_ticket, null);
+        View v3 = inflater.inflate(R.layout.tab_overdue, null);
+        View v4 = inflater.inflate(R.layout.tab_closed, null);
+
+        tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator(v1), OpenFragment.class, null);
+        tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator(v2), MyTicketFragment.class, null);
+        tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator(v3), OverdueFragment.class, null);
+        tabHost.addTab(tabHost.newTabSpec("tab4").setIndicator(v4), ClosedFragment.class, null);
 //        SharedPrefControl.updateLangua(getApplicationContext());
 
                  /* Time Lockout after 10 mins */
@@ -61,10 +74,8 @@ public class MainActivity extends TabActivity {
         sql = new LoginDatabase(this);
         sql.getWritableDatabase();
         try {
-//            Log.i("data login===>", String.valueOf(sql.getInforUser()));
             for(int i=0; i<sql.getInforUser().length(); i++){
                 JSONObject obj = sql.getInforUser().getJSONObject(i);
-
                 tvHello.setText(obj.getString("username"));
                 tvEmail.setText(obj.getString("email"));
                 tvDepartments.setText(obj.getString("departments"));
@@ -84,45 +95,14 @@ public class MainActivity extends TabActivity {
                 SharedPreferences.Editor edit = SM.edit();
                 edit.putBoolean("userlogin", false);
                 edit.commit();
-
-
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
         // end
-
-        // set tab
-        tabHost = getTabHost();
-        setTabs();
-
         // load notification services
-        intService = new Intent(this, NotificationServices.class);
-        startService(intService);
-    }
 
-
-    private  void setTabs(){
-        addTab("Open", R.drawable.tab_open, OpenActivity.class);
-        addTab("My Tickets", R.drawable.tab_my_tickets, MyTicketsActivity.class);
-        addTab("Overdue", R.drawable.tab_new, OverdueActivity.class);
-        addTab("Closed", R.drawable.tab_close, ClosedActivity.class);
-
-    }
-
-    private void addTab(String labelId, int drawableId, Class<?> c){
-        Intent intent = new Intent(this, c);
-        TabHost.TabSpec spec = tabHost.newTabSpec("tab" + labelId);
-
-        View tabIndicator = LayoutInflater.from(this).inflate(R.layout.tab_main, getTabWidget(), false);
-        TextView title = (TextView) tabIndicator.findViewById(R.id.titleDialogTeam);
-        title.setText(labelId);
-//        ImageView icon = (ImageView) tabIndicator.findViewById(R.id.icon);
-//        icon.setImageResource(drawableId);
-        spec.setIndicator(tabIndicator);
-        spec.setContent(intent);
-        tabHost.addTab(spec);
     }
 
 

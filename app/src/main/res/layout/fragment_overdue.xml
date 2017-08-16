@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="40dp"
     android:layout_weight="1"
     android:gravity="center_vertical"
     android:orientation="vertical"
@@ -30,7 +29,7 @@
             android:paddingRight="5dp">
 
             <EditText
-                android:id="@+id/edtSearchClosed"
+                android:id="@+id/edtSearchOverdue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -38,6 +37,7 @@
                 android:hint="Tìm kiếm"
                 android:text=""
                 android:textColorLink="#ea7124" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -52,7 +52,7 @@
             android:paddingRight="5dp">
 
             <Button
-                android:id="@+id/btnSearchClose"
+                android:id="@+id/btnSearchOverdue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -75,13 +75,13 @@
         android:paddingRight="5dp">
 
         <ListView
-            android:id="@+id/lvClose"
+            android:id="@+id/lvOverdue"
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/refreshButtonClose"
+            android:id="@+id/refreshButtonOverdue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
