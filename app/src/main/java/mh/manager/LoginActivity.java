@@ -184,7 +184,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 e.printStackTrace();
             }
         }else{
-            Toast.makeText(this, "You are not connected to Internet", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
         }
     }
 

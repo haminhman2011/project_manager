@@ -1,9 +1,12 @@
 package mh.manager;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -55,8 +58,8 @@ public class DetailMyTicketActivity extends AppCompatActivity implements View.On
 
     private final static String TAG = DetailMyTicketActivity.class.getSimpleName();
 
-    public TextView tvStatusUpdate, tvSticket, tvStatus, tvPriority, tvDepartment, tvCreatedDate, tvUser, tvEmail, tvPhone, tvSource, tvAssigned, tvSlaPlan, tvDueDate, tvHelpTopic, tvLastMassage, tvLastResponse;
-    private Button btnBack, btnUpdateOpen, btnChangeTeam, btnChangeStatus, btnAssign, btnTransfer;
+    public TextView tvStatusUpdate, tvSticket, tvStatus, tvPriority, tvDepartment, tvCreatedDate, tvEmail, tvAssigned, tvDueDate, tvHelpTopic;
+    private Button btnBack, btnUpdateOpen, btnChangeTeam, btnChangeStatus, btnAssign, btnTransfer, btnCancel;
     public String ticketNumber, ticketId, staffId, agentId, token, email, status, userName, departmentId, departmentName, nameStatus;
     public EditText strNote;
     public Spinner spnChangeTeam, spnChangeStatus, spTicketStatus, spnAgent;
@@ -98,6 +101,13 @@ public class DetailMyTicketActivity extends AppCompatActivity implements View.On
         initializeData();
         btnBack = (Button) findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        btnCancel = (Button) findViewById(R.id.btnCancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
@@ -220,17 +230,21 @@ public class DetailMyTicketActivity extends AppCompatActivity implements View.On
         public void onClick(View v) {
             String nameTeam = spnChangeTeam.getSelectedItem().toString();
             if(!nameTeam.equals("Change..")){
-                if(nameTeam.equals("Agent")){
-                    Intent dataAgent = new Intent(DetailMyTicketActivity.this, AgentActivity.class);
-                    dataAgent.putExtra("departmentId", departmentId);
-                    dataAgent.putExtra("nameTeam", nameTeam);
-                    dataAgent.putExtra("ticketId", ticketId);
-                    startActivity(dataAgent);
-                }else if(nameTeam.equals("Team")){
-                    Toast.makeText(getBaseContext(), "Feature is being perfected", Toast.LENGTH_SHORT).show();
+                if(isOnline()){
+                    if(nameTeam.equals("Agent")){
+                        Intent dataAgent = new Intent(DetailMyTicketActivity.this, AgentActivity.class);
+                        dataAgent.putExtra("departmentId", departmentId);
+                        dataAgent.putExtra("nameTeam", nameTeam);
+                        dataAgent.putExtra("ticketId", ticketId);
+                        startActivity(dataAgent);
+                    }else if(nameTeam.equals("Team")){
+                        Toast.makeText(getBaseContext(), "Feature is being perfected", Toast.LENGTH_SHORT).show();
 //                    Intent dataTeam = new Intent(DetailMyTicketActivity.this, TeamActivity.class);
 //                    dataTeam.putExtra("nameTeam", nameTeam);
 //                    startActivity(dataTeam);
+                    }
+                }else{
+                    Toast.makeText(getBaseContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
                 }
             }else{
                 Toast.makeText(DetailMyTicketActivity.this, "Vui lòng chọn!", Toast.LENGTH_SHORT).show();
@@ -244,12 +258,15 @@ public class DetailMyTicketActivity extends AppCompatActivity implements View.On
     private View.OnClickListener onClickTransfer = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent data = new Intent(DetailMyTicketActivity.this, TransferActivity.class);
-            data.putExtra("departmentName", departmentName);
-            data.putExtra("ticketId", ticketId);
-            data.putExtra("staffId", staffId);
-            startActivity(data);
-
+            if(isOnline()){
+                Intent data = new Intent(DetailMyTicketActivity.this, TransferActivity.class);
+                data.putExtra("departmentName", departmentName);
+                data.putExtra("ticketId", ticketId);
+                data.putExtra("staffId", staffId);
+                startActivity(data);
+            }else{
+                Toast.makeText(getBaseContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
+            }
         }
     };
 
@@ -415,80 +432,83 @@ public class DetailMyTicketActivity extends AppCompatActivity implements View.On
      */
     @Override
     public void onClick(View v) {
+        if(isOnline()){
+            String value, strStatus, tvEntryId, tvFieldId, strNotes;
+            strStatus = (String) tvStatusUpdate.getText();
+            strNotes = String.valueOf(strNote.getText());
+            LocaLIpAddress locaLIpAddress = new LocaLIpAddress();
+            View parentView = null;
+            JSONArray jsonArray = new JSONArray();
+            try {
+                for (int i = 0; i < lvDynamic.getCount(); i++) {
+                    JSONObject jsonObject = new JSONObject();
+                    parentView = getViewByPosition(i, lvDynamic);
+                    value = ((TextView)parentView.findViewById(R.id.edtNameDetailMyTicket)).getText().toString();
+                    tvEntryId = ((TextView)parentView.findViewById(R.id.tvEntryId)).getText().toString();
+                    tvFieldId = ((TextView)parentView.findViewById(R.id.tvFieldId)).getText().toString();
+                    jsonObject.put("value", value);
+                    jsonObject.put("entry_id", tvEntryId);
+                    jsonObject.put("field_id", tvFieldId);
+                    jsonArray.put(jsonObject);
+                }
 
-        String value, strStatus, tvEntryId, tvFieldId, strNotes;
-        strStatus = (String) tvStatusUpdate.getText();
-        strNotes = String.valueOf(strNote.getText());
-        LocaLIpAddress locaLIpAddress = new LocaLIpAddress();
-        View parentView = null;
-        JSONArray jsonArray = new JSONArray();
-        try {
-            for (int i = 0; i < lvDynamic.getCount(); i++) {
-                JSONObject jsonObject = new JSONObject();
-                parentView = getViewByPosition(i, lvDynamic);
-                value = ((TextView)parentView.findViewById(R.id.edtNameDetailMyTicket)).getText().toString();
-                tvEntryId = ((TextView)parentView.findViewById(R.id.tvEntryId)).getText().toString();
-                tvFieldId = ((TextView)parentView.findViewById(R.id.tvFieldId)).getText().toString();
-                jsonObject.put("value", value);
-                jsonObject.put("entry_id", tvEntryId);
-                jsonObject.put("field_id", tvFieldId);
-                jsonArray.put(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+            // Tạo mới một lớp CallUrl
+            CallUrlUpdateDetail wst = new CallUrlUpdateDetail(CallUrlUpdateDetail.POST_TASK, this, "Checking...");
+            CallUrlUpdateDetail wstDetail = new CallUrlUpdateDetail(CallUrlUpdateDetail.POST_TASK, this, "Checking...");
+            CallUrlUpdateDetail wstThreadEntry = new CallUrlUpdateDetail(CallUrlUpdateDetail.POST_TASK, this, "Checking...");
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        // Tạo mới một lớp CallUrl
-        CallUrlUpdateDetail wst = new CallUrlUpdateDetail(CallUrlUpdateDetail.POST_TASK, this, "Checking...");
-        CallUrlUpdateDetail wstDetail = new CallUrlUpdateDetail(CallUrlUpdateDetail.POST_TASK, this, "Checking...");
-        CallUrlUpdateDetail wstThreadEntry = new CallUrlUpdateDetail(CallUrlUpdateDetail.POST_TASK, this, "Checking...");
+            wst.addNameValuePair("status",strStatus);
+            wst.addNameValuePair("ticketId",ticketId);
+            wst.addNameValuePair("token",token);
+            wst.addNameValuePair("agentId",agentId);
+            wst.addNameValuePair("staffId",staffId);
 
-        wst.addNameValuePair("status",strStatus);
-        wst.addNameValuePair("ticketId",ticketId);
-        wst.addNameValuePair("token",token);
-        wst.addNameValuePair("agentId",agentId);
-        wst.addNameValuePair("staffId",staffId);
+            wstDetail.addNameValuePair("details", String.valueOf("{\"datas\":"+jsonArray+"}"));
 
-        wstDetail.addNameValuePair("details", String.valueOf("{\"datas\":"+jsonArray+"}"));
+            wstThreadEntry.addNameValuePair("ticketId", ticketId);
+            wstThreadEntry.addNameValuePair("email", email);
+            wstThreadEntry.addNameValuePair("body", strNotes);
+            wstThreadEntry.addNameValuePair("ipAddress", locaLIpAddress.getLocalIpAddress());
 
-        wstThreadEntry.addNameValuePair("ticketId", ticketId);
-        wstThreadEntry.addNameValuePair("email", email);
-        wstThreadEntry.addNameValuePair("body", strNotes);
-        wstThreadEntry.addNameValuePair("ipAddress", locaLIpAddress.getLocalIpAddress());
+            // Đường dẫn đến server
+            wstDetail.execute(new String[] { hostApi.hostApi+"update-ticket-detail"});
 
-        // Đường dẫn đến server
-        wstDetail.execute(new String[] { hostApi.hostApi+"update-ticket-detail"});
-
-        //1 . nếu reply co data > 0 và status giong nhau
-        if(((strNotes.trim()).length() > 0 &&  nameStatus.equals(status))){
-            Log.i("vao", "nếu reply co data > 0 và status giong nhau");
-            wstThreadEntry.execute(new String[] { hostApi.hostApi+"create-thread-entry"});
-            llEntry.removeAllViews();
-            llLeft.removeAllViews();
-            strNote.setText("");
-            getDataTickedThreadUrl(hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
-        }else if(((strNotes.trim()).length() == 0 &&  !nameStatus.equals(status))){
-            //2. nếu reply co data == 0 và status khac nhau
-            Log.i("vao", "nếu reply co data == 0 và status khac nhau");
-            wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"});
-            Intent intent = new Intent(DetailMyTicketActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }else if(((strNotes.trim()).length() > 0 &&  !nameStatus.equals(status))){
-            //3. nếu reply có data > 0 và status khac nhau
-            Log.i("vao", "nếu reply có data > 0 và status khac nhau");
-            wstThreadEntry.execute(new String[] { hostApi.hostApi+"create-thread-entry"});
-            getDataTickedThreadUrl(hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
-            wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"});
-            Intent intent = new Intent(DetailMyTicketActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            //1 . nếu reply co data > 0 và status giong nhau
+            if(((strNotes.trim()).length() > 0 &&  nameStatus.equals(status))){
+                Log.i("vao", "nếu reply co data > 0 và status giong nhau");
+                wstThreadEntry.execute(new String[] { hostApi.hostApi+"create-thread-entry"});
+                llEntry.removeAllViews();
+                llLeft.removeAllViews();
+                strNote.setText("");
+                getDataTickedThreadUrl(hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
+            }else if(((strNotes.trim()).length() == 0 &&  !nameStatus.equals(status))){
+                //2. nếu reply co data == 0 và status khac nhau
+                Log.i("vao", "nếu reply co data == 0 và status khac nhau");
+                wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"});
+                Intent intent = new Intent(DetailMyTicketActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }else if(((strNotes.trim()).length() > 0 &&  !nameStatus.equals(status))){
+                //3. nếu reply có data > 0 và status khac nhau
+                Log.i("vao", "nếu reply có data > 0 và status khac nhau");
+                wstThreadEntry.execute(new String[] { hostApi.hostApi+"create-thread-entry"});
+                getDataTickedThreadUrl(hostApi.hostApi+"get-all-thread?ticketNumber="+ticketNumber);
+                wst.execute(new String[] { hostApi.hostApi+"update-ticket-status"});
+                Intent intent = new Intent(DetailMyTicketActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }else{
+                //4. nếu reply có data ==0 và status giong nhau
+                Log.i("vao", "nếu reply có data ==0 và status giong nhau");
+                // load data dynamic data khi nhan nut update
+                setListViewAdapter();
+                new LoadDataServerFromURITaskDetailMyTicket(DetailMyTicketActivity.this,hostApi.hostApi+url_page, ticketId, staffId, token, agentId).execute();
+            }
         }else{
-            //4. nếu reply có data ==0 và status giong nhau
-            Log.i("vao", "nếu reply có data ==0 và status giong nhau");
-            // load data dynamic data khi nhan nut update
-            setListViewAdapter();
-            new LoadDataServerFromURITaskDetailMyTicket(DetailMyTicketActivity.this,hostApi.hostApi+url_page, ticketId, staffId, token, agentId).execute();
+            Toast.makeText(getBaseContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -562,5 +582,18 @@ public class DetailMyTicketActivity extends AppCompatActivity implements View.On
 //            Log.i("===ELSE BACK BUTTON PRESSED===", "ELSE BACK BUTTON");
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * kiem tra co ket noi voi mạng không
+     */
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

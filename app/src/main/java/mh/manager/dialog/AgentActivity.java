@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -135,18 +137,20 @@ public class AgentActivity extends Activity{
     public View.OnClickListener onClickAssign = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            String strStaffId;
-            strStaffId = String.valueOf(tvIdAgent.getText());
-            // Tạo mới một lớp CallUrl
-            AgentAssign wst = new AgentAssign(AgentAssign.POST_TASK, AgentActivity.this, "Checking...");
-            wst.addNameValuePair("staffId",strStaffId);
-            wst.addNameValuePair("ticketId",ticketId);
-            wst.addNameValuePair("teamId","");
-            wst.addNameValuePair("staffAssignedId",staffAssignedId);
-            Log.i("assign============>", "staffId "+strStaffId+"------------"+"ticketId "+ticketId+"-----------------"+"teamId"+"----------"+"staffAssignedId "+staffAssignedId);
-
-            wst.execute(new String[] { hostApi.hostApi+"assign-ticket"});
-
+            if(isOnline()){
+                String strStaffId;
+                strStaffId = String.valueOf(tvIdAgent.getText());
+                // Tạo mới một lớp CallUrl
+                AgentAssign wst = new AgentAssign(AgentAssign.POST_TASK, AgentActivity.this, "Checking...");
+                wst.addNameValuePair("staffId",strStaffId);
+                wst.addNameValuePair("ticketId",ticketId);
+                wst.addNameValuePair("teamId","");
+                wst.addNameValuePair("staffAssignedId",staffAssignedId);
+//            Log.i("assign============>", "staffId "+strStaffId+"------------"+"ticketId "+ticketId+"-----------------"+"teamId"+"----------"+"staffAssignedId "+staffAssignedId);
+                wst.execute(new String[] { hostApi.hostApi+"assign-ticket"});
+            }else{
+                Toast.makeText(getBaseContext(), getString(R.string.not_connection),Toast.LENGTH_SHORT).show();
+            }
         }
     };
 
@@ -341,6 +345,19 @@ public class AgentActivity extends Activity{
                 public void onNothingSelected(AdapterView<?> arg0) {
                 }
             });
+        }
+    }
+
+    /**
+     * kiem tra co ket noi voi mạng không
+     */
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

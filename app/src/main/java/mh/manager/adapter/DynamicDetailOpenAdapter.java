@@ -76,8 +76,8 @@ public class DynamicDetailOpenAdapter extends ArrayAdapter<ModelDynamicDetailOpe
         ed.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         ed.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
         ed.setTextSize(15);
-        ed.setPadding(15, 0, 15, 0);
-        ed.setHeight(60);
+        ed.setPadding(15, 7, 15, 7);
+//        ed.setHeight();
         ed.setBackgroundResource(R.drawable.rounded_border_edittext);
         ed.setTextColor(Color.parseColor("#616161"));
         ed.setText(data.getValue());

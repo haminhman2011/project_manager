@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CocobayManage</string>
+    <string name="app_name">Hotel Support</string>
     <string name="logOut">Log Out</string>
     <string name="logIn">Log In</string>
     <string name="userName">User name</string>
@@ -50,4 +50,5 @@
     <string name="tab_myticket">My Ticket</string>
     <string name="tab_overdue">Overdue</string>
     <string name="tab_closed">Closed</string>
+    <string name="not_connection">Please check the network connection</string>
 </resources>

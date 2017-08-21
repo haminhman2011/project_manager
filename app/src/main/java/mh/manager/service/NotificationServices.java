@@ -3,6 +3,7 @@ package mh.manager.service;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -18,14 +19,28 @@ import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+
+import mh.manager.DetailNotiActivity;
 import mh.manager.HostApi;
 import mh.manager.LoginDatabase;
 import mh.manager.MainActivity;
+import mh.manager.OpenFragment;
 import mh.manager.R;
+import mh.manager.models.ModelOpen;
 
 /**
  * Created by man.ha on 7/27/2017.
@@ -89,7 +104,8 @@ public class NotificationServices extends Service {
 
                 // Making a request to url and getting response
                 String jsonStr = sh.makeServiceCall(hostApi.hostApi+"get-noti?staffId="+sql.getId());
-//            Log.e(TAG, "Response from url: " + jsonStr);hostApi+url_page+url_staffId+staffId+url_token+token+url_agentId+agentId
+
+                Log.i("tsdfdsaf", hostApi.hostApi+"get-noti?staffId="+sql.getId());
 
                 if (jsonStr != null) {
                     try {
@@ -102,8 +118,11 @@ public class NotificationServices extends Service {
                             int i;
 //            Toast.makeText(getApplicationContext(), String.valueOf(intTask), Toast.LENGTH_SHORT).show();
                             for ( i= 0; i < contacts.length(); i++) {
+
+//                                getDataFromUrl(hostApi.hostApi+sql.getLinkDetail()); //
                                 JSONObject jObject = contacts.getJSONObject(i);
                                 if(!jObject.getString("code_name").equals("null")){
+                                    Log.i("haminhman", jObject.getString("code_name"));
                                     Log.i("dem thu tu", String.valueOf(i));
                                     Notification.Builder mBuilder = new Notification.Builder(getApplicationContext());
                                     //Define sound URI
@@ -122,9 +141,11 @@ public class NotificationServices extends Service {
             /* tăng số thông báo */
     //            mBuilder.setNumber(++numMessages);
                 /* Tạo đối tượng chỉ đến activity sẽ mở khi chọn thông báo */
-                                    Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
+                                    Intent resultIntent = new Intent(getApplicationContext(), DetailNotiActivity.class);
+                                    Log.i("aaaaaaaaaaaaaa", hostApi.hostApi+sql.getLinkDetail()+"&ticketNumber="+jObject.getString("ticketNumber"));
+                                    resultIntent.putExtra("Item", hostApi.hostApi+sql.getLinkDetail()+"&ticketNumber="+jObject.getString("ticketNumber"));
                                     TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
-                                    stackBuilder.addParentStack(MainActivity.class);
+                                    stackBuilder.addParentStack(DetailNotiActivity.class);
                 /* Đăng ký activity được gọi khi chọn thông báo */
                                     stackBuilder.addNextIntent(resultIntent);
                                     PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
@@ -163,10 +184,10 @@ public class NotificationServices extends Service {
         final Runnable r = new Runnable() {
             public void run() {
                 new GetContacts().execute();
-                handler.postDelayed(this, 60000);
+                handler.postDelayed(this, 5000);
             }
         };
-        handler.postDelayed(r, 60000);
+        handler.postDelayed(r, 5000);
         return START_STICKY;
     }
 
@@ -179,8 +200,5 @@ public class NotificationServices extends Service {
 
 
 
-    public void displayNotification(JSONArray haminhman) {
 
-
-    }
 }

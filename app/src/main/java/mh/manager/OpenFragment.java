@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -102,17 +104,20 @@ public class OpenFragment extends Fragment {
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dataOpens = new ArrayList<>();
-                adapter = new OpenAdapter(getActivity(), R.layout.item_listview_open, dataOpens);
-                listView.setAdapter(adapter);
-                getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
-                adapter.notifyDataSetChanged();
+                if(isOnline()){
+                    dataOpens = new ArrayList<>();
+                    adapter = new OpenAdapter(getActivity(), R.layout.item_listview_open, dataOpens);
+                    listView.setAdapter(adapter);
+                    getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
+                    adapter.notifyDataSetChanged();
+                }else{
+                    Toast.makeText(getContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
         edtSearch = (EditText) myView.findViewById(R.id.edtSearchOpen);
         btnSearchOpen.setOnClickListener(searchOpen);
-
-
         return  myView;
     }
 
@@ -120,19 +125,25 @@ public class OpenFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 //        Log.i("test===>",hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId );
-        setListViewAdapter();
-        getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
+        if(isOnline()) {
+            setListViewAdapter();
+            getDataFromUrl(hostApi.hostApi + url_page + url_token + token + url_agentId + agentId + url_staffId + staffId); //
+        }
     }
 
     // su kiem lick vao moi item hien detail cua item do sang activity khac
     private AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if(isOnline()){
             ModelOpen data = adapter.getItem(position);
             Intent detail = new Intent(getActivity(), DetailOpenActivity.class);
             detail.putExtra("Item", data);
             startActivityForResult(detail, 10);
             Toast.makeText(getActivity(), data.getNumber(), Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
+        }
         }
     };
 
@@ -140,11 +151,19 @@ public class OpenFragment extends Fragment {
     private View.OnClickListener searchOpen = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            adapter.clear();
-            String strUrl = hostApi.hostApi+url_page+url_token+token+url_staffId+staffId+url_agentId+agentId+"&ticketNumber="; //
-            String strTextSearch = edtSearch.getText().toString();
-            Log.i("api search===>", strUrl+strTextSearch);
-            getDataSearchFromUrl(strUrl+strTextSearch);
+            if (isOnline()){
+                if(listView.getCount() > 0){
+                    adapter.clear();
+                    String strUrl = hostApi.hostApi+url_page+url_token+token+url_staffId+staffId+url_agentId+agentId+"&ticketNumber="; //
+                    String strTextSearch = edtSearch.getText().toString();
+                    Log.i("api search===>", strUrl+strTextSearch);
+                    getDataSearchFromUrl(strUrl+strTextSearch);
+                }
+
+            }else{
+                Toast.makeText(getContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
+            }
+
         }
     };
 
@@ -198,6 +217,7 @@ public class OpenFragment extends Fragment {
                 data.setTeamName(!jObject.getString("teamName").equals("null") ? jObject.getString("teamName") : "");
                 dataOpens.add(data);
             }
+
             adapter.notifyDataSetChanged();
             if (dialog != null) {
                 dialog.dismiss();
@@ -299,6 +319,19 @@ public class OpenFragment extends Fragment {
                 // return JSON String
                 return jObj;
             }
+        }
+    }
+
+    /**
+     * kiem tra co ket noi voi mạng không
+     */
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

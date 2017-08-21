@@ -4,6 +4,8 @@ package mh.manager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -72,10 +74,8 @@ public class ClosedFragment extends Fragment {
         // Inflate the layout for this fragment
         View myView =  inflater.inflate(R.layout.fragment_closed, container, false);
         SharedPrefControl.updateLangua(getContext());
-
         // khoi tao duong dan host get data api
         hostApi = new HostApi();
-
         sql = new LoginDatabase(getContext());
         sql.getWritableDatabase();
         try {
@@ -88,58 +88,58 @@ public class ClosedFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         listView = (ListView) myView.findViewById(R.id.lvClose);
         listView.setOnItemClickListener(onItemClick);
-
-
         // button refresh all data listview new
         refreshButton= (Button)myView.findViewById(R.id.refreshButtonClose);
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            if(isOnline()){
+                dataClosed = new ArrayList<>();
+                adapter = new CloseAdapter(getActivity(), R.layout.item_listview_close, dataClosed);
+                listView.setAdapter(adapter);
+                getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
+                adapter.notifyDataSetChanged();
+            }else{
 
+                Toast.makeText(getContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
+            }
 
+            }
+        });
         // button search anh get data edttext sreach
         edtSearch = (EditText) myView.findViewById(R.id.edtSearchClosed);
-
-
         btnSearch = (Button) myView.findViewById(R.id.btnSearchClose);
         btnSearch.setOnClickListener(searchOverdue);
-
         return myView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        // call load setListViewAdapter
-        setListViewAdapter();
-        Log.i("link api all==>", hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
-        getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
-
-        refreshButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dataClosed = new ArrayList<>();
-                adapter = new CloseAdapter(getActivity(), R.layout.item_listview_close, dataClosed);
-                listView.setAdapter(adapter);
-                getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
-                adapter.notifyDataSetChanged();
-            }
-        });
-
-
+        if(isOnline()){
+            // call load setListViewAdapter
+            setListViewAdapter();
+            Log.i("link api all==>", hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
+            getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
+        }
     }
 
     // search data api
     private View.OnClickListener searchOverdue = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            adapter.clear();
-            String strUrl = hostApi.hostApi+url_page+url_token+token+url_staffId+staffId+url_agentId+agentId+"&ticketNumber="; //
-            Log.i("search==>", edtSearch.getText().toString());
-            Log.i("search==>",strUrl);
-            String strTextSearch = edtSearch.getText().toString();
-            getDataSearchFromUrl(strUrl+strTextSearch);
+            if(isOnline()){
+                if(listView.getCount() > 0){
+                    adapter.clear();
+                    String strUrl = hostApi.hostApi+url_page+url_token+token+url_staffId+staffId+url_agentId+agentId+"&ticketNumber="; //
+                    String strTextSearch = edtSearch.getText().toString();
+                    getDataSearchFromUrl(strUrl+strTextSearch);
+                }
+            }else{
+                Toast.makeText(getContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
+            }
         }
     };
 
@@ -147,12 +147,15 @@ public class ClosedFragment extends Fragment {
     private AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            ModelClose data = adapter.getItem(position);
-            Intent detail = new Intent(getActivity(), DetailClosedActivity.class);
-            detail.putExtra("Item", data);
-            startActivityForResult(detail, 10);
-            Log.i("detail====>", detail.toString());
-            Toast.makeText(getActivity(), data.getNumber(), Toast.LENGTH_SHORT).show();
+            if(isOnline()){
+                ModelClose data = adapter.getItem(position);
+                Intent detail = new Intent(getActivity(), DetailClosedActivity.class);
+                detail.putExtra("Item", data);
+                startActivityForResult(detail, 10);
+                Toast.makeText(getActivity(), data.getNumber(), Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
+            }
         }
     };
 
@@ -174,7 +177,6 @@ public class ClosedFragment extends Fragment {
 
     //parsing json after getting from Internet
     public void parseJsonResponse(String result) {
-
         pageCount++;
         try {
             JSONObject json = new JSONObject(result);
@@ -305,6 +307,19 @@ public class ClosedFragment extends Fragment {
                 // return JSON String
                 return jObj;
             }
+        }
+    }
+
+    /**
+     * kiem tra co ket noi voi mạng không
+     */
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

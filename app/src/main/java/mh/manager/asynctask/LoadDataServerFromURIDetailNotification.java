@@ -4,24 +4,14 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -33,15 +23,15 @@ import mh.manager.DetailNotiActivity;
 import mh.manager.DetailOpenActivity;
 
 /**
- * Created by man.ha on 7/27/2017.
+ * Created by DEV on 8/18/2017.
  */
 
-public class LoadDataServerFromURITaskDetailOpen extends AsyncTask<String, Void, String> {
+public class LoadDataServerFromURIDetailNotification extends AsyncTask<String, Void, String> {
     public String Strurl, ticketId, staffId, token, agentId;
     private Activity activity;
     private ProgressDialog dialog;
 
-    public LoadDataServerFromURITaskDetailOpen(Activity activity,String Strurl, String ticketId, String staffId, String token, String agentId) {
+    public LoadDataServerFromURIDetailNotification(Activity activity,String Strurl, String ticketId, String staffId, String token, String agentId) {
         super();
         this.activity = activity;
         this.Strurl = Strurl;
@@ -61,12 +51,13 @@ public class LoadDataServerFromURITaskDetailOpen extends AsyncTask<String, Void,
 
     protected String doInBackground(String... arg0) {
         try {
-            URL url = new URL(Strurl); // here is your URL path
+            URL url = new URL("http://demo.cloudteam.vn:8080/cocobay_manager/api/get-ticket-detail"); // here is your URL path
+            Log.i("Strurl", String.valueOf(url));
             JSONObject postDataParams = new JSONObject();
-            postDataParams.put("ticketId", ticketId);
-            postDataParams.put("staffId", staffId);
-            postDataParams.put("token", token);
-            postDataParams.put("agentId", agentId);
+            postDataParams.put("ticketNumber", "156293");
+            postDataParams.put("staffId", "3");
+            postDataParams.put("token", "ieEpY4LZ2nh_poAutA7WdWwq1u79bNm2");
+            postDataParams.put("agentId", "3");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(15000 /* milliseconds */);
             conn.setConnectTimeout(15000 /* milliseconds */);
@@ -82,14 +73,20 @@ public class LoadDataServerFromURITaskDetailOpen extends AsyncTask<String, Void,
             os.close();
             int responseCode=conn.getResponseCode();
             if (responseCode == HttpsURLConnection.HTTP_OK) {
-                BufferedReader in=new BufferedReader(new  InputStreamReader(conn.getInputStream()));
+                Log.i("váo 111", "1111");
+                BufferedReader in=new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 StringBuffer sb = new StringBuffer("");
                 String line="";
                 while((line = in.readLine()) != null) {
+                    Log.i("váo 222", "222");
+                    Log.i("váo 222", line);
                     sb.append(line);
                     break;
                 }
                 in.close();
+
+                Log.i("sb.toString()", sb.toString());
+
                 return sb.toString();
             }
             else {
@@ -104,8 +101,8 @@ public class LoadDataServerFromURITaskDetailOpen extends AsyncTask<String, Void,
     @Override
     protected void onPostExecute(String result) {
         dialog.dismiss();
-        Log.i("DetailOpenActivity", result);
-        ((DetailOpenActivity) activity).parseJsonResponse(result);
+        Log.i("resul===>", result);
+        ((DetailNotiActivity) activity).parseJsonResponse(result);
     }
 
     public String getPostDataString(JSONObject params) throws Exception {
@@ -127,4 +124,5 @@ public class LoadDataServerFromURITaskDetailOpen extends AsyncTask<String, Void,
         return result.toString();
     }
 }
+
 

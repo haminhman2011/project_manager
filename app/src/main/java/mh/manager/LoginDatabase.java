@@ -143,7 +143,7 @@ public class LoginDatabase extends SQLiteOpenHelper {
             Cursor cursor = _database.rawQuery("SELECT * from login", null);  //WHERE state='open'
             if(cursor.getCount() > 0) {
                 cursor.moveToFirst();
-                strId = cursor.getString(cursor.getColumnIndex("id"));
+                strId = cursor.getString(cursor.getColumnIndex("id"))+"&token="+cursor.getString(cursor.getColumnIndex("token"));
                 cursor.close();
             }
 
@@ -154,6 +154,26 @@ public class LoginDatabase extends SQLiteOpenHelper {
         }
         Log.i("strId===>", strId);
         return  strId;
+    }
+
+    public String getLinkDetail(){
+        _database = this.getWritableDatabase();
+        String strLink = "";
+        try {
+            Cursor cursor = _database.rawQuery("SELECT * from login", null);  //WHERE state='open'
+            if(cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                strLink = cursor.getString(cursor.getColumnIndex("id"))+"&token="+cursor.getString(cursor.getColumnIndex("token"))+"&staffId="+cursor.getString(cursor.getColumnIndex("id"))+"&agentId="+cursor.getString(cursor.getColumnIndex("id"));
+                cursor.close();
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close();
+        }
+        Log.i("strLink===>", strLink);
+        return  "get-list-ticket?"+strLink;
     }
 
     public Integer getCountData(){

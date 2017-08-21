@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -114,30 +116,32 @@ public class TransferActivity extends Activity {
     private View.OnClickListener onClickTransfer = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            if(isOnline()){
+                hostApi = new HostApi();
+                String strNote, strIdDeparment, spnNameDepartnemt;
+                spnNameDepartnemt = String.valueOf(tvNameSpnDepartment.getText());
+                if(!spnNameDepartnemt.equals(departmentName)){
+                    strNote = String.valueOf(edtNote.getText());
+                    strIdDeparment = String.valueOf(tvIdTransfer.getText());
+                    LocaLIpAddress locaLIpAddress = new LocaLIpAddress();
+                    // Tạo mới một lớp CallUrl
+                    CallUrlTransfer  wst = new CallUrlTransfer(CallUrlTransfer.POST_TASK, v.getContext(), "Checking...");
+                    wst.addNameValuePair("ticketId",ticketId);
+                    wst.addNameValuePair("deptId",strIdDeparment);
+                    wst.addNameValuePair("staffId",staffId);
+                    wst.addNameValuePair("note",strNote);
+                    wst.addNameValuePair("ipAddress",locaLIpAddress.getLocalIpAddress());
+//                Log.i("tranfer==>", "ticketId = "+ticketId+"----"+"deptId = "+strIdDeparment+"----"+"staffId = "+staffId+"----"+"note = "+strNote+"----"+"ipAddress = "+locaLIpAddress.getLocalIpAddress());
+                    // Đường dẫn đến server
+                    wst.execute(new String[] { hostApi.hostApi+"transfer-ticket"});
 
-
-            hostApi = new HostApi();
-            String strNote, strIdDeparment, spnNameDepartnemt;
-            spnNameDepartnemt = String.valueOf(tvNameSpnDepartment.getText());
-            if(!spnNameDepartnemt.equals(departmentName)){
-                strNote = String.valueOf(edtNote.getText());
-                strIdDeparment = String.valueOf(tvIdTransfer.getText());
-                LocaLIpAddress locaLIpAddress = new LocaLIpAddress();
-                // Tạo mới một lớp CallUrl
-                CallUrlTransfer  wst = new CallUrlTransfer(CallUrlTransfer.POST_TASK, v.getContext(), "Checking...");
-                wst.addNameValuePair("ticketId",ticketId);
-                wst.addNameValuePair("deptId",strIdDeparment);
-                wst.addNameValuePair("staffId",staffId);
-                wst.addNameValuePair("note",strNote);
-                wst.addNameValuePair("ipAddress",locaLIpAddress.getLocalIpAddress());
-
-                Log.i("tranfer==>", "ticketId = "+ticketId+"----"+"deptId = "+strIdDeparment+"----"+"staffId = "+staffId+"----"+"note = "+strNote+"----"+"ipAddress = "+locaLIpAddress.getLocalIpAddress());
-                // Đường dẫn đến server
-                wst.execute(new String[] { hostApi.hostApi+"transfer-ticket"});
-
+                }else{
+                    Toast.makeText(TransferActivity.this, "Department duplicates please select again", Toast.LENGTH_SHORT).show();
+                }
             }else{
-                Toast.makeText(TransferActivity.this, "Department duplicates please select again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
             }
+
 
         }
     };
@@ -341,6 +345,19 @@ public class TransferActivity extends Activity {
 
             // Trả về giá trị chuỗi đầy đủ
             return total.toString();
+        }
+    }
+
+    /**
+     * kiem tra co ket noi voi mạng không
+     */
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
         }
     }
 

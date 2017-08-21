@@ -4,6 +4,8 @@ package mh.manager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -98,11 +100,15 @@ public class OverdueFragment extends Fragment {
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            if(isOnline()){
                 dataOverdues = new ArrayList<>();
                 adapter = new OverdueAdapter(getActivity(), R.layout.item_listview_overdue, dataOverdues);
                 listView.setAdapter(adapter);
                 getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
                 adapter.notifyDataSetChanged();
+            }else{
+                Toast.makeText(getContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
+            }
             }
         });
         // khổi tạo button seach
@@ -115,21 +121,32 @@ public class OverdueFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         // call load setListViewAdapter
-        setListViewAdapter();
-        Log.i("data list==>", hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //+url_staffId+staffId
-        getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
+        if(isOnline()){
+            setListViewAdapter();
+            Log.i("data list==>", hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //+url_staffId+staffId
+            getDataFromUrl(hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId); //
+        }
+
     }
 
     // search data api
     private View.OnClickListener searchOverdue = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            adapter.clear();
-            String strUrl = hostApi.hostApi+url_page+url_token+token+url_staffId+staffId+url_agentId+agentId+"&ticketNumber="; //
-            String strTextSearch = edtSearch.getText().toString();
-            getDataSearchFromUrl(strUrl+strTextSearch);
+
+            if(isOnline()){
+                if(listView.getCount() > 0){
+                    adapter.clear();
+                    String strUrl = hostApi.hostApi+url_page+url_token+token+url_staffId+staffId+url_agentId+agentId+"&ticketNumber="; //
+                    String strTextSearch = edtSearch.getText().toString();
+                    getDataSearchFromUrl(strUrl+strTextSearch);
+                }
+
+            }else{
+                Toast.makeText(getContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
+            }
+
         }
     };
 
@@ -137,11 +154,15 @@ public class OverdueFragment extends Fragment {
     private AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if(isOnline()){
             ModelOverdue data = adapter.getItem(position);
             Intent detail = new Intent(getActivity(), DetailOverdueActivity.class);
             detail.putExtra("Item", data);
             startActivityForResult(detail, 10);
             Toast.makeText(getActivity(), data.getNumber(), Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
+        }
         }
     };
 
@@ -294,6 +315,19 @@ public class OverdueFragment extends Fragment {
                 // return JSON String
                 return jObj;
             }
+        }
+    }
+
+    /**
+     * kiem tra co ket noi voi mạng không
+     */
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
