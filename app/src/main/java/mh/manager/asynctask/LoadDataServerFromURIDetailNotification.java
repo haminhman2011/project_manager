@@ -21,21 +21,24 @@ import javax.net.ssl.HttpsURLConnection;
 
 import mh.manager.DetailNotiActivity;
 import mh.manager.DetailOpenActivity;
+import mh.manager.HostApi;
+import mh.manager.R;
 
 /**
  * Created by DEV on 8/18/2017.
  */
 
 public class LoadDataServerFromURIDetailNotification extends AsyncTask<String, Void, String> {
-    public String Strurl, ticketId, staffId, token, agentId;
+    public HostApi hostApi;
+    public String Strurl, ticketNumber, staffId, token, agentId;
     private Activity activity;
     private ProgressDialog dialog;
 
-    public LoadDataServerFromURIDetailNotification(Activity activity,String Strurl, String ticketId, String staffId, String token, String agentId) {
+    public LoadDataServerFromURIDetailNotification(Activity activity,String Strurl, String ticketNumber, String staffId, String token, String agentId) {
         super();
         this.activity = activity;
         this.Strurl = Strurl;
-        this.ticketId = ticketId;
+        this.ticketNumber = ticketNumber;
         this.staffId = staffId;
         this.token = token;
         this.agentId = agentId;
@@ -43,24 +46,25 @@ public class LoadDataServerFromURIDetailNotification extends AsyncTask<String, V
     protected void onPreExecute(){
         super.onPreExecute();
         dialog = new ProgressDialog(activity);
-        dialog.setTitle("Dữ liệu đang được tải");
-        dialog.setMessage("Tải dữ liệu...");
+        dialog.setTitle("Processing...");
+        dialog.setMessage("Processing...");
         dialog.setIndeterminate(false);
         dialog.show();
     }
 
     protected String doInBackground(String... arg0) {
+        hostApi = new HostApi();
         try {
-            URL url = new URL("http://demo.cloudteam.vn:8080/cocobay_manager/api/get-ticket-detail"); // here is your URL path
+            URL url = new URL(hostApi.hostApi+"get-ticket-detail"); // here is your URL path
             Log.i("Strurl", String.valueOf(url));
             JSONObject postDataParams = new JSONObject();
-            postDataParams.put("ticketNumber", "156293");
-            postDataParams.put("staffId", "3");
-            postDataParams.put("token", "ieEpY4LZ2nh_poAutA7WdWwq1u79bNm2");
-            postDataParams.put("agentId", "3");
+            postDataParams.put("ticketNumber", ticketNumber);
+            postDataParams.put("staffId", staffId);
+            postDataParams.put("token", token);
+            postDataParams.put("agentId", agentId);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(15000 /* milliseconds */);
-            conn.setConnectTimeout(15000 /* milliseconds */);
+            conn.setReadTimeout(25000 /* milliseconds */);
+            conn.setConnectTimeout(25000 /* milliseconds */);
             conn.setRequestMethod("POST");
             conn.setDoInput(true);
             conn.setDoOutput(true);

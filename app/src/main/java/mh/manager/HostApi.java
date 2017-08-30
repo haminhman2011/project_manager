@@ -7,5 +7,6 @@ package mh.manager;
 import mh.manager.dialog.*;
 
 public class HostApi {
-  public  String hostApi = "http://demo.cloudteam.vn:8080/cocobay_manager/api/";
+  public  String hostApi = "http://125.212.249.180/cocobay_manager/api/";
+  //http://demo.cloudteam.vn/cocobay_manager/api/
 }

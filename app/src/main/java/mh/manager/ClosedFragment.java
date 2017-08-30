@@ -131,12 +131,12 @@ public class ClosedFragment extends Fragment {
         @Override
         public void onClick(View v) {
             if(isOnline()){
-                if(listView.getCount() > 0){
+//                if(listView.getCount() > 0){
                     adapter.clear();
-                    String strUrl = hostApi.hostApi+url_page+url_token+token+url_staffId+staffId+url_agentId+agentId+"&ticketNumber="; //
+                    String strUrl = hostApi.hostApi+url_page+url_token+token+url_staffId+staffId+url_agentId+agentId+"&query="; //
                     String strTextSearch = edtSearch.getText().toString();
                     getDataSearchFromUrl(strUrl+strTextSearch);
-                }
+//                }
             }else{
                 Toast.makeText(getContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
             }
@@ -203,6 +203,8 @@ public class ClosedFragment extends Fragment {
                 data.setEst_duedate(!jObject.getString("est_duedate").equals("null") ? jObject.getString("est_duedate") : "");
                 data.setSubject(!jObject.getString("subject").equals("null") ? jObject.getString("subject") : "");
                 data.setTeamName(!jObject.getString("teamName").equals("null") ? jObject.getString("teamName") : "");
+                data.setHotel(!jObject.getString("hotel").equals("null") ? jObject.getString("hotel") : "");
+                data.setRoom(!jObject.getString("room").equals("null") ? jObject.getString("room") : "");
                 dataClosed.add(data);
             }
 
@@ -229,8 +231,8 @@ public class ClosedFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             dialog = new ProgressDialog(context);
-            dialog.setTitle("Dữ liệu đang được tải");
-            dialog.setMessage("Tải dữ liệu...");
+            dialog.setTitle(getString(R.string.processing));
+            dialog.setMessage(getString(R.string.processing));
             dialog.setIndeterminate(false);
             dialog.show();
         }

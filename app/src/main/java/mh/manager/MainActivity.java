@@ -1,6 +1,8 @@
 package mh.manager;
 
+import android.app.NotificationManager;
 import android.app.TabActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentTabHost;
@@ -33,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // remove title
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         tabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
@@ -91,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 sql.clearTable("login");
                 sql.clearTable("status");
+                NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.cancelAll();
                 SharedPreferences SM = getSharedPreferences("userrecord", 0);
                 SharedPreferences.Editor edit = SM.edit();
                 edit.putBoolean("userlogin", false);

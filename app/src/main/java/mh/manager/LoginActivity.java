@@ -67,9 +67,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          //remove title
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
 
         rdoVN = (RadioButton) findViewById(R.id.rdoVietNam);
@@ -125,13 +125,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             String lang = "";
             String country = "";
             switch (v.getId()) {
-
                 case R.id.rdoVietNam:
-                    Log.i("111","111");
+//                    Log.i("111","111");
                     lang = "vi";
                     break;
                 case R.id.rdoEnglish:
-                    Log.i("22","22");
+//                    Log.i("22","22");
                     lang = "en";
                     break;
             }
@@ -158,7 +157,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             try {
                 // Kiểm tra thông tin nhập vào, nếu trống yêu cầu nhập lại
                 if (userName.getText().toString().equalsIgnoreCase("") || passWord.getText().toString().equalsIgnoreCase("")){
-                    Toast.makeText(getBaseContext(),"Tên người dùng hoặc mật khẩu còn trống.Làm ơn nhập lại!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(),getString(R.string.blank), Toast.LENGTH_SHORT).show();
                 }else{
                     getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
                             .edit()
@@ -167,7 +166,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             .commit();
                     // check();
                     // Tạo mới một lớp CallUrl
-                    CallUrl wst = new CallUrl(CallUrl.POST_TASK, this, "Checking...");
+                    CallUrl wst = new CallUrl(CallUrl.POST_TASK, this, getString(R.string.processing));
                     // Thêm data
                     wst.addNameValuePair("username", userName.getText().toString().trim());
                     wst.addNameValuePair("password",passWord.getText().toString().trim());
@@ -227,7 +226,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // private static final int SOCKET_TIMEOUT = 50000;
         private int taskType = GET_TASK;
         private Context mContext = null;
-        private String processMessage = "Processing...";
+        private String processMessage = getString(R.string.processing);
         private ArrayList<NameValuePair> params = new ArrayList<>();
         private ProgressDialog progressDialog;
         // Khởi tạo
@@ -245,6 +244,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 try {
                     // Dùng Json đọc thông tin nhận được từ server
                     JSONObject json_data = new JSONObject(response);
+
                     JSONArray jArray = new JSONArray(json_data.getString("datas"));
 //                    Log.i("tocken===>", String.valueOf(jArray));
                     for (int i = 0; i < jArray.length(); i++) {
@@ -269,9 +269,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
-                Toast.makeText(mContext, "Đăng nhập thành công",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, getString(R.string.connect_success),Toast.LENGTH_SHORT).show();
             }else{
-                Toast.makeText(mContext, "Đăng nhập thất bại, vui lòng kiểm tra lại",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, getString(R.string.connect_errors),Toast.LENGTH_SHORT).show();
             }
         }
 

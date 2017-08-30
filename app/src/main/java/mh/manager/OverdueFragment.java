@@ -47,7 +47,7 @@ import mh.manager.models.ModelOverdue;
 public class OverdueFragment extends Fragment {
     public HostApi hostApi;
     private LoginDatabase sql;
-    private final static String url_page = "get-list-ticket?overdue";
+    private final static String url_page = "get-list-ticket?state=overdue";
     private final static String url_staffId = "&staffId=";
     private final static String url_token = "&token=";
     private final static String url_agentId = "&agentId=";
@@ -136,12 +136,12 @@ public class OverdueFragment extends Fragment {
         public void onClick(View v) {
 
             if(isOnline()){
-                if(listView.getCount() > 0){
+//                if(listView.getCount() > 0){
                     adapter.clear();
-                    String strUrl = hostApi.hostApi+url_page+url_token+token+url_staffId+staffId+url_agentId+agentId+"&ticketNumber="; //
+                    String strUrl = hostApi.hostApi+url_page+url_token+token+url_staffId+staffId+url_agentId+agentId+"&query="; //
                     String strTextSearch = edtSearch.getText().toString();
                     getDataSearchFromUrl(strUrl+strTextSearch);
-                }
+//                }
 
             }else{
                 Toast.makeText(getContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
@@ -210,7 +210,8 @@ public class OverdueFragment extends Fragment {
                 data.setEst_duedate(!jObject.getString("est_duedate").equals("null") ? jObject.getString("est_duedate") : "");
                 data.setSubject(!jObject.getString("subject").equals("null") ? jObject.getString("subject") : "");
                 data.setTeamName(!jObject.getString("teamName").equals("null") ? jObject.getString("teamName") : "");
-
+                data.setHotel(!jObject.getString("hotel").equals("null") ? jObject.getString("hotel") : "");
+                data.setRoom(!jObject.getString("room").equals("null") ? jObject.getString("room") : "");
                 dataOverdues.add(data);
             }
 
@@ -237,8 +238,8 @@ public class OverdueFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             dialog = new ProgressDialog(context);
-            dialog.setTitle("Dữ liệu đang được tải");
-            dialog.setMessage("Tải dữ liệu...");
+            dialog.setTitle(getString(R.string.processing));
+            dialog.setMessage(getString(R.string.processing));
             dialog.setIndeterminate(false);
             dialog.show();
         }

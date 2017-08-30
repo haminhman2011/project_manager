@@ -145,6 +145,8 @@ public class LoginDatabase extends SQLiteOpenHelper {
                 cursor.moveToFirst();
                 strId = cursor.getString(cursor.getColumnIndex("id"))+"&token="+cursor.getString(cursor.getColumnIndex("token"));
                 cursor.close();
+            }else{
+                strId = "0";
             }
 
         }catch (Exception e){
@@ -163,7 +165,7 @@ public class LoginDatabase extends SQLiteOpenHelper {
             Cursor cursor = _database.rawQuery("SELECT * from login", null);  //WHERE state='open'
             if(cursor.getCount() > 0) {
                 cursor.moveToFirst();
-                strLink = cursor.getString(cursor.getColumnIndex("id"))+"&token="+cursor.getString(cursor.getColumnIndex("token"))+"&staffId="+cursor.getString(cursor.getColumnIndex("id"))+"&agentId="+cursor.getString(cursor.getColumnIndex("id"));
+                strLink = "token="+cursor.getString(cursor.getColumnIndex("token"))+"&agentId="+cursor.getString(cursor.getColumnIndex("id"));
                 cursor.close();
             }
 

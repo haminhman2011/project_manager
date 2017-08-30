@@ -78,6 +78,7 @@
                 android:paddingLeft="15dp"
                 android:text="@string/strEdit"
                 android:textAllCaps="false"
+                android:visibility="invisible"
                 android:textColor="@color/btnColor"
                 android:textSize="@dimen/btnSize" />
 
@@ -136,10 +137,12 @@
                             android:text="@string/chStatus"
                             android:textAllCaps="false"
                             android:textColor="@color/btnColor"
+                            android:visibility="invisible"
                             android:textSize="@dimen/btnSize" />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/llAssign"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
@@ -163,6 +166,7 @@
                                 android:background="@drawable/spinner_background"
                                 android:drawSelectorOnTop="true"
                                 android:gravity="left"
+                                android:visibility="invisible"
                                 android:spinnerMode="dropdown" />
                         </LinearLayout>
 
@@ -215,7 +219,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="280dp"
+                    android:layout_height="240dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
@@ -231,6 +235,24 @@
                         android:paddingBottom="5dp"
                         android:paddingLeft="15dp"
                         android:paddingTop="5dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/strHotel"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textSize" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/strRoom"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textSize" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -314,6 +336,26 @@
                         android:paddingBottom="5dp"
                         android:paddingRight="15dp"
                         android:paddingTop="5dp">
+
+                        <TextView
+                            android:id="@+id/tvHotel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/strHotel"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textSize" />
+
+                        <TextView
+                            android:id="@+id/tvRoom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/strRoom"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textSize" />
 
                         <TextView
                             android:id="@+id/tvStatusOPen"
@@ -400,12 +442,88 @@
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:background="@color/btnColor"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:padding="5dp"
+                            android:text="@string/call_recording"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textSize" />
+
+                        <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <!--<SeekBar-->
+                        <!--android:id="@+id/sbAudio"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:layout_marginRight="10dp"-->
+                        <!--android:layout_toRightOf="@+id/txtCurrentTime"-->
+                        <!--android:layout_weight="1" />-->
+                        <!--<TextView-->
+                        <!--android:text="0"-->
+                        <!--android:textColor="#000"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:id="@+id/txtTotalTime"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content" />-->
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="3"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <ImageButton
+                            android:id="@+id/btnPlay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/icon_play_16" />
+
+                        <ImageButton
+                            android:id="@+id/btnPause"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/icon_pause_16" />
+
+                        <!--</LinearLayout>-->
+
+                        <!--</LinearLayout>-->
+
+                    </LinearLayout>
 
                     <ListView
                         android:id="@+id/lvDynamicDataOpen"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="top" />
 
                 </LinearLayout>
@@ -514,10 +632,10 @@
                             android:background="@drawable/rounded_border_edittext"
                             android:gravity="top|left"
                             android:inputType="textMultiLine"
-                            android:lines="8"
+                            android:lines="4"
 
-                            android:maxLines="10"
-                            android:minLines="6"
+                            android:maxLines="4"
+                            android:minLines="4"
                             android:paddingBottom="5dp"
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"

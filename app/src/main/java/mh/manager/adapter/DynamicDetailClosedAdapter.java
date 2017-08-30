@@ -69,22 +69,29 @@ public class DynamicDetailClosedAdapter extends ArrayAdapter<ModelDynamicDetailC
         tvFieldId.setText(formatFont.formatFont(data.getField_id()));
         tvFieldId.setVisibility(View.GONE);
 
-        EditText ed = new EditText(activity);
-        ed.setId(R.id.edtNameDetailClosed);
-        ed.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        ed.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
-        ed.setTextSize(15);
-        ed.setPadding(15, 7, 15, 7);
-//        ed.setHeight(60);
-        ed.setBackgroundResource(R.drawable.rounded_border_edittext);
-        ed.setTextColor(Color.parseColor("#616161"));
-        ed.setText(data.getValue());
+        TextView txtName = new TextView(activity);
+        txtName.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        txtName.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+        txtName.setTextSize(15);
+        txtName.setTextColor(Color.parseColor("#616161"));
+        txtName.setText(formatFont.formatFont(data.getValue()));
+
+//        EditText ed = new EditText(activity);
+//        ed.setId(R.id.edtNameDetailClosed);
+//        ed.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//        ed.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+//        ed.setTextSize(15);
+//        ed.setPadding(15, 7, 15, 7);
+////        ed.setHeight(60);
+//        ed.setBackgroundResource(R.drawable.rounded_border_edittext);
+//        ed.setTextColor(Color.parseColor("#616161"));
+//        ed.setText(formatFont.formatFont(data.getValue()));
 
 
         llLeft.addView(tv);
         llLeft.addView(tvEntryId);
         llLeft.addView(tvFieldId);
-        llRight.addView(ed);
+        llRight.addView(txtName);
 
         return vi;
     }

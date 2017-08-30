@@ -124,7 +124,7 @@ public class OpenFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        Log.i("test===>",hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId );
+       Log.i("test===>",hostApi.hostApi+url_page+url_token+token+url_agentId+agentId+url_staffId+staffId );
         if(isOnline()) {
             setListViewAdapter();
             getDataFromUrl(hostApi.hostApi + url_page + url_token + token + url_agentId + agentId + url_staffId + staffId); //
@@ -152,13 +152,13 @@ public class OpenFragment extends Fragment {
         @Override
         public void onClick(View v) {
             if (isOnline()){
-                if(listView.getCount() > 0){
+//                if(listView.getCount() > 0){
                     adapter.clear();
-                    String strUrl = hostApi.hostApi+url_page+url_token+token+url_staffId+staffId+url_agentId+agentId+"&ticketNumber="; //
+                    String strUrl = hostApi.hostApi+url_page+url_token+token+url_staffId+staffId+url_agentId+agentId+"&query="; //
                     String strTextSearch = edtSearch.getText().toString();
                     Log.i("api search===>", strUrl+strTextSearch);
                     getDataSearchFromUrl(strUrl+strTextSearch);
-                }
+//                }
 
             }else{
                 Toast.makeText(getContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
@@ -187,8 +187,8 @@ public class OpenFragment extends Fragment {
     }
     //parsing json after getting from Internet
     public void parseJsonResponse(String result) {
-        Log.i("111","111");
-        Log.i("jsonjsonjson==>", result);
+//        Log.i("111","111");
+//        Log.i("jsonjsonjson==>", result);
         pageCount++;
         try {
             JSONObject json = new JSONObject(result);
@@ -215,6 +215,8 @@ public class OpenFragment extends Fragment {
                 data.setEst_duedate(!jObject.getString("est_duedate").equals("null") ? jObject.getString("est_duedate") : "");
                 data.setSubject(!jObject.getString("subject").equals("null") ? jObject.getString("subject") : "");
                 data.setTeamName(!jObject.getString("teamName").equals("null") ? jObject.getString("teamName") : "");
+                data.setHotel(!jObject.getString("hotel").equals("null") ? jObject.getString("hotel") : "");
+                data.setRoom(!jObject.getString("room").equals("null") ? jObject.getString("room") : "");
                 dataOpens.add(data);
             }
 
@@ -241,8 +243,8 @@ public class OpenFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             dialog = new ProgressDialog(context);
-            dialog.setTitle("Dữ liệu đang được tải");
-            dialog.setMessage("Tải dữ liệu...");
+            dialog.setTitle(getString(R.string.processing));
+            dialog.setMessage(getString(R.string.processing));
             dialog.setIndeterminate(false);
             dialog.show();
         }
@@ -250,7 +252,9 @@ public class OpenFragment extends Fragment {
         @Override
         protected String doInBackground(Void... params) {
             // call load JSON from url method
-            Log.i("jsonjsonjso==>", loadJSON(this.url).toString());
+
+//            Log.i("jsonjsonjso==>", loadJSON(this.url).toString());
+
             return loadJSON(this.url).toString();
         }
 
@@ -265,11 +269,21 @@ public class OpenFragment extends Fragment {
 
         public JSONObject loadJSON(String url) {
             // Creating JSON Parser instance
+            Log.i("url loi", url);
+            Log.i("loi======>", String.valueOf(json));
             JSONParser jParser = new JSONParser();
-            // getting JSON string from URL
             json = jParser.getJSONFromUrl(url);
-              Log.i("loi======>", String.valueOf(json));
             return json;
+
+            // getting JSON string from URL
+
+//            try{
+//
+//            }catch (Exception e){
+//                Log.i("loi tra ve 2", e.getMessage());
+//                e.printStackTrace();
+//            }
+//            return null;
         }
 
         private class JSONParser {

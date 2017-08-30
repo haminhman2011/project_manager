@@ -52,8 +52,8 @@ public class LoadDataServerFromURITaskDetailClosed extends AsyncTask<String, Voi
     protected void onPreExecute(){
         super.onPreExecute();
         dialog = new ProgressDialog(activity);
-        dialog.setTitle("Dữ liệu đang được tải");
-        dialog.setMessage("Tải dữ liệu...");
+        dialog.setTitle("Processing...");
+        dialog.setMessage("Processing...");
         dialog.setIndeterminate(false);
         dialog.show();
     }

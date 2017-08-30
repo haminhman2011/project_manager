@@ -47,4 +47,16 @@
     <string name="tab_overdue">Overdue</string>
     <string name="tab_closed">Closed</string>
     <string name="not_connection">Vui lòng kiểm tra kết nối mạng</string>
+
+    <string name="connect_success">Đăng nhập thành công</string>
+    <string name="connect_errors">Đăng nhập thất bại, vui lòng kiểm tra lại</string>
+    <string name="processing">Đang tải dữ liệu...</string>
+    <string name="blank">Tên người dùng hoặc mật khẩu còn trống.Làm ơn nhập lại!</string>
+    <string name="assign_sucess">Assign sucess</string>
+    <string name="assign_error">Assign error</string>
+    <string name="duplicates_dep">Department duplicates please select again</string>
+    <string name="please_choose">Vui lòng chọn!</string>
+    <string name="strHotel">Hotel:</string>
+    <string name="strRoom">Room:</string>
+    <string name="call_recording">Ghi âm cuộc gọi</string>
 </resources>

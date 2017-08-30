@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_title"
             android:padding="10dp"
-            android:text="Title"
+            android:text="Department"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
         <LinearLayout
