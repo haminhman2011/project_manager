@@ -102,21 +102,6 @@
 
 
                     <Button
-                        android:id="@+id/btnDialogResets"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@color/btnAll"
-                        android:fontFamily="sans-serif"
-                        android:text="@string/strReset"
-                        android:textAllCaps="false"
-                        android:textColor="@color/btnColor"
-                        android:textSize="@dimen/btnSize" />
-
-                    <Button
                         android:id="@+id/btnDialogCancel"
                         android:layout_width="60dp"
                         android:layout_height="30dp"

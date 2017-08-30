@@ -53,29 +53,21 @@ public class LoadDataServerFromURITaskDetailOverdue extends AsyncTask<String, Vo
 
     protected void onPreExecute(){
         super.onPreExecute();
-        // Create a progress dialog
         dialog = new ProgressDialog(activity);
-        // Set progress dialog title
-        dialog.setTitle("Dữ liệu đang được tải");
-        // Set progress dialog message
-        dialog.setMessage("Tải dữ liệu...");
+        dialog.setTitle("Processing...");
+        dialog.setMessage("Processing...");
         dialog.setIndeterminate(false);
-        // Show progress dialog
         dialog.show();
     }
 
     protected String doInBackground(String... arg0) {
-
         try {
-
             URL url = new URL(Strurl); // here is your URL path
-
             JSONObject postDataParams = new JSONObject();
             postDataParams.put("ticketId", ticketId);
             postDataParams.put("staffId", staffId);
             postDataParams.put("token", token);
             postDataParams.put("agentId", agentId);
-            Log.e("params",postDataParams.toString());
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(15000 /* milliseconds */);
@@ -88,34 +80,22 @@ public class LoadDataServerFromURITaskDetailOverdue extends AsyncTask<String, Vo
             BufferedWriter writer = new BufferedWriter(
                     new OutputStreamWriter(os, "UTF-8"));
             writer.write(getPostDataString(postDataParams));
-
             writer.flush();
             writer.close();
             os.close();
-
             int responseCode=conn.getResponseCode();
-
             if (responseCode == HttpsURLConnection.HTTP_OK) {
-
                 BufferedReader in=new BufferedReader(new
                         InputStreamReader(
                         conn.getInputStream()));
-
                 StringBuffer sb = new StringBuffer("");
                 String line="";
-
                 while((line = in.readLine()) != null) {
-
                     sb.append(line);
                     break;
                 }
-
-                Log.i("==================>", sb.toString());
-
                 in.close();
-
                 return sb.toString();
-
             }
             else {
                 return new String("false : "+responseCode);
@@ -124,7 +104,6 @@ public class LoadDataServerFromURITaskDetailOverdue extends AsyncTask<String, Vo
         catch(Exception e){
             return new String("Exception: " + e.getMessage());
         }
-
     }
 
     @Override
@@ -137,23 +116,17 @@ public class LoadDataServerFromURITaskDetailOverdue extends AsyncTask<String, Vo
 
         StringBuilder result = new StringBuilder();
         boolean first = true;
-
         Iterator<String> itr = params.keys();
-
         while(itr.hasNext()){
-
             String key= itr.next();
             Object value = params.get(key);
-
             if (first)
                 first = false;
             else
                 result.append("&");
-
             result.append(URLEncoder.encode(key, "UTF-8"));
             result.append("=");
             result.append(URLEncoder.encode(value.toString(), "UTF-8"));
-
         }
         return result.toString();
     }

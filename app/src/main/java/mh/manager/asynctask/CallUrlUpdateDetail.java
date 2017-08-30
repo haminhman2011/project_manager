@@ -45,38 +45,24 @@ public class CallUrlUpdateDetail extends AsyncTask<String, Integer, String> {
 
     // Khởi tạo
     public CallUrlUpdateDetail(int taskType, Context mContext, String processMessage) {
-
         this.taskType = taskType;
         this.mContext = mContext;
         this.processMessage = processMessage;
-
     }
 
     @Override
     protected void onPostExecute(String response) {
         progressDialog.dismiss();
-        Log.i("trang thai cap nhat", response);
-
-//            if(!response.equals("fail")){
-//                Toast.makeText(mContext, "Đăng nhập thành công",Toast.LENGTH_SHORT).show();
-//            }else{
-//                Toast.makeText(mContext, "Đăng nhập thất bại, vui lòng kiểm tra lại",Toast.LENGTH_SHORT).show();
-//            }
-
-
     }
 
     // thêm thông tin cần thiết để gửi lên server
     public void addNameValuePair(String name, String value) {
-
         params.add(new BasicNameValuePair(name, value));
     }
-
     // hiển thị dialog trên UI cho người dùng biết app đang trong quá trình làm
     // việc
     @Override
     protected void onPreExecute() {
-
         // showProgressDialog();
         this.progressDialog = ProgressDialog.show(mContext, "",
                 processMessage);
@@ -91,47 +77,38 @@ public class CallUrlUpdateDetail extends AsyncTask<String, Integer, String> {
             return result;
         } else {
             try {
-
                 // kết quả trả về được chuyển về dạng chuỗi
                 result = inputStreamToString(response.getEntity().getContent());
-
-
             } catch (IllegalStateException e) {
                 Log.e(TAG, e.getLocalizedMessage(), e);
-
             } catch (IOException e) {
                 Log.e(TAG, e.getLocalizedMessage(), e);
             }
         }
-        Log.i("111111=======>", result);
+
+        Log.i("ket qua tra ve", result);
         return result;
     }
 
     // khởi tạo socket và kết nối
     private HttpParams getHttpParams() {
-
         HttpParams htpp = new BasicHttpParams();
         // HttpConnectionParams.setConnectionTimeout(htpp, CONN_TIMEOUT);
         // HttpConnectionParams.setSoTimeout(htpp, SOCKET_TIMEOUT);
         return htpp;
     }
-
     // thao tác xử lý khi kết nối đến server
     private HttpResponse doResponse(String url) {
-
         HttpClient httpclient = new DefaultHttpClient(getHttpParams());
         httpclient.getParams().setParameter("http.protocol.content-charset", "UTF-8");
         HttpResponse response = null;
-
         try {
             switch (taskType) {
-
                 // kiểm tra tác vụ cần thực hiển
                 // post gửi yêu cầu kèm thông tin
                 // Get gửi yêu cầu
                 case POST_TASK:
                     HttpPost httppost = new HttpPost(url);
-
                     // Add parameters
                     httppost.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
                     response = httpclient.execute(httppost);
@@ -142,18 +119,14 @@ public class CallUrlUpdateDetail extends AsyncTask<String, Integer, String> {
                     break;
             }
         } catch (Exception e) {
-
             Log.e(TAG, e.getLocalizedMessage(), e);
-
         }
-
         return response;
     }
 
     // Chuyển thông tin nhận về thành dạng chuỗi
     private String inputStreamToString(InputStream is) {
-
-        String line = "";
+        String line;
         StringBuilder total = new StringBuilder();
         BufferedReader rd = new BufferedReader(new InputStreamReader(is));
         try {
@@ -164,7 +137,6 @@ public class CallUrlUpdateDetail extends AsyncTask<String, Integer, String> {
         } catch (IOException e) {
             Log.e(TAG, e.getLocalizedMessage(), e);
         }
-
         // Trả về giá trị chuỗi đầy đủ
         return total.toString();
     }

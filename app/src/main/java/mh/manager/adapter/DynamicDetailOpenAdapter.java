@@ -14,17 +14,22 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
+import mh.manager.LoginDatabase;
 import mh.manager.R;
 import mh.manager.format.FormatFont;
 import mh.manager.models.ModelDynamicDetailOpen;
+import mh.manager.models.ModelUrlRec;
 
 /**
  * Created by man.ha on 7/27/2017.
  */
 
-public class DynamicDetailOpenAdapter extends ArrayAdapter<ModelDynamicDetailOpen> {
+public class DynamicDetailOpenAdapter extends ArrayAdapter<ModelDynamicDetailOpen>{
 
     public FormatFont formatFont;
 
@@ -38,6 +43,7 @@ public class DynamicDetailOpenAdapter extends ArrayAdapter<ModelDynamicDetailOpe
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
         View vi = convertView;
         formatFont = new FormatFont();
         LinearLayout llLeft, llRight;
@@ -45,6 +51,7 @@ public class DynamicDetailOpenAdapter extends ArrayAdapter<ModelDynamicDetailOpe
         if(vi == null){
             vi = inflater.inflate(R.layout.item_dynamic_detail_open, parent, false);
         }
+
         ModelDynamicDetailOpen data = getItem(position);
         llLeft = (LinearLayout)vi.findViewById(R.id.llDynamicOpenLeft);
         llRight = (LinearLayout)vi.findViewById(R.id.llDynamicOpenRight);
@@ -56,7 +63,7 @@ public class DynamicDetailOpenAdapter extends ArrayAdapter<ModelDynamicDetailOpe
         tv.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
         tv.setTextSize(15);
         tv.setTextColor(Color.parseColor("#616161"));
-        tv.setText(formatFont.formatFont(data.getLabel()));
+        tv.setText(formatFont.formatFont(data.getLabel())+":");
 
         TextView tvEntryId = new TextView(activity);
         tvEntryId.setId(R.id.tvEntryId);
@@ -70,22 +77,29 @@ public class DynamicDetailOpenAdapter extends ArrayAdapter<ModelDynamicDetailOpe
         tvFieldId.setText(formatFont.formatFont(data.getField_id()));
         tvFieldId.setVisibility(View.GONE);
 
+        TextView txtName = new TextView(activity);
+        txtName.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        txtName.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+        txtName.setTextSize(15);
+        txtName.setTextColor(Color.parseColor("#616161"));
+        txtName.setText(formatFont.formatFont(data.getValue()));
 
-        EditText ed = new EditText(activity);
-        ed.setId(R.id.edtNameDetailOpen);
-        ed.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        ed.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
-        ed.setTextSize(15);
-        ed.setPadding(15, 0, 15, 0);
-        ed.setHeight(60);
-        ed.setBackgroundResource(R.drawable.rounded_border_edittext);
-        ed.setTextColor(Color.parseColor("#616161"));
-        ed.setText(data.getValue());
+
+//        EditText ed = new EditText(activity);
+//        ed.setId(R.id.edtNameDetailOpen);
+//        ed.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//        ed.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+//        ed.setTextSize(15);
+//        ed.setPadding(15, 7, 15, 7);
+////        ed.setHeight();
+//        ed.setBackgroundResource(R.drawable.rounded_border_edittext);
+//        ed.setTextColor(Color.parseColor("#616161"));
+//        ed.setText(formatFont.formatFont(data.getValue()));
 
         llLeft.addView(tv);
         llLeft.addView(tvEntryId);
         llLeft.addView(tvFieldId);
-        llRight.addView(ed);
+        llRight.addView(txtName);
         return vi;
     }
 }

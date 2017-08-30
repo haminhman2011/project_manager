@@ -3,7 +3,12 @@
     package="mh.manager">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -13,8 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginActivity"
-            android:windowSoftInputMode="stateHidden">
+            android:name=".Loading"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,50 +28,53 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".LoginActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".OpenActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".OverdueActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".ClosedActivity"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DetailClosedActivity"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DetailOpenActivity"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DetailOverdueActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".MyTicketsActivity"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DetailMyTicketActivity"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".dialog.AgentActivity"
             android:theme="@android:style/Theme.Holo.Light.Dialog"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".dialog.TeamActivity"
             android:theme="@android:style/Theme.Holo.Light.Dialog"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".dialog.TransferActivity"
             android:theme="@android:style/Theme.Holo.Light.Dialog"
-            android:windowSoftInputMode="stateHidden" />
-
-        <activity android:name=".EditDetailOpenActivity"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".EditDetailOpenActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".DetailNotiActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".service.NotificationServices" />
-
 
     </application>
 

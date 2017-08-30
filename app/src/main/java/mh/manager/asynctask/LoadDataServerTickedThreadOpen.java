@@ -43,9 +43,9 @@ public class LoadDataServerTickedThreadOpen extends AsyncTask<Void, Void, String
         // Create a progress dialog
         dialog = new ProgressDialog(activity);
         // Set progress dialog title
-        dialog.setTitle("Dữ liệu đang được tải");
+        dialog.setTitle("Processing...");
         // Set progress dialog message
-        dialog.setMessage("Tải dữ liệu...");
+        dialog.setMessage("Processing...");
         dialog.setIndeterminate(false);
         // Show progress dialog
         dialog.show();
@@ -57,6 +57,7 @@ public class LoadDataServerTickedThreadOpen extends AsyncTask<Void, Void, String
         // Making a request to url and getting response
         String jsonStr = sh.makeServiceCall(url);
         Log.i("jsonStr==>", jsonStr);
+        Log.i("mess", url);
         return jsonStr;
     }
 

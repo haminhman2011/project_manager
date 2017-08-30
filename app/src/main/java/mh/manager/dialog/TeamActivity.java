@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import mh.manager.HostApi;
 import mh.manager.R;
 import mh.manager.jsonfuntions.JsonLoadStatus;
+import mh.manager.lang.SharedPrefControl;
 import mh.manager.models.ModelAgent;
 import mh.manager.models.ModelTeam;
 
@@ -48,6 +49,8 @@ public class TeamActivity extends Activity{
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setContentView(R.layout.dialog_change_team);
+        SharedPrefControl.updateLangua(getApplicationContext());
+
         spAgent = (Spinner) findViewById(R.id.snTeam);
 
         new DownloadJSON().execute();

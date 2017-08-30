@@ -14,10 +14,11 @@ public class ModelDynamicDetailOpen implements Serializable {
     private String ticket_id;
     private String field_id;
     private String ticketStatus;
+    private String urlRec;
 
     public ModelDynamicDetailOpen(){}
 
-    public ModelDynamicDetailOpen(String label, String value, String type, String entry_id, String ticket_id, String field_id, String ticketStatus) {
+    public ModelDynamicDetailOpen(String label, String value, String type, String entry_id, String ticket_id, String field_id, String ticketStatus, String urlRec) {
         this.label = label;
         this.value = value;
         this.type = type;
@@ -25,6 +26,7 @@ public class ModelDynamicDetailOpen implements Serializable {
         this.ticket_id = ticket_id;
         this.field_id = field_id;
         this.ticketStatus = ticketStatus;
+        this.urlRec = urlRec;
     }
 
     public String getLabel() {
@@ -81,6 +83,14 @@ public class ModelDynamicDetailOpen implements Serializable {
 
     public void setTicketStatus(String ticketStatus) {
         this.ticketStatus = ticketStatus;
+    }
+
+    public String getUrlRec() {
+        return urlRec;
+    }
+
+    public void setUrlRec(String urlRec) {
+        this.urlRec = urlRec;
     }
 }
 

@@ -5,8 +5,9 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "mh.manager"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 25
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -32,7 +33,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.1'
     compile 'com.google.gms:google-services:3.1.0'
     compile 'com.google.android.gms:play-services:11.0.4'
-    compile 'org.apache.httpcomponents:httpclient:4.5.3'
     compile 'org.apache.httpcomponents:httpcore:4.4.6'
+    compile 'com.android.support:support-v4:25.3.1'
     testCompile 'junit:junit:4.12'
 }

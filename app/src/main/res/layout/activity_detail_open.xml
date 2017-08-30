@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
-    android:background="@drawable/background"
+    android:background="@color/bg"
     android:gravity="center_vertical"
     android:orientation="vertical">
 
@@ -78,6 +78,7 @@
                 android:paddingLeft="15dp"
                 android:text="@string/strEdit"
                 android:textAllCaps="false"
+                android:visibility="invisible"
                 android:textColor="@color/btnColor"
                 android:textSize="@dimen/btnSize" />
 
@@ -90,7 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
-        android:background="@drawable/background"
+        android:background="@color/bg"
         android:orientation="horizontal">
 
         <ScrollView
@@ -136,10 +137,12 @@
                             android:text="@string/chStatus"
                             android:textAllCaps="false"
                             android:textColor="@color/btnColor"
+                            android:visibility="invisible"
                             android:textSize="@dimen/btnSize" />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/llAssign"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
@@ -163,6 +166,7 @@
                                 android:background="@drawable/spinner_background"
                                 android:drawSelectorOnTop="true"
                                 android:gravity="left"
+                                android:visibility="invisible"
                                 android:spinnerMode="dropdown" />
                         </LinearLayout>
 
@@ -215,7 +219,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="240dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
@@ -231,6 +235,24 @@
                         android:paddingBottom="5dp"
                         android:paddingLeft="15dp"
                         android:paddingTop="5dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/strHotel"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textSize" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/strRoom"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textSize" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -273,34 +295,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
-                            android:text="@string/strUser"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
                             android:text="@string/strEmail"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="@string/strPhone"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="@string/strSource"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/textSize" />
 
@@ -310,15 +305,6 @@
                             android:layout_weight="1"
                             android:gravity="left|center_vertical"
                             android:text="@string/strAssignedTo"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="@string/strSlaPlan"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/textSize" />
 
@@ -340,23 +326,6 @@
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/textSize" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="@string/strLastMessage"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="@string/strLastResponse"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -367,6 +336,26 @@
                         android:paddingBottom="5dp"
                         android:paddingRight="15dp"
                         android:paddingTop="5dp">
+
+                        <TextView
+                            android:id="@+id/tvHotel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/strHotel"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textSize" />
+
+                        <TextView
+                            android:id="@+id/tvRoom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/strRoom"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textSize" />
 
                         <TextView
                             android:id="@+id/tvStatusOPen"
@@ -405,15 +394,6 @@
                             android:textSize="@dimen/textSize" />
 
                         <TextView
-                            android:id="@+id/tvUserOpen"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
                             android:id="@+id/tvEmailOpen"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -423,34 +403,7 @@
                             android:textSize="@dimen/textSize" />
 
                         <TextView
-                            android:id="@+id/tvPhoneOpen"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:id="@+id/tvSourceOpen"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
                             android:id="@+id/tvAssignedToOpen"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:id="@+id/tvSlaPlanOpen"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -476,23 +429,6 @@
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/textSize" />
 
-                        <TextView
-                            android:id="@+id/tvLastMessageOpen"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
-
-                        <TextView
-                            android:id="@+id/tvLastReponseOpen"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textSize" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -506,12 +442,88 @@
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:background="@color/btnColor"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:padding="5dp"
+                            android:text="@string/call_recording"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textSize" />
+
+                        <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <!--<SeekBar-->
+                        <!--android:id="@+id/sbAudio"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:layout_marginRight="10dp"-->
+                        <!--android:layout_toRightOf="@+id/txtCurrentTime"-->
+                        <!--android:layout_weight="1" />-->
+                        <!--<TextView-->
+                        <!--android:text="0"-->
+                        <!--android:textColor="#000"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:id="@+id/txtTotalTime"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content" />-->
+                        <!--</LinearLayout>-->
+
+                        <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="3"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <ImageButton
+                            android:id="@+id/btnPlay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/icon_play_16" />
+
+                        <ImageButton
+                            android:id="@+id/btnPause"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/icon_pause_16" />
+
+                        <!--</LinearLayout>-->
+
+                        <!--</LinearLayout>-->
+
+                    </LinearLayout>
 
                     <ListView
                         android:id="@+id/lvDynamicDataOpen"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="top" />
 
                 </LinearLayout>
@@ -550,7 +562,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:padding="10dp"/>
+                            android:padding="10dp" />
 
                     </LinearLayout>
 
@@ -620,10 +632,10 @@
                             android:background="@drawable/rounded_border_edittext"
                             android:gravity="top|left"
                             android:inputType="textMultiLine"
-                            android:lines="8"
+                            android:lines="4"
 
-                            android:maxLines="10"
-                            android:minLines="6"
+                            android:maxLines="4"
+                            android:minLines="4"
                             android:paddingBottom="5dp"
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
@@ -692,7 +704,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:orientation="horizontal"/>
+                        android:orientation="horizontal" />
 
                 </LinearLayout>
 
@@ -734,7 +746,7 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/button"
+                            android:id="@+id/btnCancel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
@@ -743,8 +755,8 @@
                             android:layout_marginTop="5dp"
                             android:layout_weight="1"
                             android:background="@color/btnCancel"
-                            android:text="@string/strCancel"
                             android:fontFamily="sans-serif"
+                            android:text="@string/strCancel"
                             android:textAllCaps="false"
                             android:textColor="@color/btnColor" />
                     </LinearLayout>

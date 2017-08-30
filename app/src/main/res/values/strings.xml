@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CocobayManage</string>
+    <string name="app_name">Hotel Support</string>
     <string name="logOut">Log Out</string>
     <string name="logIn">Log In</string>
     <string name="userName">User name</string>
@@ -39,4 +39,27 @@
     <string name="chStatus">Status</string>
     <string name="reassign">Assign</string>
     <string name="strEdit">Edit</string>
+    <string name="vietnamese">VietNamese</string>
+    <string name="english">English</string>
+    <string name="textview">Change language</string>
+    <string name="chkRemember">Ghi nhớ đăng nhập</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tab_open">Open</string>
+    <string name="tab_myticket">My Ticket</string>
+    <string name="tab_overdue">Overdue</string>
+    <string name="tab_closed">Closed</string>
+    <string name="not_connection">Please check the network connection</string>
+    <string name="connect_success">Logged in successfully</string>
+    <string name="connect_errors">Login failed, please check again</string>
+    <string name="processing">Processing...</string>
+    <string name="blank">Username or password is empty. Please enter again!</string>
+    <string name="assign_sucess">Assign sucess</string>
+    <string name="assign_error">Assign error</string>
+    <string name="duplicates_dep">Department duplicates please select again</string>
+    <string name="please_choose">Please choose</string>
+    <string name="strHotel">Hotel:</string>
+    <string name="strRoom">Room:</string>
+    <string name="call_recording">Call recording</string>
 </resources>

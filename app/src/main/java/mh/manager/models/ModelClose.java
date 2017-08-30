@@ -27,9 +27,12 @@ public class ModelClose implements Serializable {
     private String last_message;
     private String last_reponse;
     private String teamName;
+    private String hotel;
+    private String room;
 
     public ModelClose(){}
-    public ModelClose(String ticket_id, String number, String priority, String username, String email, String department, String departmentId, String source, String topicname, String slaname, String created, String lastupdate, String status, String est_duedate, String subject, String phone, String assigned_to, String last_message, String last_reponse, String teamName) {
+
+    public ModelClose(String ticket_id, String number, String priority, String username, String email, String department, String departmentId, String source, String topicname, String slaname, String created, String lastupdate, String status, String est_duedate, String subject, String phone, String assigned_to, String last_message, String last_reponse, String teamName, String hotel, String room) {
         this.ticket_id = ticket_id;
         this.number = number;
         this.priority = priority;
@@ -50,6 +53,8 @@ public class ModelClose implements Serializable {
         this.last_message = last_message;
         this.last_reponse = last_reponse;
         this.teamName = teamName;
+        this.hotel = hotel;
+        this.room = room;
     }
 
     public String getTicket_id() {
@@ -210,6 +215,22 @@ public class ModelClose implements Serializable {
 
     public void setTeamName(String teamName) {
         this.teamName = teamName;
+    }
+
+    public String getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(String hotel) {
+        this.hotel = hotel;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
     }
 }
 
