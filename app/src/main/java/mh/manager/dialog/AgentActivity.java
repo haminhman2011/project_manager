@@ -44,6 +44,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import mh.manager.HostApi;
+import mh.manager.LocaLIpAddress;
 import mh.manager.LoginDatabase;
 import mh.manager.MainActivity;
 import mh.manager.R;
@@ -138,15 +139,19 @@ public class AgentActivity extends Activity{
         @Override
         public void onClick(View v) {
             if(isOnline()){
-                String strStaffId;
+                String strStaffId, note;
                 strStaffId = String.valueOf(tvIdAgent.getText());
+                note = String.valueOf(edtNoteDialog.getText());
+                LocaLIpAddress locaLIpAddress = new LocaLIpAddress();
                 // Tạo mới một lớp CallUrl
                 AgentAssign wst = new AgentAssign(AgentAssign.POST_TASK, AgentActivity.this, "Checking...");
                 wst.addNameValuePair("staffId",strStaffId);
                 wst.addNameValuePair("ticketId",ticketId);
                 wst.addNameValuePair("teamId","");
                 wst.addNameValuePair("staffAssignedId",staffAssignedId);
-//            Log.i("assign============>", "staffId "+strStaffId+"------------"+"ticketId "+ticketId+"-----------------"+"teamId"+"----------"+"staffAssignedId "+staffAssignedId);
+                wst.addNameValuePair("note",note);
+                wst.addNameValuePair("ipAddress",locaLIpAddress.getLocalIpAddress());
+           Log.i("assign====>", "staffId "+strStaffId+"-----"+"ticketId "+ticketId+"----"+"teamId"+"-----"+"staffAssignedId "+staffAssignedId+"-----"+"note "+note+"-----"+"ipAddress "+locaLIpAddress.getLocalIpAddress());
                 wst.execute(new String[] { hostApi.hostApi+"assign-ticket"});
             }else{
                 Toast.makeText(getBaseContext(), getString(R.string.not_connection),Toast.LENGTH_SHORT).show();
@@ -166,7 +171,7 @@ public class AgentActivity extends Activity{
         // private static final int SOCKET_TIMEOUT = 50000;
         private int taskType = GET_TASK;
         private Context mContext = null;
-        private String processMessage = "Processing...";
+        private String processMessage = getString(R.string.processing);
         private ArrayList<NameValuePair> params = new ArrayList<>();
         private ProgressDialog progressDialog;
 
@@ -185,11 +190,11 @@ public class AgentActivity extends Activity{
             Log.i("trang thai cap nhat", response);
 
             if(response.equals("success")){
-                Toast.makeText(AgentActivity.this, "Assign sucess", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AgentActivity.this, getString(R.string.assign_sucess), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
             }else{
-                Toast.makeText(mContext, "Đăng nhập thất bại, vui lòng kiểm tra lại",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,response,Toast.LENGTH_SHORT).show(); // getString(R.string.assign_error)
             }
         }
         // thêm thông tin cần thiết để gửi lên server

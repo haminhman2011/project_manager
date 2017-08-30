@@ -30,9 +30,9 @@ public class LoadDataServerTicketTheadNoti extends AsyncTask<Void, Void, String>
         // Create a progress dialog
         dialog = new ProgressDialog(activity);
         // Set progress dialog title
-        dialog.setTitle("Dữ liệu đang được tải");
+        dialog.setTitle("Processing...");
         // Set progress dialog message
-        dialog.setMessage("Tải dữ liệu...");
+        dialog.setMessage("Processing...");
         dialog.setIndeterminate(false);
         // Show progress dialog
         dialog.show();

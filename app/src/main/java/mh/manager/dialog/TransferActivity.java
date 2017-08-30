@@ -131,12 +131,12 @@ public class TransferActivity extends Activity {
                     wst.addNameValuePair("staffId",staffId);
                     wst.addNameValuePair("note",strNote);
                     wst.addNameValuePair("ipAddress",locaLIpAddress.getLocalIpAddress());
-//                Log.i("tranfer==>", "ticketId = "+ticketId+"----"+"deptId = "+strIdDeparment+"----"+"staffId = "+staffId+"----"+"note = "+strNote+"----"+"ipAddress = "+locaLIpAddress.getLocalIpAddress());
+                Log.i("tranfer==>", "ticketId = "+ticketId+"----"+"deptId = "+strIdDeparment+"----"+"staffId = "+staffId+"----"+"note = "+strNote+"----"+"ipAddress = "+locaLIpAddress.getLocalIpAddress());
                     // Đường dẫn đến server
                     wst.execute(new String[] { hostApi.hostApi+"transfer-ticket"});
 
                 }else{
-                    Toast.makeText(TransferActivity.this, "Department duplicates please select again", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TransferActivity.this, getString(R.string.duplicates_dep), Toast.LENGTH_SHORT).show();
                 }
             }else{
                 Toast.makeText(getBaseContext(), getString(R.string.not_connection), Toast.LENGTH_SHORT).show();
@@ -218,7 +218,7 @@ public class TransferActivity extends Activity {
         // private static final int SOCKET_TIMEOUT = 50000;
         private int taskType = GET_TASK;
         private Context mContext = null;
-        private String processMessage = "Processing...";
+        private String processMessage = getString(R.string.processing);
         private ArrayList<NameValuePair> params = new ArrayList<>();
         private ProgressDialog progressDialog;
 
